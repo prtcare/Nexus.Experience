@@ -1,7 +1,25 @@
 import { Card } from '../components/Card'
 import { MetricCard } from '../components/MetricCard'
+import { usePlatformHealth } from '../features/platform/usePlatformHealth'
 
 export function DashboardPage() {
+    const {
+        data: platformHealth,
+        isPending: isPlatformPending,
+        isError: isPlatformError,
+    } = usePlatformHealth()
+
+    const platformStatus = isPlatformPending
+        ? 'Checking'
+        : isPlatformError
+            ? 'Unavailable'
+            : platformHealth?.status ?? 'Unknown'
+
+    const platformDescription = isPlatformPending
+        ? 'Checking Nexus API'
+        : isPlatformError
+            ? 'Unable to reach Nexus API'
+            : `${platformHealth?.service ?? 'Nexus API'} is operational`
     return (
         <div className="nexus-dashboard">
             <header className="nexus-page-header">
@@ -47,8 +65,8 @@ export function DashboardPage() {
 
                 <MetricCard
                     label="Platform"
-                    value="Ready"
-                    description="Nexus Web is operational"
+                    value={platformStatus}
+                    description={platformDescription}
                 />
             </section>
 
@@ -68,12 +86,24 @@ export function DashboardPage() {
                     <div className="nexus-status-list">
                         <div className="nexus-status-row">
                             <div>
-                                <strong>Nexus Web</strong>
-                                <span>Frontend application</span>
+                                <strong>Nexus API</strong>
+                                <span>Backend connectivity</span>
                             </div>
 
-                            <span className="nexus-status nexus-status-ok">
-                                Operational
+                            <span
+                                className={
+                                    isPlatformPending
+                                        ? 'nexus-status nexus-status-pending'
+                                        : isPlatformError
+                                            ? 'nexus-status nexus-status-pending'
+                                            : 'nexus-status nexus-status-ok'
+                                }
+                            >
+                                {isPlatformPending
+                                    ? 'Checking'
+                                    : isPlatformError
+                                        ? 'Unavailable'
+                                        : 'Operational'}
                             </span>
                         </div>
 
