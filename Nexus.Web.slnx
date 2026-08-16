@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/Nexus.Web.Client/Nexus.Web.Client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

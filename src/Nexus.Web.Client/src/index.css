@@ -1,0 +1,333 @@
+:root {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #f4f7fb;
+    background: #070b12;
+    --nexus-bg: #070b12;
+    --nexus-sidebar: #0d131d;
+    --nexus-surface: #111925;
+    --nexus-border: #1f2a3a;
+    --nexus-text: #f4f7fb;
+    --nexus-muted: #8d9aae;
+    --nexus-primary-soft: rgba(111, 124, 255, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+body {
+    background: var(--nexus-bg);
+    color: var(--nexus-text);
+}
+
+.nexus-app {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+.nexus-sidebar {
+    padding: 24px 16px;
+    background: var(--nexus-sidebar);
+    border-right: 1px solid var(--nexus-border);
+}
+
+.nexus-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 28px;
+}
+
+.nexus-brand-mark {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6575ff, #9d5cff);
+    font-weight: 700;
+}
+
+.nexus-brand strong,
+.nexus-brand span {
+    display: block;
+}
+
+.nexus-brand span {
+    margin-top: 2px;
+    color: var(--nexus-muted);
+    font-size: 12px;
+}
+
+.nexus-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .nexus-navigation a {
+        padding: 11px 12px;
+        border-radius: 8px;
+        color: var(--nexus-muted);
+        text-decoration: none;
+    }
+
+        .nexus-navigation a:hover {
+            color: var(--nexus-text);
+            background: var(--nexus-surface);
+        }
+
+        .nexus-navigation a.active {
+            color: #aeb5ff;
+            background: var(--nexus-primary-soft);
+        }
+
+.nexus-shell {
+    min-width: 0;
+}
+
+.nexus-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 32px;
+    border-bottom: 1px solid var(--nexus-border);
+}
+
+.nexus-header-title {
+    font-weight: 600;
+}
+
+.nexus-user {
+    color: var(--nexus-muted);
+    font-size: 14px;
+}
+
+.nexus-main {
+    padding: 32px;
+}
+
+    .nexus-main h1 {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .nexus-main p {
+        color: var(--nexus-muted);
+    }
+
+@media (max-width: 800px) {
+    .nexus-app {
+        grid-template-columns: 1fr;
+    }
+
+    .nexus-sidebar {
+        display: none;
+    }
+
+    .nexus-main {
+        padding: 20px;
+    }
+}
+
+.nexus-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+    .nexus-page-header h1 {
+        margin: 4px 0 8px;
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .nexus-page-header p {
+        margin: 0;
+        max-width: 620px;
+    }
+
+.nexus-page-eyebrow {
+    color: #8996ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nexus-primary-button {
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 16px;
+    background: #6f7cff;
+    color: #ffffff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .nexus-primary-button:hover {
+        background: #8290ff;
+    }
+
+.nexus-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.nexus-card {
+    overflow: hidden;
+    border: 1px solid var(--nexus-border);
+    border-radius: 12px;
+    background: var(--nexus-surface);
+}
+
+.nexus-card-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--nexus-border);
+}
+
+    .nexus-card-header h2 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+.nexus-card-content {
+    padding: 20px;
+}
+
+.nexus-metric-card .nexus-card-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 140px;
+}
+
+.nexus-metric-label {
+    color: var(--nexus-muted);
+    font-size: 13px;
+}
+
+.nexus-metric-value {
+    margin: 12px 0 10px;
+    color: var(--nexus-text);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.nexus-metric-description {
+    margin-top: auto;
+    color: var(--nexus-muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.nexus-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+    gap: 16px;
+}
+
+.nexus-empty-state {
+    display: grid;
+    place-items: center;
+    min-height: 230px;
+    padding: 32px;
+    text-align: center;
+}
+
+    .nexus-empty-state p {
+        max-width: 400px;
+        margin: 8px 0 0;
+    }
+
+.nexus-status-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.nexus-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--nexus-border);
+}
+
+    .nexus-status-row:first-child {
+        padding-top: 0;
+    }
+
+    .nexus-status-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .nexus-status-row strong,
+    .nexus-status-row span {
+        display: block;
+    }
+
+    .nexus-status-row > div > span {
+        margin-top: 4px;
+        color: var(--nexus-muted);
+        font-size: 12px;
+    }
+
+.nexus-status {
+    flex-shrink: 0;
+    padding: 5px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.nexus-status-ok {
+    background: rgba(43, 196, 138, 0.12);
+    color: #56d8a4;
+}
+
+.nexus-status-pending {
+    background: rgba(255, 184, 76, 0.12);
+    color: #f0b65d;
+}
+
+@media (max-width: 1100px) {
+    .nexus-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .nexus-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .nexus-page-header {
+        flex-direction: column;
+    }
+
+    .nexus-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nexus-primary-button {
+        width: 100%;
+    }
+}
