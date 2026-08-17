@@ -1,42 +1,49 @@
-import { nexusApi } from '../../api/ApiClient'
 import type {
     CreateProjectRequest,
     CreateProjectResponse,
     Project,
-    ProjectDetails,
-    UpdateProjectRequest,
-    UpdateProjectResponse,
 } from './Project'
 
-export const projectsApi = {
-    list(workspaceId: string): Promise<Project[]> {
-        return nexusApi.get<Project[]>(
-            `/api/workspaces/${workspaceId}/projects`,
+const apiUrl = import.meta.env.VITE_NEXUS_API_URL
+
+export async function getProjects(
+    workspaceId: string,
+): Promise<Project[]> {
+    const response = await fetch(
+        `${apiUrl}/api/workspaces/${workspaceId}/projects`,
+    )
+
+    if (!response.ok) {
+        throw new Error(
+            `Failed to load projects: ${response.status}`,
         )
-    },
+    }
 
-    get(projectId: string): Promise<ProjectDetails> {
-        return nexusApi.get<ProjectDetails>(
-            `/api/projects/${projectId}`,
+    return response.json() as Promise<Project[]>
+}
+
+export async function createProject(
+    request: CreateProjectRequest,
+): Promise<CreateProjectResponse> {
+    const response = await fetch(
+        `${apiUrl}/api/projects`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(request),
+        },
+    )
+
+    if (!response.ok) {
+        const message = await response.text()
+
+        throw new Error(
+            message ||
+            `Failed to create project: ${response.status}`,
         )
-    },
+    }
 
-    create(
-        request: CreateProjectRequest,
-    ): Promise<CreateProjectResponse> {
-        return nexusApi.post<
-            CreateProjectResponse,
-            CreateProjectRequest
-        >('/api/projects', request)
-    },
-
-    update(
-        projectId: string,
-        request: UpdateProjectRequest,
-    ): Promise<UpdateProjectResponse> {
-        return nexusApi.put<
-            UpdateProjectResponse,
-            UpdateProjectRequest
-        >(`/api/projects/${projectId}`, request)
-    },
+    return response.json() as Promise<CreateProjectResponse>
 }

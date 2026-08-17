@@ -1,6 +1,7 @@
 import { Card } from '../components/Card'
 import { MetricCard } from '../components/MetricCard'
 import { usePlatformHealth } from '../features/platform/usePlatformHealth'
+import { useWorkspaces } from '../features/workspaces/useWorkspaces'
 
 export function DashboardPage() {
     const {
@@ -20,6 +21,15 @@ export function DashboardPage() {
         : isPlatformError
             ? 'Unable to reach Nexus API'
             : `${platformHealth?.service ?? 'Nexus API'} is operational`
+
+    const {
+        data: workspaceData,
+        isPending: workspacesPending,
+    } = useWorkspaces()
+
+    const workspaceCount =
+        workspaceData?.workspaces.length ?? 0
+
     return (
         <div className="nexus-dashboard">
             <header className="nexus-page-header">
@@ -59,7 +69,11 @@ export function DashboardPage() {
 
                 <MetricCard
                     label="Workspaces"
-                    value="—"
+                    value={
+                        workspacesPending
+                            ? '—'
+                            : workspaceCount.toString()
+                    }
                     description="Configured workspaces"
                 />
 

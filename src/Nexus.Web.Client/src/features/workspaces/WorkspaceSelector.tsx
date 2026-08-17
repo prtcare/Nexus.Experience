@@ -1,4 +1,4 @@
-import { useSelectedWorkspace } from './useSelectedWorkspace'
+import { useSelectedWorkspace } from './WorkspaceContext'
 
 export function WorkspaceSelector() {
     const {

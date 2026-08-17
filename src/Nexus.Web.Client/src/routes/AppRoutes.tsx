@@ -10,6 +10,7 @@ import { ProductsPage } from '../pages/ProductsPage'
 import { IntelligencePage } from '../pages/IntelligencePage'
 import { SettingsPage } from '../pages/SettingsPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
+import { WorkspacesPage } from '../pages/WorkspacesPage'
 
 export function AppRoutes() {
     return (
@@ -24,7 +25,10 @@ export function AppRoutes() {
                     path="dashboard"
                     element={<DashboardPage />}
                 />
-
+                <Route
+                    path="/workspaces"
+                    element={<WorkspacesPage />}
+                />
                 <Route
                     path="products"
                     element={<ProductsPage />}

@@ -19,7 +19,9 @@ export function AppLayout() {
                     <NavLink to="/dashboard">
                         Dashboard
                     </NavLink>
-
+                    <NavLink to="/workspaces">
+                        Workspaces
+                    </NavLink>
                     <NavLink to="/products">
                         Products
                     </NavLink>

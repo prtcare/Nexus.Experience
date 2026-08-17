@@ -1,24 +1,28 @@
-import { WorkspaceSelector } from '../features/workspaces/WorkspaceSelector'
+import { CreateProjectForm } from '../features/projects/CreateProjectForm'
 import { WorkspaceProjects } from '../features/projects/WorkspaceProjects'
+import { WorkspaceSelector } from '../features/workspaces/WorkspaceSelector'
 
 export function WorkspacesPage() {
     return (
         <div>
-            <div className="nexus-page-heading">
+            <header className="nexus-page-header">
                 <div>
-                    <div className="nexus-eyebrow">
-                        WORKSPACES
-                    </div>
+                    <span className="nexus-page-eyebrow">
+                        Workspaces
+                    </span>
 
                     <h1>Workspaces</h1>
 
                     <p>
-                        Select a workspace and view its projects.
+                        Select a workspace and manage
+                        its projects.
                     </p>
                 </div>
 
                 <WorkspaceSelector />
-            </div>
+            </header>
+
+            <CreateProjectForm />
 
             <WorkspaceProjects />
         </div>

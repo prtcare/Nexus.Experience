@@ -1,14 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { projectsApi } from './projectsApi'
-import type { Project } from './Project'
+import { getProjects } from './projectsApi'
 
 export function useProjects(
-    workspaceId: string | undefined,
+    workspaceId: string | null | undefined,
 ) {
-    return useQuery<Project[]>({
+    return useQuery({
         queryKey: ['projects', workspaceId],
-        queryFn: () =>
-            projectsApi.list(workspaceId!),
+        queryFn: () => getProjects(workspaceId!),
         enabled: Boolean(workspaceId),
     })
 }

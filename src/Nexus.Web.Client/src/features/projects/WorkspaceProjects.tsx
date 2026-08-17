@@ -1,4 +1,4 @@
-import { useSelectedWorkspace } from '../workspaces/useSelectedWorkspace'
+import { useSelectedWorkspace } from '../workspaces/WorkspaceContext'
 import { useProjects } from './useProjects'
 
 export function WorkspaceProjects() {
@@ -15,40 +15,64 @@ export function WorkspaceProjects() {
     } = useProjects(selectedWorkspaceId)
 
     if (workspacesPending) {
-        return <div>Loading workspace...</div>
+        return (
+            <div className="nexus-empty-state">
+                Loading workspace...
+            </div>
+        )
     }
 
     if (!selectedWorkspace) {
-        return <div>No workspace selected.</div>
+        return (
+            <div className="nexus-empty-state">
+                No workspace selected.
+            </div>
+        )
     }
 
     if (projectsPending) {
-        return <div>Loading projects...</div>
+        return (
+            <div className="nexus-empty-state">
+                Loading projects...
+            </div>
+        )
     }
 
     if (isError) {
-        return <div>Unable to load projects.</div>
+        return (
+            <div className="nexus-empty-state">
+                Unable to load projects.
+            </div>
+        )
     }
 
     if (!projects || projects.length === 0) {
         return (
-            <div>
-                No projects in {selectedWorkspace.name}.
+            <div className="nexus-empty-state">
+                <strong>No projects</strong>
+
+                <p>
+                    No projects exist in {selectedWorkspace.name}.
+                </p>
             </div>
         )
     }
 
     return (
-        <div>
-            <h2>{selectedWorkspace.name}</h2>
-
-            {projects.map(project => (
-                <div key={project.projectId}>
-                    <strong>{project.name}</strong>
+        <div className="nexus-project-list">
+            {projects.map((project) => (
+                <div
+                    key={project.projectId}
+                    className="nexus-project-row"
+                >
                     <div>
-                        {new Date(
-                            project.createdAt,
-                        ).toLocaleString()}
+                        <strong>{project.name}</strong>
+
+                        <span>
+                            {new Date(
+                                project.createdAt,
+                            ).toLocaleString()}
+                        </span>
                     </div>
                 </div>
             ))}

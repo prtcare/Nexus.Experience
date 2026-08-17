@@ -11,6 +11,12 @@ export interface ProjectDetails {
     createdAt: string
 }
 
+export interface Project {
+    projectId: string
+    name: string
+    createdAt: string
+}
+
 export interface CreateProjectRequest {
     workspaceId: string
     name: string
@@ -28,4 +34,10 @@ export interface UpdateProjectRequest {
 export interface UpdateProjectResponse {
     projectId: string
     name: string
+}
+
+export interface Project {
+    projectId: string
+    name: string
+    createdAt: string
 }
