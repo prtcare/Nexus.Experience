@@ -331,3 +331,37 @@ body {
         width: 100%;
     }
 }
+.nexus-status-error {
+    background: rgba(244, 84, 84, 0.12);
+    color: #ff7b7b;
+}
+.nexus-settings-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.nexus-settings-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--nexus-border);
+}
+
+    .nexus-settings-row:first-child {
+        padding-top: 0;
+    }
+
+    .nexus-settings-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .nexus-settings-row span {
+        color: var(--nexus-muted);
+    }
+
+    .nexus-settings-row strong {
+        text-align: right;
+        word-break: break-word;
+    }

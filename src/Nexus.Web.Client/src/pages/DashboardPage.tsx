@@ -95,7 +95,7 @@ export function DashboardPage() {
                                     isPlatformPending
                                         ? 'nexus-status nexus-status-pending'
                                         : isPlatformError
-                                            ? 'nexus-status nexus-status-pending'
+                                            ? 'nexus-status nexus-status-error'
                                             : 'nexus-status nexus-status-ok'
                                 }
                             >
