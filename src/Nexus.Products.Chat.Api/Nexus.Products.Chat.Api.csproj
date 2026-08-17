@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Nexus.Products.Chat.Api</RootNamespace>
+    <AssemblyName>Nexus.Products.Chat.Api</AssemblyName>
+    <UserSecretsId>35fb7f5c-1f97-4eb3-81fe-6743ef1dd18f</UserSecretsId>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nexus.Products.Chat.Application\Nexus.Products.Chat.Application.csproj" />
+    <ProjectReference Include="..\Nexus.Products.Chat.Domain\Nexus.Products.Chat.Domain.csproj" />
+    <ProjectReference Include="..\Nexus.Products.Chat.Infrastructure\Nexus.Products.Chat.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+</Project>
+

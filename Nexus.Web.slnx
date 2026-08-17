@@ -1,6 +1,15 @@
-<Solution>
-  <Project Path="src/Nexus.Web.Client/Nexus.Web.Client.esproj">
-    <Build />
-    <Deploy />
-  </Project>
+﻿<Solution>
+  <Folder Name="/client/">
+    <Project Path="src\Nexus.Web.Client\Nexus.Web.Client.esproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src\Nexus.Products.Chat.Domain\Nexus.Products.Chat.Domain.csproj" />
+    <Project Path="src\Nexus.Products.Chat.Application\Nexus.Products.Chat.Application.csproj" />
+    <Project Path="src\Nexus.Products.Chat.Infrastructure\Nexus.Products.Chat.Infrastructure.csproj" />
+    <Project Path="src\Nexus.Products.Chat.Api\Nexus.Products.Chat.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests\Nexus.Products.Chat.Tests\Nexus.Products.Chat.Tests.csproj" />
+    <Project Path="tests\Nexus.Products.Chat.Architecture.Tests\Nexus.Products.Chat.Architecture.Tests.csproj" />
+  </Folder>
 </Solution>
