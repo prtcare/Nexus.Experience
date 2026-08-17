@@ -2,7 +2,7 @@ import { Card } from '../components/Card'
 import { MetricCard } from '../components/MetricCard'
 import { usePlatformHealth } from '../features/platform/usePlatformHealth'
 import { useWorkspaces } from '../features/workspaces/useWorkspaces'
-
+import { useNavigate } from 'react-router-dom'
 export function DashboardPage() {
     const {
         data: platformHealth,
@@ -29,6 +29,7 @@ export function DashboardPage() {
 
     const workspaceCount =
         workspaceData?.workspaces.length ?? 0
+    const navigate = useNavigate()
 
     return (
         <div className="nexus-dashboard">
@@ -49,6 +50,9 @@ export function DashboardPage() {
                 <button
                     type="button"
                     className="nexus-primary-button"
+                    onClick={() =>
+                        navigate('/workspaces/new')
+                    }
                 >
                     New workspace
                 </button>

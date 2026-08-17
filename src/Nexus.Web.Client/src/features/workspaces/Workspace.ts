@@ -32,3 +32,13 @@ export interface UpdateWorkspaceResponse {
     workspaceId: string
     name: string
 }
+export interface CreateWorkspaceRequest {
+    name: string
+    owner: string
+    description: string
+}
+
+export interface CreateWorkspaceResponse {
+    workspaceId: string
+    name: string
+}

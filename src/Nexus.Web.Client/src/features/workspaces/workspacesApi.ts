@@ -16,7 +16,9 @@ export const workspacesApi = {
         )
     },
 
-    get(workspaceId: string): Promise<Workspace> {
+    get(
+        workspaceId: string,
+    ): Promise<Workspace> {
         return nexusApi.get<Workspace>(
             `/api/workspaces/${workspaceId}`,
         )
@@ -28,7 +30,10 @@ export const workspacesApi = {
         return nexusApi.post<
             CreateWorkspaceResponse,
             CreateWorkspaceRequest
-        >('/api/workspaces', request)
+        >(
+            '/api/workspaces',
+            request,
+        )
     },
 
     update(
@@ -38,6 +43,9 @@ export const workspacesApi = {
         return nexusApi.put<
             UpdateWorkspaceResponse,
             UpdateWorkspaceRequest
-        >(`/api/workspaces/${workspaceId}`, request)
+        >(
+            `/api/workspaces/${workspaceId}`,
+            request,
+        )
     },
 }

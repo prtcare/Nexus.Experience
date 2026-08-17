@@ -11,6 +11,9 @@ import { IntelligencePage } from '../pages/IntelligencePage'
 import { SettingsPage } from '../pages/SettingsPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { WorkspacesPage } from '../pages/WorkspacesPage'
+import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
+import { WorkspaceSettingsPage } from '../pages/WorkspaceSettingsPage'
+
 
 export function AppRoutes() {
     return (
@@ -49,6 +52,17 @@ export function AppRoutes() {
                 path="*"
                 element={<NotFoundPage />}
             />
+            <Route
+                path="/workspaces/new"
+                element={<CreateWorkspacePage />}
+            />
+            <Route
+                path="/workspaces/settings"
+                element={<WorkspaceSettingsPage />}
+            />
+
+
+
         </Routes>
     )
 }
