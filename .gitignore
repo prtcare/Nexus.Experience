@@ -1,4 +1,6 @@
-
-.vs/
 node_modules/
-.env.development
+bin/
+obj/
+.vs/
+dist/
+TestResults/

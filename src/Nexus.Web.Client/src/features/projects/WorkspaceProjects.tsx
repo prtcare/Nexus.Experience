@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom'
+
 import { useSelectedWorkspace } from '../workspaces/WorkspaceContext'
 import { useProjects } from './useProjects'
 
 export function WorkspaceProjects() {
+    const navigate = useNavigate()
+
     const {
         selectedWorkspace,
         selectedWorkspaceId,
@@ -52,7 +56,8 @@ export function WorkspaceProjects() {
                 <strong>No projects</strong>
 
                 <p>
-                    No projects exist in {selectedWorkspace.name}.
+                    No projects exist in{' '}
+                    {selectedWorkspace.name}.
                 </p>
             </div>
         )
@@ -61,12 +66,20 @@ export function WorkspaceProjects() {
     return (
         <div className="nexus-project-list">
             {projects.map((project) => (
-                <div
+                <button
                     key={project.projectId}
+                    type="button"
                     className="nexus-project-row"
+                    onClick={() =>
+                        navigate(
+                            `/projects/${project.projectId}`,
+                        )
+                    }
                 >
                     <div>
-                        <strong>{project.name}</strong>
+                        <strong>
+                            {project.name}
+                        </strong>
 
                         <span>
                             {new Date(
@@ -74,7 +87,14 @@ export function WorkspaceProjects() {
                             ).toLocaleString()}
                         </span>
                     </div>
-                </div>
+
+                    <span
+                        className="nexus-project-row-action"
+                        aria-hidden="true"
+                    >
+                        ›
+                    </span>
+                </button>
             ))}
         </div>
     )
