@@ -1,5 +1,4 @@
 ﻿using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
-using Nexus.Products.Chat.Application.Providers;
 using Nexus.Products.Chat.Domain.Conversation;
 
 namespace Nexus.Products.Chat.Application.Chat;

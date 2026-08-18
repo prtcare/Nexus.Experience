@@ -5,29 +5,22 @@ namespace Nexus.Products.Chat.Application.Knowledge.Services;
 public sealed class KnowledgeRetrievalService : IKnowledgeRetrievalService
 {
     private readonly IKnowledgeContextProvider _contextProvider;
-    private readonly IKnowledgeRanker _ranker;
 
     public KnowledgeRetrievalService(
-        IKnowledgeContextProvider contextProvider,
-        IKnowledgeRanker ranker)
+        IKnowledgeContextProvider contextProvider)
     {
         _contextProvider = contextProvider;
-        _ranker = ranker;
     }
 
-    public async Task<IReadOnlyList<KnowledgeModel>> RetrieveAsync(
+    public Task<IReadOnlyList<KnowledgeModel>> RetrieveAsync(
         Guid workspaceId,
         string query,
         CancellationToken cancellationToken = default)
     {
-        // Load all workspace knowledge
-        var knowledge = await _contextProvider.GetAsync(
+        // Fetching is a product concern; ranking now happens in Intelligence
+        // against the assembled ContextBundle.
+        return _contextProvider.GetAsync(
             workspaceId,
             cancellationToken);
-
-        // Rank and return the most relevant entries
-        return _ranker.Rank(
-            knowledge,
-            query);
     }
 }

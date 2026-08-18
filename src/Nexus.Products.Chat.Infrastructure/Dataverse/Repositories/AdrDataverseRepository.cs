@@ -1,4 +1,5 @@
 ﻿using Nexus.Products.Chat.Domain.Adr;
+using Nexus.Products.Chat.Domain.Knowledge;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
@@ -36,5 +37,21 @@ public sealed class AdrDataverseRepository
         CancellationToken cancellationToken = default)
     {
         return UpdateEntityAsync(domain, cancellationToken);
+    }
+
+    public Task<IReadOnlyList<Adr>> ListByKnowledgeIdsAsync(
+        IReadOnlyCollection<KnowledgeId> knowledgeIds,
+        CancellationToken cancellationToken = default)
+    {
+        if (knowledgeIds.Count == 0)
+        {
+            return Task.FromResult<IReadOnlyList<Adr>>([]);
+        }
+
+        var ids = knowledgeIds.Select(id => id.Value).ToHashSet();
+
+        return RetrieveMultipleDomainAsync(
+            entity => ids.Contains(entity.KnowledgeId),
+            cancellationToken);
     }
 }
