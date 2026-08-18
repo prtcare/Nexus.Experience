@@ -62,7 +62,7 @@ public static class WorkItemEndpoint
                 result.WorkItemId.Value,
                 result.ProjectId.Value,
                 result.Title,
-                result.Description,
+                result.Description ?? string.Empty,
                 (int)result.Type,
                 (int)result.Status,
                 result.CreatedAt));

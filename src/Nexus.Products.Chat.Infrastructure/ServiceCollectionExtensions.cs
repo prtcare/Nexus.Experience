@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.PowerPlatform.Dataverse.Client;
+using Nexus.Intelligence.Contracts;
 using Nexus.Products.Chat.Application.Adr.Commands;
 using Nexus.Products.Chat.Application.Artifact.Commands;
 using Nexus.Products.Chat.Application.Artifact.Commands.UpdateArtifact;
@@ -13,24 +14,20 @@ using Nexus.Products.Chat.Application.Branch.Queries.GetBranch;
 using Nexus.Products.Chat.Application.Branch.Queries.ListBranches;
 using Nexus.Products.Chat.Application.Chat;
 using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
-using Nexus.Products.Chat.Application.Chat.Prompting;
+using Nexus.Products.Chat.Application.Chat.Context;
+using Nexus.Products.Chat.Application.Chat.Identity;
 using Nexus.Products.Chat.Application.ConversationMessages.Queries.GetConversationMessages;
 using Nexus.Products.Chat.Application.Conversations.Commands.UpdateConversation;
 using Nexus.Products.Chat.Application.Conversations.Queries.GetConversation;
 using Nexus.Products.Chat.Application.Conversations.Queries.ListConversations;
-using Nexus.Products.Chat.Application.Execution;
-using Nexus.Products.Chat.Application.Execution.Commands;
 using Nexus.Products.Chat.Application.Knowledge.Commands;
 using Nexus.Products.Chat.Application.Knowledge.Queries.GetKnowledge;
 using Nexus.Products.Chat.Application.Knowledge.Queries.ListKnowledge;
 using Nexus.Products.Chat.Application.Knowledge.Services;
-using Nexus.Products.Chat.Application.Planning;
-using Nexus.Products.Chat.Application.Planning.Commands;
 using Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 using Nexus.Products.Chat.Application.Projects.Commands.UpdateProject;
 using Nexus.Products.Chat.Application.Projects.Queries.GetProject;
 using Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
-using Nexus.Products.Chat.Application.Providers;
 using Nexus.Products.Chat.Application.Session.Commands;
 using Nexus.Products.Chat.Application.Session.Commands.UpdateSession;
 using Nexus.Products.Chat.Application.Session.Queries.GetSession;
@@ -44,14 +41,12 @@ using Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Queries.GetWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Queries.ListWorkspaces;
-using Nexus.Products.Chat.Core.Agents;
 using Nexus.Products.Chat.Domain.Adr;
 using Nexus.Products.Chat.Domain.Artifact;
 using Nexus.Products.Chat.Domain.Branch;
 using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
 using Nexus.Products.Chat.Domain.Knowledge;
-using Nexus.Products.Chat.Domain.Memory;
 using Nexus.Products.Chat.Domain.Project;
 using Nexus.Products.Chat.Domain.Session;
 using Nexus.Products.Chat.Domain.Snapshot;
@@ -64,7 +59,7 @@ using Nexus.Products.Chat.Infrastructure.Dataverse.Configuration;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
-using Nexus.Products.Chat.Infrastructure.OpenAI;
+using Nexus.Products.Chat.Infrastructure.Intelligence;
 using Nexus.Products.Chat.Infrastructure.Services;
 
 namespace Nexus.Products.Chat.Infrastructure.DependencyInjection;
@@ -78,10 +73,6 @@ public static class ServiceCollectionExtensions
         // ============================================================
         // ///CONFIGURATION
         // ============================================================
-
-        services.Configure<OpenAIOptions>(
-            configuration.GetSection(
-                OpenAIOptions.SectionName));
 
         services.Configure<DataverseOptions>(
             configuration.GetSection(
@@ -219,18 +210,6 @@ public static class ServiceCollectionExtensions
             KnowledgeDataverseRepository>();
 
         // ============================================================
-        // ///MEMORY PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Memory, MemoryEntity>,
-            MemoryMapper>();
-
-        services.AddScoped<
-            IMemoryRepository,
-            MemoryDataverseRepository>();
-
-        // ============================================================
         // ///BRANCH PERSISTENCE
         // ============================================================
 
@@ -330,8 +309,6 @@ public static class ServiceCollectionExtensions
         // ///CONVERSATION MESSAGE APPLICATION
         // ============================================================
 
-        services.AddScoped<SendChatHandler>();
-
         services.AddScoped<GetConversationMessagesHandler>();
 
         // ============================================================
@@ -390,15 +367,9 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IKnowledgeContextProvider, KnowledgeContextProvider>();
 
-        services.AddScoped<IPromptBuilder, PromptBuilder>();
-
         services.AddScoped<
             IKnowledgeRetrievalService,
             KnowledgeRetrievalService>();
-
-        services.AddScoped<
-            IKnowledgeRanker,
-            KeywordKnowledgeRanker>();
 
         // ============================================================
         // ///CHAT
@@ -412,43 +383,26 @@ public static class ServiceCollectionExtensions
             IConversationContextProvider,
             ConversationContextProvider>();
 
-        // ============================================================
-        // ///PLANNING
-        // ============================================================
+        services.AddScoped<IChatContextBundleMapper, ChatContextBundleMapper>();
 
-        services.AddScoped<IPlanner, Planner>();
-
-        services.AddScoped<CreatePlanHandler>();
+        services.AddScoped<IChatTurnIdentity, ChatTurnIdentity>();
 
         // ============================================================
-        // ///EXECUTION
+        // ///INTELLIGENCE CLIENT
         // ============================================================
 
-        services.AddScoped<
-            IExecutionEngine,
-            ExecutionEngine>();
+        services
+            .AddHttpClient<IIntelligenceClient, HttpIntelligenceClient>(httpClient =>
+            {
+                var baseUrl =
+                    configuration["Nexus:IntelligenceBaseUrl"]
+                    ?? throw new InvalidOperationException(
+                        "Nexus:IntelligenceBaseUrl is not configured.");
 
-        services.AddScoped<ExecutePlanHandler>();
-
-        // ============================================================
-        // ///AGENTS
-        // ============================================================
-
-        services.AddScoped<
-            IAgentRegistry,
-            AgentRegistry>();
-
-        services.AddScoped<
-            IAgentDispatcher,
-            AgentDispatcher>();
-
-        // ============================================================
-        // ///PROVIDERS
-        // ============================================================
-
-        services.AddSingleton<
-            ILLMProvider,
-            OpenAIProvider>();
+                httpClient.BaseAddress = new Uri(baseUrl);
+                httpClient.Timeout = TimeSpan.FromSeconds(30);
+            })
+            .AddStandardResilienceHandler();
 
         // ============================================================
         // ///CORE SERVICES

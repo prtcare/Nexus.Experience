@@ -1,4 +1,4 @@
-﻿using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
+using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
 using Nexus.Products.Chat.Domain.Conversation;
 
 namespace Nexus.Products.Chat.Api.Endpoints.Chat;
@@ -32,14 +32,33 @@ public static class ChatEndpoint
                     command,
                     cancellationToken);
 
+                var response = ToResponse(result);
+
                 if (!result.Success)
                 {
-                    return Results.BadRequest(result);
+                    return Results.BadRequest(response);
                 }
 
-                return Results.Ok(result);
+                return Results.Ok(response);
             });
 
         return app;
+    }
+
+    private static SendChatResponse ToResponse(SendChatResult result)
+    {
+        return new SendChatResponse(
+            result.Success,
+            result.Reply,
+            result.Error,
+            result.RequiresClarification,
+            result.Citations
+                .Select(citation => new SendChatCitationResponse(citation.ContextItemId, citation.Span))
+                .ToArray(),
+            new SendChatUsageResponse(
+                result.Usage.TokensIn,
+                result.Usage.TokensOut,
+                result.Usage.EstimatedCost,
+                result.Usage.ModelUsed));
     }
 }
