@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.Conversations;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Conversations;
 
 public sealed record CreateConversationResponse(
     Guid ConversationId,

@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Branch;
+﻿using Nexus.Products.Chat.Domain.Branch;
 
-namespace NexusAI.Application.Branch.Commands;
+namespace Nexus.Products.Chat.Application.Branch.Commands;
 
 public sealed record CreateBranchResult(
     BranchId BranchId,

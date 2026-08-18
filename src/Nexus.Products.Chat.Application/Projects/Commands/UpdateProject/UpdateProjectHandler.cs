@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Projects.Commands.UpdateProject;
+namespace Nexus.Products.Chat.Application.Projects.Commands.UpdateProject;
 
 public sealed class UpdateProjectHandler
 {

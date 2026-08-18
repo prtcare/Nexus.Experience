@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Domain.WorkItem;
+namespace Nexus.Products.Chat.Domain.WorkItem;
 
 public interface IWorkItemRepository
     : IRepository<WorkItem, WorkItemId>

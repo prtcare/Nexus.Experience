@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.ConversationMessage;
+﻿namespace Nexus.Products.Chat.Domain.ConversationMessage;
 
 public enum ConversationMessageRole
 {

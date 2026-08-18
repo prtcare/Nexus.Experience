@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Workspace;
+﻿using Nexus.Products.Chat.Domain.Workspace;
 
-namespace NexusAI.Application.Workspaces.Queries.ListWorkspaces;
+namespace Nexus.Products.Chat.Application.Workspaces.Queries.ListWorkspaces;
 
 public sealed class ListWorkspacesHandler
 {

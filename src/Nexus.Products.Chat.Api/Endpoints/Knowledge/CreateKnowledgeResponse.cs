@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Api.Endpoints.Knowledge;
+namespace Nexus.Products.Chat.Api.Endpoints.Knowledge;
 
 public sealed record CreateKnowledgeResponse(
     KnowledgeId KnowledgeId);

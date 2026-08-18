@@ -1,3 +1,3 @@
-﻿namespace NexusAI.Application.Workspaces.Queries.ListWorkspaces;
+﻿namespace Nexus.Products.Chat.Application.Workspaces.Queries.ListWorkspaces;
 
 public sealed record ListWorkspacesQuery;

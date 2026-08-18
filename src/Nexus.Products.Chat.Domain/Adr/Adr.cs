@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Domain.Adr;
+namespace Nexus.Products.Chat.Domain.Adr;
 
 public sealed class Adr : Entity<AdrId>
 {

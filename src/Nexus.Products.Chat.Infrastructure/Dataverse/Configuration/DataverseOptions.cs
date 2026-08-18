@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Infrastructure.Dataverse.Configuration;
+﻿namespace Nexus.Products.Chat.Infrastructure.Dataverse.Configuration;
 
 public sealed class DataverseOptions
 {

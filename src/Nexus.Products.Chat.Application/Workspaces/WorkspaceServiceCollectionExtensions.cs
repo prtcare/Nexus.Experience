@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace NexusAI.Application.Workspaces;
+namespace Nexus.Products.Chat.Application.Workspaces;
 
 public static class WorkspaceServiceCollectionExtensions
 {

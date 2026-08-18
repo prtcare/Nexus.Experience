@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NexusAI.Api.Endpoints.WorkItem;
-using NexusAI.Application.WorkItem;
-using NexusAI.Domain.Project;
-using NexusAI.Domain.WorkItem;
+using Nexus.Products.Chat.Api.Endpoints.WorkItem;
+using Nexus.Products.Chat.Application.WorkItem;
+using Nexus.Products.Chat.Domain.Project;
+using Nexus.Products.Chat.Domain.WorkItem;
 
-namespace NexusAI.Api.Endpoints.WorkItems;
+namespace Nexus.Products.Chat.Api.Endpoints.WorkItems;
 
 public static class WorkItemEndpoint
 {
@@ -12,7 +12,7 @@ public static class WorkItemEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/projects/{projectId:guid}/workitems",
+            "/api/v1/projects/{projectId:guid}/workitems",
             async (
                 Guid projectId,
                 CreateWorkItemRequest request,
@@ -42,7 +42,7 @@ public static class WorkItemEndpoint
             });
 
         app.MapGet(
-    "/api/workitems/{id:guid}",
+    "/api/v1/workitems/{id:guid}",
     async (
         Guid id,
         [FromServices] GetWorkItemHandler handler,
@@ -69,7 +69,7 @@ public static class WorkItemEndpoint
     });
 
         app.MapGet(
-    "/api/projects/{projectId:guid}/workitems",
+    "/api/v1/projects/{projectId:guid}/workitems",
     async (
         Guid projectId,
         ListWorkItemsHandler handler,
@@ -94,7 +94,7 @@ public static class WorkItemEndpoint
 
 
         app.MapPut(
-    "/api/workitems/{id:guid}",
+    "/api/v1/workitems/{id:guid}",
     async (
         Guid id,
         UpdateWorkItemRequest request,

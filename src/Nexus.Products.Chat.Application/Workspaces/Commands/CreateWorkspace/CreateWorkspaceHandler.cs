@@ -1,8 +1,8 @@
-﻿using NexusAI.Application.Abstractions;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Workspace;
+﻿using Nexus.Products.Chat.Application.Abstractions;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Workspace;
 
-namespace NexusAI.Application.Workspaces.Commands.CreateWorkspace;
+namespace Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 
 public sealed class CreateWorkspaceHandler
     : ICommandHandler<CreateWorkspaceCommand, CreateWorkspaceResult>

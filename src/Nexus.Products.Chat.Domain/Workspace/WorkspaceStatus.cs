@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Workspace;
+﻿namespace Nexus.Products.Chat.Domain.Workspace;
 
 public enum WorkspaceStatus
 {

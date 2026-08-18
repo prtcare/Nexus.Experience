@@ -1,6 +1,6 @@
-using NexusAI.Domain.Artifact;
+﻿using Nexus.Products.Chat.Domain.Artifact;
 
-namespace NexusAI.Application.Artifact.Queries.GetArtifact;
+namespace Nexus.Products.Chat.Application.Artifact.Queries.GetArtifact;
 
 public sealed class GetArtifactHandler
 {

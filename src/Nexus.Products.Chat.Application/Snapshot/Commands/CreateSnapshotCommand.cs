@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Snapshot.Commands;
+namespace Nexus.Products.Chat.Application.Snapshot.Commands;
 
 public sealed record CreateSnapshotCommand(
     BranchId BranchId,

@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.WorkItems;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.WorkItems;
 
 public sealed record CreateWorkItemRequest(
     string Title,

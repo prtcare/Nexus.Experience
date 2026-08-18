@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Branch.Commands;
+namespace Nexus.Products.Chat.Application.Branch.Commands;
 
 public sealed record CreateBranchCommand(
     ConversationId ConversationId,

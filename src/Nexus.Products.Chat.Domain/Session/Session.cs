@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Domain.Session;
+namespace Nexus.Products.Chat.Domain.Session;
 
 public sealed class Session : Entity<SessionId>
 {

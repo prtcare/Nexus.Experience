@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Domain.Project;
+namespace Nexus.Products.Chat.Domain.Project;
 
 public sealed class Project
 {

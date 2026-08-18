@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Common.Identifiers;
+﻿namespace Nexus.Products.Chat.Domain.Common.Identifiers;
 
 public readonly record struct WorkspaceId(Guid Value)
 {

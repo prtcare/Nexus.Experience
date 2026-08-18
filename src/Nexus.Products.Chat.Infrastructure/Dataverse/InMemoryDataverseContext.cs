@@ -1,6 +1,6 @@
-﻿using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse;
 
 public sealed class InMemoryDataverseContext : IDataverseContext
 {

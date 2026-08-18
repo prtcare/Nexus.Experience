@@ -1,8 +1,8 @@
-namespace NexusAI.Api.Endpoints;
+namespace Nexus.Products.Chat.Api.Endpoints;
 
-public static class PlatformHealthEndpoint
+public static class HealthEndpoint
 {
-    public static IEndpointRouteBuilder MapPlatformHealthEndpoint(
+    public static IEndpointRouteBuilder MapHealthEndpoint(
         this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGet("/health", () =>
@@ -10,7 +10,7 @@ public static class PlatformHealthEndpoint
             return Results.Ok(new
             {
                 status = "Healthy",
-                service = "NexusAI.Api",
+                service = "Nexus.Products.Chat.Api",
                 version = typeof(Program)
                     .Assembly
                     .GetName()

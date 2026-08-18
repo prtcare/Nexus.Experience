@@ -1,10 +1,10 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Project;
-using NexusAI.Domain.WorkItem;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Project;
+using Nexus.Products.Chat.Domain.WorkItem;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Mapping;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public sealed class WorkItemMapper
     : IRepositoryMapper<WorkItem, WorkItemEntity>

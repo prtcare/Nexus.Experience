@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Knowledge;
-using KnowledgeModel = NexusAI.Domain.Knowledge.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Knowledge;
+using KnowledgeModel = Nexus.Products.Chat.Domain.Knowledge.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Services;
+namespace Nexus.Products.Chat.Application.Knowledge.Services;
 
 public sealed class KnowledgeContextProvider : IKnowledgeContextProvider
 {

@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Application.Adr.Commands;
+namespace Nexus.Products.Chat.Application.Adr.Commands;
 
 public sealed record CreateAdrCommand(
     KnowledgeId KnowledgeId,

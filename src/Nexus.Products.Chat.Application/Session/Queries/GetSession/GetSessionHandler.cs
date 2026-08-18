@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Queries.GetSession;
+namespace Nexus.Products.Chat.Application.Session.Queries.GetSession;
 
 public sealed class GetSessionHandler
 {

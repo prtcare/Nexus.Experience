@@ -1,7 +1,7 @@
-using NexusAI.Domain.Artifact;
-using NexusAI.Domain.WorkItem;
+﻿using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.WorkItem;
 
-namespace NexusAI.Application.Artifact.Queries.GetArtifact;
+namespace Nexus.Products.Chat.Application.Artifact.Queries.GetArtifact;
 
 public sealed record GetArtifactResult(
     ArtifactId ArtifactId,

@@ -1,11 +1,11 @@
-﻿using NexusAI.Domain.Artifact;
-using NexusAI.Domain.WorkItem;
-using NexusAI.Infrastructure.Dataverse.Clients;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
-using NexusAI.Infrastructure.Dataverse.Mapping;
+﻿using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.WorkItem;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
-namespace NexusAI.Infrastructure.Dataverse.Repositories;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 
 public sealed class ArtifactDataverseRepository
     : DataverseRepositoryBase<Artifact, ArtifactEntity, ArtifactId>,

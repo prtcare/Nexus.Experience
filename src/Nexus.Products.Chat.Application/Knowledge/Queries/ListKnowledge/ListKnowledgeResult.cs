@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Queries.ListKnowledge;
+namespace Nexus.Products.Chat.Application.Knowledge.Queries.ListKnowledge;
 
 public sealed record ListKnowledgeResult(
     KnowledgeId KnowledgeId,

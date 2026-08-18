@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Domain.ConversationMessage;
+namespace Nexus.Products.Chat.Domain.ConversationMessage;
 
 public interface IConversationMessageRepository
 {

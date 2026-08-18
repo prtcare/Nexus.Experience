@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Common;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Common;
 
-namespace NexusAI.Domain.Snapshot;
+namespace Nexus.Products.Chat.Domain.Snapshot;
 
 public interface ISnapshotRepository
     : IRepository<Snapshot, SnapshotId>

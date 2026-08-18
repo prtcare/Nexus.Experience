@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Project;
-using NexusAI.Domain.WorkItem;
+﻿using Nexus.Products.Chat.Domain.Project;
+using Nexus.Products.Chat.Domain.WorkItem;
 
-namespace NexusAI.Application.WorkItem;
+namespace Nexus.Products.Chat.Application.WorkItem;
 
 public sealed record GetWorkItemResult(
     WorkItemId WorkItemId,

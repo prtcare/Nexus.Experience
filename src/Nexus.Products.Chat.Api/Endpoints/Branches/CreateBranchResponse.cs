@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.Branches;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Branches;
 
 public sealed record CreateBranchResponse(
     Guid BranchId,

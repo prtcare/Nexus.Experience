@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Workspace;
+﻿using Nexus.Products.Chat.Domain.Workspace;
 
-namespace NexusAI.Application.Workspaces.Commands.UpdateWorkspace;
+namespace Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
 
 public sealed class UpdateWorkspaceHandler
 {

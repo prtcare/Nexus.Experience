@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Branch.Queries.ListBranches;
+namespace Nexus.Products.Chat.Application.Branch.Queries.ListBranches;
 
 public sealed record ListBranchesQuery(
     ConversationId ConversationId);

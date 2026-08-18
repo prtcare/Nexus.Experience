@@ -1,19 +1,18 @@
-﻿using NexusAI.Core.Abstractions;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Projects.Commands.CreateProject;
+namespace Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 
 public sealed class CreateProjectHandler
 {
     private readonly IProjectRepository _repository;
-    private readonly IClock _clock;
+    private readonly TimeProvider _timeProvider;
 
     public CreateProjectHandler(
         IProjectRepository repository,
-        IClock clock)
+        TimeProvider timeProvider)
     {
         _repository = repository;
-        _clock = clock;
+        _timeProvider = timeProvider;
     }
 
     public async Task<CreateProjectResult> HandleAsync(
@@ -23,7 +22,7 @@ public sealed class CreateProjectHandler
             ProjectId.New(),
             command.WorkspaceId,
             command.Name,
-            _clock.UtcNow);
+            _timeProvider.GetUtcNow());
 
         await _repository.AddAsync(
             project,

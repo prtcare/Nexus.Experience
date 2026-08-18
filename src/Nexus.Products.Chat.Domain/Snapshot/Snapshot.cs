@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Common;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Domain.Snapshot;
+namespace Nexus.Products.Chat.Domain.Snapshot;
 
 public sealed class Snapshot : Entity<SnapshotId>
 {

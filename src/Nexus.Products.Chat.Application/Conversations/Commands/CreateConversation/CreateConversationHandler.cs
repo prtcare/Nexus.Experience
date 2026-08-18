@@ -1,6 +1,6 @@
-﻿using NexusAI.Application.Conversations.Commands.CreateConversation;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Application.Conversations.Commands.CreateConversation;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Conversation;
 
 public sealed class CreateConversationHandler
 {

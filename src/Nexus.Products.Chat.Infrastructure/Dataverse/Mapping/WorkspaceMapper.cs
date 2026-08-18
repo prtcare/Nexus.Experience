@@ -1,9 +1,9 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Workspace;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Workspace;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Mapping;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public sealed class WorkspaceMapper
     : IRepositoryMapper<Workspace, WorkspaceEntity>

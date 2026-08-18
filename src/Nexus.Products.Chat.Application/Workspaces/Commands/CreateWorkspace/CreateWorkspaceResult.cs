@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Application.Workspaces.Commands.CreateWorkspace;
+namespace Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 
 public sealed record CreateWorkspaceResult(
     WorkspaceId WorkspaceId,

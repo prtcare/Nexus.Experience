@@ -1,7 +1,7 @@
-﻿using NexusAI.Application.Chat.Commands.SendChat;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Api.Endpoints.Chat;
+namespace Nexus.Products.Chat.Api.Endpoints.Chat;
 
 public static class ChatEndpoint
 {
@@ -9,7 +9,7 @@ public static class ChatEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/chat",
+            "/api/v1/chat",
             async (
                 SendChatRequest request,
                 SendChatHandler handler,

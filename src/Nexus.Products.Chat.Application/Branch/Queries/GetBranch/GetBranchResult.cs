@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Branch.Queries.GetBranch;
+namespace Nexus.Products.Chat.Application.Branch.Queries.GetBranch;
 
 public sealed record GetBranchResult(
     BranchId BranchId,

@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Application.Projects.Queries.ListProjects;
+namespace Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
 
 public sealed record ListProjectsQuery(
     WorkspaceId WorkspaceId,

@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Knowledge;
+﻿namespace Nexus.Products.Chat.Domain.Knowledge;
 
 public enum KnowledgeStatus
 {

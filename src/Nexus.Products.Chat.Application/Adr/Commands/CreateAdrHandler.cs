@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Adr;
+﻿using Nexus.Products.Chat.Domain.Adr;
 
-namespace NexusAI.Application.Adr.Commands;
+namespace Nexus.Products.Chat.Application.Adr.Commands;
 
 public sealed class CreateAdrHandler
 {
@@ -16,7 +16,7 @@ public sealed class CreateAdrHandler
         CreateAdrCommand command,
         CancellationToken cancellationToken = default)
     {
-        var adr = new NexusAI.Domain.Adr.Adr(
+        var adr = new Nexus.Products.Chat.Domain.Adr.Adr(
             AdrId.New(),
             command.KnowledgeId,
             command.Title,

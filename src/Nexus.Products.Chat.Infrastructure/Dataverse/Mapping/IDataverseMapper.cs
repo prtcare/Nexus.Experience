@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Infrastructure.Dataverse.Mapping;
+﻿namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public interface IDataverseMapper<TDomain, TEntity>
     where TDomain : class

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NexusAI.Application.Projects.Commands.CreateProject;
-using NexusAI.Application.Projects.Queries.GetProject;
-using NexusAI.Application.Projects.Queries.ListProjects;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Project;
-namespace NexusAI.Api.Endpoints.Projects;
-using NexusAI.Application.Projects.Commands.UpdateProject;
+using Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
+using Nexus.Products.Chat.Application.Projects.Queries.GetProject;
+using Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Project;
+namespace Nexus.Products.Chat.Api.Endpoints.Projects;
+using Nexus.Products.Chat.Application.Projects.Commands.UpdateProject;
 
 public static class ProjectEndpoint
 {
@@ -13,7 +13,7 @@ public static class ProjectEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/projects",
+            "/api/v1/projects",
             async (
     CreateProjectRequest request,
     [FromServices] CreateProjectHandler handler,
@@ -42,7 +42,7 @@ public static class ProjectEndpoint
 
 
         app.MapGet(
-    "/api/projects/{id:guid}",
+    "/api/v1/projects/{id:guid}",
     async (
         Guid id,
         GetProjectHandler handler,
@@ -65,7 +65,7 @@ public static class ProjectEndpoint
     });
 
         app.MapGet(
-    "/api/workspaces/{workspaceId:guid}/projects",
+    "/api/v1/workspaces/{workspaceId:guid}/projects",
     async (
         Guid workspaceId,
         ListProjectsHandler handler,
@@ -85,7 +85,7 @@ public static class ProjectEndpoint
     });
 
         app.MapPut(
-     "/api/projects/{id:guid}",
+     "/api/v1/projects/{id:guid}",
      async (
          Guid id,
          UpdateProjectRequest request,

@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using NexusAI.Application.Workspaces;
-namespace NexusAI.Application.DependencyInjection;
+using Nexus.Products.Chat.Application.Workspaces;
+namespace Nexus.Products.Chat.Application.DependencyInjection;
 
-using NexusAI.Application.Branch.Commands;
-using NexusAI.Application.Conversations.Commands.CreateConversation;
-using NexusAI.Application.Knowledge.Commands;
-using NexusAI.Application.Projects.Commands.CreateProject;
-using NexusAI.Application.Workspaces.Commands.CreateWorkspace;
+using Nexus.Products.Chat.Application.Branch.Commands;
+using Nexus.Products.Chat.Application.Conversations.Commands.CreateConversation;
+using Nexus.Products.Chat.Application.Knowledge.Commands;
+using Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
+using Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 
 public static class ServiceCollectionExtensions
 {

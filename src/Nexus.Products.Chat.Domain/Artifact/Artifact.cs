@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.WorkItem;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.WorkItem;
 
-namespace NexusAI.Domain.Artifact;
+namespace Nexus.Products.Chat.Domain.Artifact;
 
 public sealed class Artifact : Entity<ArtifactId>
 {

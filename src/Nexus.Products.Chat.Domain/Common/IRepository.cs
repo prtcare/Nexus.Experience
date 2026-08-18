@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Common;
+﻿namespace Nexus.Products.Chat.Domain.Common;
 
 public interface IRepository<TDomain, TId>
 {

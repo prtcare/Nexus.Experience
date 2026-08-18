@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Adr;
+﻿using Nexus.Products.Chat.Domain.Adr;
 
-namespace NexusAI.Application.Adr.Commands;
+namespace Nexus.Products.Chat.Application.Adr.Commands;
 
 public sealed record CreateAdrResult(
     AdrId AdrId);

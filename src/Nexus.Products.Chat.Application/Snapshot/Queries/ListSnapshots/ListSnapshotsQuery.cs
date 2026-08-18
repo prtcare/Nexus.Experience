@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Branch;
+﻿using Nexus.Products.Chat.Domain.Branch;
 
-namespace NexusAI.Application.Snapshot.Queries.ListSnapshots;
+namespace Nexus.Products.Chat.Application.Snapshot.Queries.ListSnapshots;
 
 public sealed record ListSnapshotsQuery(
     BranchId BranchId);

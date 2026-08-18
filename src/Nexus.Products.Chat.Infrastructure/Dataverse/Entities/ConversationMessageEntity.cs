@@ -1,6 +1,6 @@
-﻿using NexusAI.Infrastructure.Dataverse.Common;
+﻿using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 
-namespace NexusAI.Infrastructure.Dataverse.Entities;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
 public sealed class ConversationMessageEntity : DataverseEntity
 {

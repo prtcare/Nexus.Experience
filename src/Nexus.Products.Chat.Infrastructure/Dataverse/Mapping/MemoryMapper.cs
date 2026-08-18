@@ -1,13 +1,13 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Memory;
-using NexusAI.Domain.Project;
-using NexusAI.Domain.Workspace;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
-using NexusAI.Infrastructure.Dataverse.Mapping;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Memory;
+using Nexus.Products.Chat.Domain.Project;
+using Nexus.Products.Chat.Domain.Workspace;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
-namespace NexusAI.Infrastructure.Dataverse.Mapping;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public sealed class MemoryMapper : IRepositoryMapper<Memory, MemoryEntity>
 {

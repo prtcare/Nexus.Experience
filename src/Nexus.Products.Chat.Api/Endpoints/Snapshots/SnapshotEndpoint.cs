@@ -1,12 +1,12 @@
-﻿using NexusAI.Application.Snapshot.Commands;
-using NexusAI.Application.Snapshot.Commands.UpdateSnapshot;
-using NexusAI.Application.Snapshot.Queries.GetSnapshot;
-using NexusAI.Application.Snapshot.Queries.ListSnapshots;
-using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Application.Snapshot.Commands;
+using Nexus.Products.Chat.Application.Snapshot.Commands.UpdateSnapshot;
+using Nexus.Products.Chat.Application.Snapshot.Queries.GetSnapshot;
+using Nexus.Products.Chat.Application.Snapshot.Queries.ListSnapshots;
+using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Api.Endpoints.Snapshots;
+namespace Nexus.Products.Chat.Api.Endpoints.Snapshots;
 
 public static class SnapshotEndpoint
 {
@@ -14,7 +14,7 @@ public static class SnapshotEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-    "/api/snapshots",
+    "/api/v1/snapshots",
     async (
         CreateSnapshotRequest request,
         CreateSnapshotHandler handler,
@@ -44,7 +44,7 @@ public static class SnapshotEndpoint
     });
 
         app.MapGet(
-            "/api/snapshots/{id:guid}",
+            "/api/v1/snapshots/{id:guid}",
             async (
                 Guid id,
                 GetSnapshotHandler handler,
@@ -71,7 +71,7 @@ public static class SnapshotEndpoint
             });
 
         app.MapGet(
-            "/api/branches/{branchId:guid}/snapshots",
+            "/api/v1/branches/{branchId:guid}/snapshots",
             async (
                 Guid branchId,
                 ListSnapshotsHandler handler,
@@ -92,7 +92,7 @@ public static class SnapshotEndpoint
             });
 
         app.MapPut(
-            "/api/snapshots/{id:guid}",
+            "/api/v1/snapshots/{id:guid}",
             async (
                 Guid id,
                 UpdateSnapshotRequest request,

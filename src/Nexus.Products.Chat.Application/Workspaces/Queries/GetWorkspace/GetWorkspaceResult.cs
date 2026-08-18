@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Workspace;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Workspace;
 
-namespace NexusAI.Application.Workspaces.Queries.GetWorkspace;
+namespace Nexus.Products.Chat.Application.Workspaces.Queries.GetWorkspace;
 
 public sealed record GetWorkspaceResult(
     WorkspaceId WorkspaceId,

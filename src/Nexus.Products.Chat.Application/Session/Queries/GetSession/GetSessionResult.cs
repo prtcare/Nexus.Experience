@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Queries.GetSession;
+namespace Nexus.Products.Chat.Application.Session.Queries.GetSession;
 
 public sealed record GetSessionResult(
     SessionId SessionId,

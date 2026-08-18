@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Projects.Queries.ListProjects;
+namespace Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
 
 public sealed class ListProjectsHandler
 {

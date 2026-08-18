@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Artifact;
+﻿using Nexus.Products.Chat.Domain.Artifact;
 
-namespace NexusAI.Application.Artifact.Commands;
+namespace Nexus.Products.Chat.Application.Artifact.Commands;
 
 public sealed record CreateArtifactResult(
     ArtifactId ArtifactId);

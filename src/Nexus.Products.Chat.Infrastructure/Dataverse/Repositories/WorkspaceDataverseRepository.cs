@@ -1,28 +1,28 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Infrastructure.Dataverse.Clients;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Repositories;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 
 public sealed class WorkspaceDataverseRepository
     : DataverseRepositoryBase<
-        NexusAI.Domain.Workspace.Workspace,
+        Nexus.Products.Chat.Domain.Workspace.Workspace,
         WorkspaceEntity,
         WorkspaceId>,
-      NexusAI.Domain.Workspace.IWorkspaceRepository
+      Nexus.Products.Chat.Domain.Workspace.IWorkspaceRepository
 {
     public WorkspaceDataverseRepository(
         IDataverseClient client,
         IRepositoryMapper<
-            NexusAI.Domain.Workspace.Workspace,
+            Nexus.Products.Chat.Domain.Workspace.Workspace,
             WorkspaceEntity> mapper)
         : base(client, mapper)
     {
     }
 
     public override Task AddAsync(
-        NexusAI.Domain.Workspace.Workspace workspace,
+        Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
         CancellationToken cancellationToken = default)
     {
         return CreateAsync(
@@ -30,7 +30,7 @@ public sealed class WorkspaceDataverseRepository
             cancellationToken);
     }
 
-    public override Task<NexusAI.Domain.Workspace.Workspace?> GetAsync(
+    public override Task<Nexus.Products.Chat.Domain.Workspace.Workspace?> GetAsync(
         WorkspaceId id,
         CancellationToken cancellationToken = default)
     {
@@ -40,7 +40,7 @@ public sealed class WorkspaceDataverseRepository
     }
 
     public override Task UpdateAsync(
-        NexusAI.Domain.Workspace.Workspace workspace,
+        Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
         CancellationToken cancellationToken = default)
     {
         return UpdateEntityAsync(
@@ -48,7 +48,7 @@ public sealed class WorkspaceDataverseRepository
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<NexusAI.Domain.Workspace.Workspace>> ListAsync(
+    public Task<IReadOnlyList<Nexus.Products.Chat.Domain.Workspace.Workspace>> ListAsync(
         CancellationToken cancellationToken = default)
     {
         return RetrieveMultipleDomainAsync(

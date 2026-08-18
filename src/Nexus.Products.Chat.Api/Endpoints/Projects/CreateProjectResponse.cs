@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.Projects;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Projects;
 
 public sealed record CreateProjectResponse(
     Guid ProjectId,

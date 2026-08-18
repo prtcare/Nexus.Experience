@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.ConversationMessage;
+﻿using Nexus.Products.Chat.Domain.ConversationMessage;
 
-namespace NexusAI.Application.Chat;
+namespace Nexus.Products.Chat.Application.Chat;
 
 public sealed class ConversationContext
 {

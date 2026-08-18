@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Branch;
+﻿namespace Nexus.Products.Chat.Domain.Branch;
 
 public readonly record struct BranchId(Guid Value)
 {

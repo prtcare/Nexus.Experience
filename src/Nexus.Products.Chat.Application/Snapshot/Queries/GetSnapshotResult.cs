@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Application.Snapshot.Queries.GetSnapshot;
+namespace Nexus.Products.Chat.Application.Snapshot.Queries.GetSnapshot;
 
 public sealed record GetSnapshotResult(
     SnapshotId SnapshotId,

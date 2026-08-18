@@ -1,9 +1,9 @@
-﻿using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Session;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Session;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Mapping;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public sealed class SessionMapper
     : IRepositoryMapper<Session, SessionEntity>

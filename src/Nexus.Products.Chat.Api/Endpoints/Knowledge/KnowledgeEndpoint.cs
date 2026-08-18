@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NexusAI.Application.Knowledge.Commands;
+using Nexus.Products.Chat.Application.Knowledge.Commands;
 
-using NexusAI.Application.Knowledge.Queries.GetKnowledge;
-using NexusAI.Application.Knowledge.Queries.ListKnowledge;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Knowledge;
+using Nexus.Products.Chat.Application.Knowledge.Queries.GetKnowledge;
+using Nexus.Products.Chat.Application.Knowledge.Queries.ListKnowledge;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Api.Endpoints.Knowledge;
+namespace Nexus.Products.Chat.Api.Endpoints.Knowledge;
 
 public static class KnowledgeEndpoint
 {
@@ -14,7 +14,7 @@ public static class KnowledgeEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/workspaces/{workspaceId:guid}/knowledge",
+            "/api/v1/workspaces/{workspaceId:guid}/knowledge",
             async (
                 Guid workspaceId,
                 CreateKnowledgeRequest request,
@@ -53,7 +53,7 @@ public static class KnowledgeEndpoint
             });
 
         app.MapGet(
-            "/api/knowledge/{id:guid}",
+            "/api/v1/knowledge/{id:guid}",
             async (
                 Guid id,
                 GetKnowledgeHandler handler,
@@ -73,7 +73,7 @@ public static class KnowledgeEndpoint
             });
 
         app.MapGet(
-            "/api/workspaces/{workspaceId:guid}/knowledge",
+            "/api/v1/workspaces/{workspaceId:guid}/knowledge",
             async (
                 Guid workspaceId,
                 ListKnowledgeHandler handler,

@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Queries.GetKnowledge;
+namespace Nexus.Products.Chat.Application.Knowledge.Queries.GetKnowledge;
 
 public sealed class GetKnowledgeHandler
 {

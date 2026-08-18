@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Domain.WorkItem;
+namespace Nexus.Products.Chat.Domain.WorkItem;
 
 public sealed class WorkItem
 {

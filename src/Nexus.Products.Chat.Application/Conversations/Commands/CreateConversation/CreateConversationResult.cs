@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Conversations.Commands.CreateConversation;
+namespace Nexus.Products.Chat.Application.Conversations.Commands.CreateConversation;
 
 public sealed record CreateConversationResult(
     ConversationId ConversationId,

@@ -1,5 +1,5 @@
 ﻿
-namespace NexusAI.Domain.Project;
+namespace Nexus.Products.Chat.Domain.Project;
 
 public enum ProjectStatus
 {

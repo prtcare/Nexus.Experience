@@ -1,8 +1,8 @@
-﻿using NexusAI.Application.ConversationMessages.Queries.GetConversationMessages;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Application.ConversationMessages.Queries.GetConversationMessages;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Api.Endpoints.Conversations;
+namespace Nexus.Products.Chat.Api.Endpoints.Conversations;
 
 public static class ConversationMessageEndpoint
 {
@@ -10,7 +10,7 @@ public static class ConversationMessageEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapGet(
-            "/api/conversations/{conversationId:guid}/messages",
+            "/api/v1/conversations/{conversationId:guid}/messages",
             async (
                 Guid conversationId,
                 GetConversationMessagesHandler handler,

@@ -1,4 +1,4 @@
-namespace NexusAI.Api.Endpoints.Artifacts;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Artifacts;
 
 public sealed record ListArtifactResponse(
     Guid ArtifactId,

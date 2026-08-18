@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Session;
+﻿namespace Nexus.Products.Chat.Domain.Session;
 
 public enum SessionStatus
 {

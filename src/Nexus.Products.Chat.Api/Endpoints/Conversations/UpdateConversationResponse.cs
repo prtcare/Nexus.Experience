@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Api.Endpoints.Conversations;
+namespace Nexus.Products.Chat.Api.Endpoints.Conversations;
 
 
 public sealed record UpdateConversationResponse(

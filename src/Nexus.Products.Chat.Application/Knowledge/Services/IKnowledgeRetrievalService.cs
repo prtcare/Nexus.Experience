@@ -1,6 +1,6 @@
-﻿using KnowledgeModel = NexusAI.Domain.Knowledge.Knowledge;
+﻿using KnowledgeModel = Nexus.Products.Chat.Domain.Knowledge.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Services;
+namespace Nexus.Products.Chat.Application.Knowledge.Services;
 
 public interface IKnowledgeRetrievalService
 {

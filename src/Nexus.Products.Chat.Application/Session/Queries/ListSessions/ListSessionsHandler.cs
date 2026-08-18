@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Queries.ListSessions;
+namespace Nexus.Products.Chat.Application.Session.Queries.ListSessions;
 
 public sealed class ListSessionsHandler
 {

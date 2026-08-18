@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Infrastructure.Dataverse.Common;
+﻿namespace Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 
 public interface IRepositoryMapper<TDomain, TEntity>
 {

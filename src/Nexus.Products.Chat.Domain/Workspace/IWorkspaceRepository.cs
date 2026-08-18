@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Domain.Workspace;
+namespace Nexus.Products.Chat.Domain.Workspace;
 
 public interface IWorkspaceRepository
     : IRepository<Workspace, WorkspaceId>

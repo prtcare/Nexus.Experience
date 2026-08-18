@@ -1,8 +1,8 @@
-﻿using NexusAI.Application.Chat.Commands.SendChat;
-using NexusAI.Application.Providers;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Application.Chat.Commands.SendChat;
+using Nexus.Products.Chat.Application.Providers;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Chat;
+namespace Nexus.Products.Chat.Application.Chat;
 
 public sealed class ChatService : IChatService
 {

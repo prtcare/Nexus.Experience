@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Commands;
+namespace Nexus.Products.Chat.Application.Knowledge.Commands;
 
 public sealed record CreateKnowledgeCommand(
     WorkspaceId WorkspaceId,

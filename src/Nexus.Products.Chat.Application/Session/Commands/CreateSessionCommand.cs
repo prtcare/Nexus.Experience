@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Session.Commands;
+namespace Nexus.Products.Chat.Application.Session.Commands;
 
 public sealed record CreateSessionCommand(
     ConversationId ConversationId);

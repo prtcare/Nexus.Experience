@@ -1,8 +1,8 @@
 ﻿using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
-using NexusAI.Infrastructure.Dataverse.Entities;
-namespace NexusAI.Infrastructure.Dataverse;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse;
 
 public sealed class DataverseContext : IDataverseContext, IDisposable
 {

@@ -1,6 +1,6 @@
-using NexusAI.Domain.Artifact;
+﻿using Nexus.Products.Chat.Domain.Artifact;
 
-namespace NexusAI.Application.Artifact.Commands.UpdateArtifact;
+namespace Nexus.Products.Chat.Application.Artifact.Commands.UpdateArtifact;
 
 public sealed class UpdateArtifactHandler
 {

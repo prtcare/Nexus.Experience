@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.Workspaces;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Workspaces;
 
 public sealed record CreateWorkspaceRequest(
     string Name,

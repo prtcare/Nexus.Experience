@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.ConversationMessage;
+﻿using Nexus.Products.Chat.Domain.ConversationMessage;
 
-namespace NexusAI.Application.ConversationMessages.Queries.GetConversationMessages;
+namespace Nexus.Products.Chat.Application.ConversationMessages.Queries.GetConversationMessages;
 
 public sealed record ConversationMessageResult(
     ConversationMessageId MessageId,

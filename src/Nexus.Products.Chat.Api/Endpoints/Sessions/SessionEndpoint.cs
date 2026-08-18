@@ -1,11 +1,11 @@
-﻿using NexusAI.Application.Session.Commands;
-using NexusAI.Application.Session.Commands.UpdateSession;
-using NexusAI.Application.Session.Queries.GetSession;
-using NexusAI.Application.Session.Queries.ListSessions;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Application.Session.Commands;
+using Nexus.Products.Chat.Application.Session.Commands.UpdateSession;
+using Nexus.Products.Chat.Application.Session.Queries.GetSession;
+using Nexus.Products.Chat.Application.Session.Queries.ListSessions;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Api.Endpoints.Sessions;
+namespace Nexus.Products.Chat.Api.Endpoints.Sessions;
 
 public static class SessionEndpoint
 {
@@ -13,7 +13,7 @@ public static class SessionEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/sessions",
+            "/api/v1/sessions",
             async (
                 CreateSessionRequest request,
                 CreateSessionHandler handler,
@@ -34,7 +34,7 @@ public static class SessionEndpoint
             });
 
         app.MapGet(
-            "/api/sessions/{id:guid}",
+            "/api/v1/sessions/{id:guid}",
             async (
                 Guid id,
                 GetSessionHandler handler,
@@ -61,7 +61,7 @@ public static class SessionEndpoint
             });
 
         app.MapGet(
-            "/api/conversations/{conversationId:guid}/sessions",
+            "/api/v1/conversations/{conversationId:guid}/sessions",
             async (
                 Guid conversationId,
                 ListSessionsHandler handler,
@@ -84,7 +84,7 @@ public static class SessionEndpoint
             });
 
         app.MapPut(
-            "/api/sessions/{id:guid}",
+            "/api/v1/sessions/{id:guid}",
             async (
                 Guid id,
                 UpdateSessionRequest request,

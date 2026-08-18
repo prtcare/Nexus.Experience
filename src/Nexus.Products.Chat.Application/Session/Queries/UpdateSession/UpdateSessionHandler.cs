@@ -1,19 +1,18 @@
-﻿using NexusAI.Core.Abstractions;
-using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Commands.UpdateSession;
+namespace Nexus.Products.Chat.Application.Session.Commands.UpdateSession;
 
 public sealed class UpdateSessionHandler
 {
     private readonly ISessionRepository _repository;
-    private readonly IClock _clock;
+    private readonly TimeProvider _timeProvider;
 
     public UpdateSessionHandler(
         ISessionRepository repository,
-        IClock clock)
+        TimeProvider timeProvider)
     {
         _repository = repository;
-        _clock = clock;
+        _timeProvider = timeProvider;
     }
 
     public async Task<UpdateSessionResult?> HandleAsync(
@@ -31,7 +30,7 @@ public sealed class UpdateSessionHandler
 
         if (command.Status == SessionStatus.Ended)
         {
-            session.End(_clock.UtcNow);
+            session.End(_timeProvider.GetUtcNow());
         }
         else if (command.Status == SessionStatus.Running)
         {

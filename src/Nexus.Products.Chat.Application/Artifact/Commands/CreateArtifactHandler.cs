@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Artifact;
+﻿using Nexus.Products.Chat.Domain.Artifact;
 
-namespace NexusAI.Application.Artifact.Commands;
+namespace Nexus.Products.Chat.Application.Artifact.Commands;
 
 public sealed class CreateArtifactHandler
 {
@@ -16,7 +16,7 @@ public sealed class CreateArtifactHandler
         CreateArtifactCommand command,
         CancellationToken cancellationToken = default)
     {
-        var artifact = new NexusAI.Domain.Artifact.Artifact(
+        var artifact = new Nexus.Products.Chat.Domain.Artifact.Artifact(
             ArtifactId.New(),
             command.WorkItemId,
             command.Name,

@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using NexusAI.Application.Workspaces.Commands.CreateWorkspace;
-using NexusAI.Application.Workspaces.Commands.UpdateWorkspace;
-using NexusAI.Application.Workspaces.Queries.GetWorkspace;
-using NexusAI.Application.Workspaces.Queries.ListWorkspaces;
-using NexusAI.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
+using Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
+using Nexus.Products.Chat.Application.Workspaces.Queries.GetWorkspace;
+using Nexus.Products.Chat.Application.Workspaces.Queries.ListWorkspaces;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Api.Endpoints.Workspaces;
+namespace Nexus.Products.Chat.Api.Endpoints.Workspaces;
 
 public static class WorkspaceEndpoint
 {
@@ -16,7 +16,7 @@ public static class WorkspaceEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/workspaces",
+            "/api/v1/workspaces",
             async (
                 [FromBody] CreateWorkspaceRequest request,
                 [FromServices] CreateWorkspaceHandler handler,
@@ -54,7 +54,7 @@ public static class WorkspaceEndpoint
             });
 
         app.MapGet(
-            "/api/workspaces/{id:guid}",
+            "/api/v1/workspaces/{id:guid}",
             async (
                 Guid id,
                 [FromServices] GetWorkspaceHandler handler,
@@ -81,7 +81,7 @@ public static class WorkspaceEndpoint
             });
 
         app.MapGet(
-            "/api/workspaces",
+            "/api/v1/workspaces",
             async (
                 [FromServices] ListWorkspacesHandler handler,
                 CancellationToken cancellationToken) =>
@@ -106,7 +106,7 @@ public static class WorkspaceEndpoint
             });
 
         app.MapPut(
-            "/api/workspaces/{id:guid}",
+            "/api/v1/workspaces/{id:guid}",
             async (
                 Guid id,
                 [FromBody] UpdateWorkspaceRequest request,

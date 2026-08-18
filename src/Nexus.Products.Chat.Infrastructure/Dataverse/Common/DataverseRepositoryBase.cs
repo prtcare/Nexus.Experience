@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Infrastructure.Dataverse.Clients;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Common;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 
 public abstract class DataverseRepositoryBase<TDomain, TEntity, TId>
     : IRepository<TDomain, TId>

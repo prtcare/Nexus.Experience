@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Application.Snapshot.Queries.GetSnapshot;
+namespace Nexus.Products.Chat.Application.Snapshot.Queries.GetSnapshot;
 
 public sealed record GetSnapshotQuery(
     SnapshotId SnapshotId);

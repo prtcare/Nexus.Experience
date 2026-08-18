@@ -1,8 +1,8 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Conversations.Commands.CreateConversation;
+namespace Nexus.Products.Chat.Application.Conversations.Commands.CreateConversation;
 
 public sealed record CreateConversationCommand(
     ProjectId ProjectId,

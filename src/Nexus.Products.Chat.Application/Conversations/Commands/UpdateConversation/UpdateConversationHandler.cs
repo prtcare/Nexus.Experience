@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Conversations.Commands.UpdateConversation;
+namespace Nexus.Products.Chat.Application.Conversations.Commands.UpdateConversation;
 
 public sealed class UpdateConversationHandler
 {

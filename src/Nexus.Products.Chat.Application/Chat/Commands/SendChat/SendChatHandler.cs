@@ -1,11 +1,11 @@
-﻿using NexusAI.Application.Chat.Prompting;
-using NexusAI.Application.Knowledge.Services;
-using NexusAI.Application.Providers;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.ConversationMessage;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Application.Chat.Prompting;
+using Nexus.Products.Chat.Application.Knowledge.Services;
+using Nexus.Products.Chat.Application.Providers;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.ConversationMessage;
+using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Chat.Commands.SendChat;
+namespace Nexus.Products.Chat.Application.Chat.Commands.SendChat;
 
 public sealed class SendChatHandler
 {

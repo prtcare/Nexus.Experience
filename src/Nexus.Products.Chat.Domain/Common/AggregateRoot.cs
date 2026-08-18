@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Common;
+﻿namespace Nexus.Products.Chat.Domain.Common;
 
 public abstract class AggregateRoot<TId> : Entity<TId>
 {

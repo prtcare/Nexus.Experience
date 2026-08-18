@@ -1,6 +1,6 @@
-﻿using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Entities;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
 public sealed class AdrEntity : DataverseEntity
 {

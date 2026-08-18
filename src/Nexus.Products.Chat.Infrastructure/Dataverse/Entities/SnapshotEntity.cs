@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Infrastructure.Dataverse.Entities;
+﻿namespace Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
 public sealed class SnapshotEntity : DataverseEntity
 {

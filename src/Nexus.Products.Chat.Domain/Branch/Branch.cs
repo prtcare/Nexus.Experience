@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Common;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Domain.Branch;
+namespace Nexus.Products.Chat.Domain.Branch;
 
 public sealed class Branch : Entity<BranchId>
 {

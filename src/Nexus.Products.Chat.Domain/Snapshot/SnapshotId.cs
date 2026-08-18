@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Snapshot;
+﻿namespace Nexus.Products.Chat.Domain.Snapshot;
 
 public readonly record struct SnapshotId(Guid Value)
 {

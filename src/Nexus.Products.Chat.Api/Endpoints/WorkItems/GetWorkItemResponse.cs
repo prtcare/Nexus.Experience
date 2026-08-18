@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.WorkItems;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.WorkItems;
 
 public sealed record GetWorkItemResponse(
     Guid WorkItemId,

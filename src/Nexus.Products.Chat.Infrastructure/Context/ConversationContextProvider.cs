@@ -1,8 +1,8 @@
-﻿using NexusAI.Application.Chat;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.ConversationMessage;
+﻿using Nexus.Products.Chat.Application.Chat;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.ConversationMessage;
 
-namespace NexusAI.Infrastructure.Services;
+namespace Nexus.Products.Chat.Infrastructure.Services;
 
 public sealed class ConversationContextProvider
     : IConversationContextProvider

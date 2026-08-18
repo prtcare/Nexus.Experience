@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Application.Projects.Commands.CreateProject;
+namespace Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 
 public sealed record CreateProjectCommand(
     WorkspaceId WorkspaceId,

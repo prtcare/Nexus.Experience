@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Application.Snapshot.Queries.ListSnapshots;
+namespace Nexus.Products.Chat.Application.Snapshot.Queries.ListSnapshots;
 
 public sealed class ListSnapshotsHandler
 {

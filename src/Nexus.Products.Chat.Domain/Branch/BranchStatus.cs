@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Branch;
+﻿namespace Nexus.Products.Chat.Domain.Branch;
 
 public enum BranchStatus
 {

@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Application.Projects.Queries.ListProjects;
+﻿namespace Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
 
 public sealed record ListProjectsResult(
     Guid ProjectId,

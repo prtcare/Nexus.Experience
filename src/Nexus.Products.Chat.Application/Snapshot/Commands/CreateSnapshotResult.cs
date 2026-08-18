@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Application.Snapshot.Commands;
+namespace Nexus.Products.Chat.Application.Snapshot.Commands;
 
 public sealed record CreateSnapshotResult(
     SnapshotId SnapshotId,

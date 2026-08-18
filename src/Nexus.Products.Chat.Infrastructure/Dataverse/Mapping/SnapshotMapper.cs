@@ -1,10 +1,10 @@
-﻿using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Snapshot;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Snapshot;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Mapping;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 
 public sealed class SnapshotMapper
     : IRepositoryMapper<Snapshot, SnapshotEntity>

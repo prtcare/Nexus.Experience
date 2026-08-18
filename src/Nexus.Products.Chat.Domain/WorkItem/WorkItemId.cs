@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.WorkItem;
+﻿namespace Nexus.Products.Chat.Domain.WorkItem;
 
 public readonly record struct WorkItemId(Guid Value)
 {

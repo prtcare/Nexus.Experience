@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Application.Workspaces.Commands.UpdateWorkspace;
+namespace Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
 
 public sealed record UpdateWorkspaceResult(
     WorkspaceId WorkspaceId,

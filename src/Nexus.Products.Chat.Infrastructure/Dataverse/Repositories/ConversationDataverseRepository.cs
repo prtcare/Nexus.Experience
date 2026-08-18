@@ -1,10 +1,10 @@
-﻿using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Project;
-using NexusAI.Infrastructure.Dataverse.Clients;
-using NexusAI.Infrastructure.Dataverse.Common;
-using NexusAI.Infrastructure.Dataverse.Entities;
+﻿using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Project;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
+using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
 
-namespace NexusAI.Infrastructure.Dataverse.Repositories;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 
 public sealed class ConversationDataverseRepository
     : DataverseRepositoryBase<

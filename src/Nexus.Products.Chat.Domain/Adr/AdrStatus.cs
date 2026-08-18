@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Adr;
+﻿namespace Nexus.Products.Chat.Domain.Adr;
 
 public enum AdrStatus
 {

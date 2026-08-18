@@ -1,16 +1,16 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Workspace;
-using WorkspaceEntity = NexusAI.Domain.Workspace.Workspace;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Workspace;
+using WorkspaceEntity = Nexus.Products.Chat.Domain.Workspace.Workspace;
 
-namespace NexusAI.Infrastructure.Dataverse.Repositories.Workspace;
+namespace Nexus.Products.Chat.Infrastructure.Dataverse.Repositories.Workspace;
 
 public sealed class InMemoryWorkspaceRepository
     : IWorkspaceRepository
 {
-    private readonly Dictionary<Guid, NexusAI.Domain.Workspace.Workspace> _workspaces = new();
+    private readonly Dictionary<Guid, Nexus.Products.Chat.Domain.Workspace.Workspace> _workspaces = new();
 
     public Task AddAsync(
-    NexusAI.Domain.Workspace.Workspace workspace,
+    Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
     CancellationToken cancellationToken = default)
     {
         _workspaces[workspace.Id.Value] = workspace;
@@ -18,7 +18,7 @@ public sealed class InMemoryWorkspaceRepository
         return Task.CompletedTask;
     }
 
-    public Task<NexusAI.Domain.Workspace.Workspace?> GetAsync(
+    public Task<Nexus.Products.Chat.Domain.Workspace.Workspace?> GetAsync(
         WorkspaceId id,
         CancellationToken cancellationToken = default)
     {
@@ -30,7 +30,7 @@ public sealed class InMemoryWorkspaceRepository
     }
 
     public Task UpdateAsync(
-        NexusAI.Domain.Workspace.Workspace workspace,
+        Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
         CancellationToken cancellationToken = default)
     {
         _workspaces[workspace.Id.Value] = workspace;
@@ -38,10 +38,10 @@ public sealed class InMemoryWorkspaceRepository
         return Task.CompletedTask;
     }
 
-    public Task<IReadOnlyList<NexusAI.Domain.Workspace.Workspace>> ListAsync(
+    public Task<IReadOnlyList<Nexus.Products.Chat.Domain.Workspace.Workspace>> ListAsync(
         CancellationToken cancellationToken = default)
     {
-        IReadOnlyList<NexusAI.Domain.Workspace.Workspace> result =
+        IReadOnlyList<Nexus.Products.Chat.Domain.Workspace.Workspace> result =
             _workspaces.Values.ToList();
 
         return Task.FromResult(result);

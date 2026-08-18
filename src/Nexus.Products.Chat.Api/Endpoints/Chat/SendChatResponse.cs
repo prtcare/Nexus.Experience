@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Api.Endpoints.Chat;
+﻿namespace Nexus.Products.Chat.Api.Endpoints.Chat;
 
 public sealed record SendChatResponse(
     bool Success,

@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Chat.Commands.SendChat;
+namespace Nexus.Products.Chat.Application.Chat.Commands.SendChat;
 
 public sealed record SendChatCommand(
     ConversationId ConversationId,

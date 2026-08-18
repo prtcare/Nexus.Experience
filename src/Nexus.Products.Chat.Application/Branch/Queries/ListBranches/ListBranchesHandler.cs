@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Branch;
+﻿using Nexus.Products.Chat.Domain.Branch;
 
-namespace NexusAI.Application.Branch.Queries.ListBranches;
+namespace Nexus.Products.Chat.Application.Branch.Queries.ListBranches;
 
 public sealed class ListBranchesHandler
 {

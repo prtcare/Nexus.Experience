@@ -1,7 +1,7 @@
-﻿using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Common;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Common;
 
-namespace NexusAI.Domain.Knowledge;
+namespace Nexus.Products.Chat.Domain.Knowledge;
 
 public interface IKnowledgeRepository
     : IRepository<Knowledge, KnowledgeId>

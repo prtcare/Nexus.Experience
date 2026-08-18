@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Knowledge;
+﻿using Nexus.Products.Chat.Domain.Knowledge;
 
-namespace NexusAI.Application.Knowledge.Commands;
+namespace Nexus.Products.Chat.Application.Knowledge.Commands;
 
 public sealed class CreateKnowledgeHandler
 {
@@ -16,7 +16,7 @@ public sealed class CreateKnowledgeHandler
         CreateKnowledgeCommand command,
         CancellationToken cancellationToken = default)
     {
-        var knowledge = new NexusAI.Domain.Knowledge.Knowledge(
+        var knowledge = new Nexus.Products.Chat.Domain.Knowledge.Knowledge(
             new KnowledgeId(Guid.NewGuid()),
             command.WorkspaceId,
             command.Title,

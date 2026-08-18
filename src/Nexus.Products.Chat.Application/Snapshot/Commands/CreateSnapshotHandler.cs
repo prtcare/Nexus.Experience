@@ -1,32 +1,31 @@
-﻿using NexusAI.Core.Abstractions;
-using NexusAI.Domain.Snapshot;
+﻿using Nexus.Products.Chat.Domain.Snapshot;
 
-namespace NexusAI.Application.Snapshot.Commands;
+namespace Nexus.Products.Chat.Application.Snapshot.Commands;
 
 public sealed class CreateSnapshotHandler
 {
     private readonly ISnapshotRepository _repository;
-    private readonly IClock _clock;
+    private readonly TimeProvider _timeProvider;
 
     public CreateSnapshotHandler(
         ISnapshotRepository repository,
-        IClock clock)
+        TimeProvider timeProvider)
     {
         _repository = repository;
-        _clock = clock;
+        _timeProvider = timeProvider;
     }
 
     public async Task<CreateSnapshotResult> HandleAsync(
         CreateSnapshotCommand command,
         CancellationToken cancellationToken = default)
     {
-        var snapshot = new NexusAI.Domain.Snapshot.Snapshot(
+        var snapshot = new Nexus.Products.Chat.Domain.Snapshot.Snapshot(
             SnapshotId.New(),
             command.BranchId,
             command.ConversationId,
             command.Name,
             command.State,
-            _clock.UtcNow);
+            _timeProvider.GetUtcNow());
 
         await _repository.AddAsync(
             snapshot,

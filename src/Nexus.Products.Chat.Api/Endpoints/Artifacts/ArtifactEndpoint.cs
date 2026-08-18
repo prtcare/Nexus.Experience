@@ -1,11 +1,11 @@
-using NexusAI.Application.Artifact.Commands;
-using NexusAI.Application.Artifact.Commands.UpdateArtifact;
-using NexusAI.Application.Artifact.Queries.GetArtifact;
-using NexusAI.Application.Artifact.Queries.ListArtifacts;
-using NexusAI.Domain.Artifact;
-using NexusAI.Domain.WorkItem;
+﻿using Nexus.Products.Chat.Application.Artifact.Commands;
+using Nexus.Products.Chat.Application.Artifact.Commands.UpdateArtifact;
+using Nexus.Products.Chat.Application.Artifact.Queries.GetArtifact;
+using Nexus.Products.Chat.Application.Artifact.Queries.ListArtifacts;
+using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.WorkItem;
 
-namespace NexusAI.Api.Endpoints.Artifacts;
+namespace Nexus.Products.Chat.Api.Endpoints.Artifacts;
 
 public static class ArtifactEndpoint
 {
@@ -13,7 +13,7 @@ public static class ArtifactEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/workitems/{workItemId:guid}/artifacts",
+            "/api/v1/workitems/{workItemId:guid}/artifacts",
             async (
                 Guid workItemId,
                 CreateArtifactRequest request,
@@ -56,7 +56,7 @@ public static class ArtifactEndpoint
             });
 
         app.MapGet(
-            "/api/artifacts/{id:guid}",
+            "/api/v1/artifacts/{id:guid}",
             async (
                 Guid id,
                 GetArtifactHandler handler,
@@ -84,7 +84,7 @@ public static class ArtifactEndpoint
             });
 
         app.MapGet(
-            "/api/workitems/{workItemId:guid}/artifacts",
+            "/api/v1/workitems/{workItemId:guid}/artifacts",
             async (
                 Guid workItemId,
                 ListArtifactsHandler handler,
@@ -106,7 +106,7 @@ public static class ArtifactEndpoint
             });
 
         app.MapPut(
-            "/api/artifacts/{id:guid}",
+            "/api/v1/artifacts/{id:guid}",
             async (
                 Guid id,
                 UpdateArtifactRequest request,

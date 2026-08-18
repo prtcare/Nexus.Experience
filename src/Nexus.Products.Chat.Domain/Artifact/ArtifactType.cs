@@ -1,4 +1,4 @@
-namespace NexusAI.Domain.Artifact;
+﻿namespace Nexus.Products.Chat.Domain.Artifact;
 
 public enum ArtifactType
 {

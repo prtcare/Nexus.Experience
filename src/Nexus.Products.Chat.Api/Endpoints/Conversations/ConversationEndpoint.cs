@@ -1,12 +1,12 @@
-﻿using NexusAI.Application.Conversations.Commands.CreateConversation;
-using NexusAI.Application.Conversations.Commands.UpdateConversation;
-using NexusAI.Application.Conversations.Queries.GetConversation;
-using NexusAI.Application.Conversations.Queries.ListConversations;
-using NexusAI.Domain.Common.Identifiers;
-using NexusAI.Domain.Conversation;
-using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Application.Conversations.Commands.CreateConversation;
+using Nexus.Products.Chat.Application.Conversations.Commands.UpdateConversation;
+using Nexus.Products.Chat.Application.Conversations.Queries.GetConversation;
+using Nexus.Products.Chat.Application.Conversations.Queries.ListConversations;
+using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Conversation;
+using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Api.Endpoints.Conversations;
+namespace Nexus.Products.Chat.Api.Endpoints.Conversations;
 
 public static class ConversationEndpoint
 {
@@ -14,7 +14,7 @@ public static class ConversationEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/conversations",
+            "/api/v1/conversations",
             async (
                 CreateConversationRequest request,
                 CreateConversationHandler handler,
@@ -47,7 +47,7 @@ public static class ConversationEndpoint
             });
 
         app.MapGet(
-            "/api/conversations/{id:guid}",
+            "/api/v1/conversations/{id:guid}",
             async (
                 Guid id,
                 GetConversationHandler handler,
@@ -72,7 +72,7 @@ public static class ConversationEndpoint
             });
 
         app.MapGet(
-            "/api/projects/{projectId:guid}/conversations",
+            "/api/v1/projects/{projectId:guid}/conversations",
             async (
                 Guid projectId,
                 ListConversationsHandler handler,
@@ -88,7 +88,7 @@ public static class ConversationEndpoint
             });
 
         app.MapPut(
-            "/api/conversations/{id:guid}",
+            "/api/v1/conversations/{id:guid}",
             async (
                 Guid id,
                 UpdateConversationRequest request,

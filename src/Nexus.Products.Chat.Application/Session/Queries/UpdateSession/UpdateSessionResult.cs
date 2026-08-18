@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Commands.UpdateSession;
+namespace Nexus.Products.Chat.Application.Session.Commands.UpdateSession;
 
 public sealed record UpdateSessionResult(
     SessionId SessionId,

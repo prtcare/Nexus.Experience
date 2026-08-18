@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Domain.Adr;
+﻿namespace Nexus.Products.Chat.Domain.Adr;
 
 public readonly record struct AdrId(Guid Value)
 {

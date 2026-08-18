@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Chat;
+namespace Nexus.Products.Chat.Application.Chat;
 
 public interface IConversationContextProvider
 {

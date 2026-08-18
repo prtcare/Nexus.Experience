@@ -1,19 +1,18 @@
-﻿using NexusAI.Core.Abstractions;
-using NexusAI.Domain.Session;
+﻿using Nexus.Products.Chat.Domain.Session;
 
-namespace NexusAI.Application.Session.Commands;
+namespace Nexus.Products.Chat.Application.Session.Commands;
 
 public sealed class CreateSessionHandler
 {
     private readonly ISessionRepository _repository;
-    private readonly IClock _clock;
+    private readonly TimeProvider _timeProvider;
 
     public CreateSessionHandler(
         ISessionRepository repository,
-        IClock clock)
+        TimeProvider timeProvider)
     {
         _repository = repository;
-        _clock = clock;
+        _timeProvider = timeProvider;
     }
 
     public async Task<CreateSessionResult> HandleAsync(
@@ -24,7 +23,7 @@ public sealed class CreateSessionHandler
             SessionId.New(),
             command.ConversationId,
             SessionStatus.Running,
-            _clock.UtcNow);
+            _timeProvider.GetUtcNow());
 
         await _repository.AddAsync(
             session,

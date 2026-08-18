@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.WorkItem;
+namespace Nexus.Products.Chat.Application.WorkItem;
 
 public sealed record ListWorkItemsQuery(
     ProjectId ProjectId);

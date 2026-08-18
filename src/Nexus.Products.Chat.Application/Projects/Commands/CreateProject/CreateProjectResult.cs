@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Project;
+﻿using Nexus.Products.Chat.Domain.Project;
 
-namespace NexusAI.Application.Projects.Commands.CreateProject;
+namespace Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 
 public sealed record CreateProjectResult(
     ProjectId ProjectId,

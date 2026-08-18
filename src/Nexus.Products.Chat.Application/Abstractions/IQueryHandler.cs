@@ -1,4 +1,4 @@
-﻿namespace NexusAI.Application.Abstractions;
+﻿namespace Nexus.Products.Chat.Application.Abstractions;
 
 public interface IQueryHandler<in TQuery, TResult>
 {

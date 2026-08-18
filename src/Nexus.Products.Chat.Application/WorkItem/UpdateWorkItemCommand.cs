@@ -1,4 +1,4 @@
-﻿using NexusAI.Domain.WorkItem;
+﻿using Nexus.Products.Chat.Domain.WorkItem;
 
 public sealed record UpdateWorkItemCommand(
     WorkItemId WorkItemId,

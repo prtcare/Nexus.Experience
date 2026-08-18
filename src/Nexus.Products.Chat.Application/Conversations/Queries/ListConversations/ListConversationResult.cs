@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Application.Conversations.Queries.ListConversations;
+namespace Nexus.Products.Chat.Application.Conversations.Queries.ListConversations;
 
 public sealed record ListConversationResult(
     ConversationId ConversationId,

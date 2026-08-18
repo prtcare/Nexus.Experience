@@ -1,11 +1,11 @@
-﻿using NexusAI.Application.Branch.Commands;
-using NexusAI.Application.Branch.Commands.UpdateBranch;
-using NexusAI.Application.Branch.Queries.GetBranch;
-using NexusAI.Application.Branch.Queries.ListBranches;
-using NexusAI.Domain.Branch;
-using NexusAI.Domain.Conversation;
+﻿using Nexus.Products.Chat.Application.Branch.Commands;
+using Nexus.Products.Chat.Application.Branch.Commands.UpdateBranch;
+using Nexus.Products.Chat.Application.Branch.Queries.GetBranch;
+using Nexus.Products.Chat.Application.Branch.Queries.ListBranches;
+using Nexus.Products.Chat.Domain.Branch;
+using Nexus.Products.Chat.Domain.Conversation;
 
-namespace NexusAI.Api.Endpoints.Branches;
+namespace Nexus.Products.Chat.Api.Endpoints.Branches;
 
 public static class BranchEndpoint
 {
@@ -13,7 +13,7 @@ public static class BranchEndpoint
         this IEndpointRouteBuilder app)
     {
         app.MapPost(
-            "/api/branches",
+            "/api/v1/branches",
             async (
                 CreateBranchRequest request,
                 CreateBranchHandler handler,
@@ -44,7 +44,7 @@ public static class BranchEndpoint
             });
 
         app.MapGet(
-            "/api/branches/{id:guid}",
+            "/api/v1/branches/{id:guid}",
             async (
                 Guid id,
                 GetBranchHandler handler,
@@ -72,7 +72,7 @@ public static class BranchEndpoint
             });
 
         app.MapGet(
-            "/api/conversations/{conversationId:guid}/branches",
+            "/api/v1/conversations/{conversationId:guid}/branches",
             async (
                 Guid conversationId,
                 ListBranchesHandler handler,
@@ -96,7 +96,7 @@ public static class BranchEndpoint
             });
 
         app.MapPut(
-            "/api/branches/{id:guid}",
+            "/api/v1/branches/{id:guid}",
             async (
                 Guid id,
                 UpdateBranchRequest request,

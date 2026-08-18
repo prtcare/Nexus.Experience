@@ -1,6 +1,6 @@
-﻿using NexusAI.Domain.Common.Identifiers;
+﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
 
-namespace NexusAI.Domain.Knowledge;
+namespace Nexus.Products.Chat.Domain.Knowledge;
 
 public sealed class Knowledge
 {
