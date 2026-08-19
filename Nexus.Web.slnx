@@ -1,6 +1,9 @@
-﻿<Solution>
+<Solution>
   <Folder Name="/client/">
-    <Project Path="src\Nexus.Web.Client\Nexus.Web.Client.esproj" />
+    <Project Path="src\Nexus.Web.Client\Nexus.Web.Client.esproj">
+      <Build />
+      <Deploy />
+    </Project>
   </Folder>
   <Folder Name="/src/">
     <Project Path="src\Nexus.Products.Chat.Domain\Nexus.Products.Chat.Domain.csproj" />

@@ -20,6 +20,15 @@ public sealed class ChatTurnIdentity : IChatTurnIdentity
 
     private const string DefaultTenantId = "nexus-dev";
 
+    // TODO(V2): replace with the real actor once Platform identity lands (decision D-1).
+    // This grants exactly what PolicyGate requires for a normal UserMessage turn today -
+    // a non-empty permission set - and nothing more. Chat sends TurnConstraints.Default
+    // (AllowedTools = []), so no tool permission is exercised; do not add "tools:*" or any
+    // tool id here without also wiring real constraints. See Nexus.Intelligence.Core.Turns.PolicyGate.
+    private static readonly IReadOnlyList<string> PlaceholderPermissions = ["chat:send-message"];
+
+    private const string PlaceholderRole = "chat-user";
+
     public ChatTurnIdentity(IConfiguration configuration)
     {
         TenantId = configuration["Nexus:TenantId"] ?? DefaultTenantId;
@@ -32,6 +41,6 @@ public sealed class ChatTurnIdentity : IChatTurnIdentity
     public ActorRef BuildActor()
     {
         // TODO(V2): replace with the real actor once Platform identity lands.
-        return new ActorRef(string.Empty, [], []);
+        return new ActorRef(string.Empty, [PlaceholderRole], PlaceholderPermissions);
     }
 }

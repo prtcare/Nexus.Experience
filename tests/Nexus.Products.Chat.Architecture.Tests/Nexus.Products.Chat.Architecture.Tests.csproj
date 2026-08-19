@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Nexus.Products.Chat.Api\Nexus.Products.Chat.Api.csproj" />
     <ProjectReference Include="..\..\src\Nexus.Products.Chat.Application\Nexus.Products.Chat.Application.csproj" />
     <ProjectReference Include="..\..\src\Nexus.Products.Chat.Domain\Nexus.Products.Chat.Domain.csproj" />
     <ProjectReference Include="..\..\src\Nexus.Products.Chat.Infrastructure\Nexus.Products.Chat.Infrastructure.csproj" />
