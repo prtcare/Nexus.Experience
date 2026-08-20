@@ -9,9 +9,11 @@ import { ChatPage } from '../pages/ChatPage'
 import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
 import { InsightsPage } from '../pages/InsightsPage'
+import { KnowledgeItemPage } from '../pages/KnowledgeItemPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { ProjectDetailsPage } from '../pages/ProjectDetailsPage'
 import { SettingsPage } from '../pages/SettingsPage'
+import { WorkItemPage } from '../pages/WorkItemPage'
 import { WorkspaceSettingsPage } from '../pages/WorkspaceSettingsPage'
 import { WorkspacesPage } from '../pages/WorkspacesPage'
 
@@ -62,6 +64,16 @@ export function AppRoutes() {
                 <Route
                     path="/insights"
                     element={<InsightsPage />}
+                />
+
+                <Route
+                    path="/knowledge/:knowledgeId"
+                    element={<KnowledgeItemPage />}
+                />
+
+                <Route
+                    path="/workitems/:workItemId"
+                    element={<WorkItemPage />}
                 />
 
                 <Route

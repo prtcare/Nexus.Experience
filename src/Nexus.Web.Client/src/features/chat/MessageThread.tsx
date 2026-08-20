@@ -1,26 +1,16 @@
 import { useEffect, useRef } from 'react'
 
-import type {
-    ChatCitation,
-    ChatUsage,
-    ConversationMessageDto,
-} from './chat.types'
+import type { ConversationMessageDto } from './chat.types'
 
 interface FailedTurn {
     prompt: string
     message: string
 }
 
-interface LastReply {
-    citations: ChatCitation[]
-    usage: ChatUsage
-}
-
 interface MessageThreadProps {
     messages: ConversationMessageDto[]
     pendingPrompt: string | null
     failedTurn: FailedTurn | null
-    lastReply: LastReply | null
 }
 
 const NEAR_BOTTOM_THRESHOLD_PX = 80
@@ -29,7 +19,6 @@ export function MessageThread({
     messages,
     pendingPrompt,
     failedTurn,
-    lastReply,
 }: MessageThreadProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const isNearBottomRef = useRef(true)
@@ -41,8 +30,6 @@ export function MessageThread({
             new Date(a.createdOn).getTime() -
             new Date(b.createdOn).getTime(),
     )
-
-    const lastMessage = sortedMessages[sortedMessages.length - 1]
 
     function handleScroll() {
         const el = containerRef.current
@@ -101,29 +88,6 @@ export function MessageThread({
                     <p>{message.content}</p>
                 </div>
             ))}
-
-            {lastReply && lastMessage?.role === 'Assistant' && (
-                <div className="nexus-chat-message-meta">
-                    {lastReply.citations.length > 0 && (
-                        <span>
-                            {lastReply.citations.length}{' '}
-                            citation
-                            {lastReply.citations.length === 1
-                                ? ''
-                                : 's'}
-                        </span>
-                    )}
-
-                    <span>
-                        {lastReply.usage.tokensIn +
-                            lastReply.usage.tokensOut}{' '}
-                        tokens
-                        {lastReply.usage.modelUsed
-                            ? ` · ${lastReply.usage.modelUsed}`
-                            : ''}
-                    </span>
-                </div>
-            )}
 
             {pendingPrompt && (
                 <>
