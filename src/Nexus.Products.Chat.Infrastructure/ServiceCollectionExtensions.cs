@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -61,6 +62,8 @@ using Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 using Nexus.Products.Chat.Infrastructure.Intelligence;
 using Nexus.Products.Chat.Infrastructure.Services;
+using Nexus.Products.Chat.Infrastructure.Sql;
+using Nexus.Products.Chat.Infrastructure.Sql.Repositories;
 
 namespace Nexus.Products.Chat.Infrastructure.DependencyInjection;
 
@@ -139,13 +142,39 @@ public static class ServiceCollectionExtensions
         // ///WORKSPACE PERSISTENCE
         // ============================================================
 
-        services.AddSingleton<
-            IRepositoryMapper<Workspace, WorkspaceEntity>,
-            WorkspaceMapper>();
+        var usesSqlPersistence = string.Equals(
+            configuration["Nexus:Persistence"],
+            "Sql",
+            StringComparison.OrdinalIgnoreCase);
 
-        services.AddScoped<
-            IWorkspaceRepository,
-            WorkspaceDataverseRepository>();
+        if (usesSqlPersistence)
+        {
+            services.AddDbContext<NexusChatDbContext>(options =>
+            {
+                var connectionString =
+                    configuration.GetConnectionString("NexusChat")
+                    ?? throw new InvalidOperationException(
+                        "ConnectionStrings:NexusChat is not configured.");
+
+                options.UseSqlServer(
+                    connectionString,
+                    sqlOptions => sqlOptions.EnableRetryOnFailure());
+            });
+
+            services.AddScoped<
+                IWorkspaceRepository,
+                SqlWorkspaceRepository>();
+        }
+        else
+        {
+            services.AddSingleton<
+                IRepositoryMapper<Workspace, WorkspaceEntity>,
+                WorkspaceMapper>();
+
+            services.AddScoped<
+                IWorkspaceRepository,
+                WorkspaceDataverseRepository>();
+        }
 
         // ============================================================
         // ///PROJECT PERSISTENCE
