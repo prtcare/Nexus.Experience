@@ -3,6 +3,8 @@ import type {
     ConversationDetail,
     ConversationListItem,
     ConversationMessageDto,
+    CreateConversationRequest,
+    CreateConversationResponse,
     SendChatRequest,
     SendChatResponse,
 } from './chat.types'
@@ -39,5 +41,14 @@ export const chatApi = {
         return nexusApi.get<ConversationDetail>(
             `/conversations/${conversationId}`,
         )
+    },
+
+    createConversation(
+        request: CreateConversationRequest,
+    ): Promise<CreateConversationResponse> {
+        return nexusApi.post<
+            CreateConversationResponse,
+            CreateConversationRequest
+        >('/conversations', request)
     },
 }

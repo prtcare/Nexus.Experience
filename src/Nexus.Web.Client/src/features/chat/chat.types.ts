@@ -58,3 +58,20 @@ export interface ConversationDetail {
     title: string
     createdAt: string
 }
+
+// POST /conversations goes through CreateConversationResponse, so unlike
+// the list/messages endpoints this one is flat - conversationId is a
+// plain string, not { value }.
+export interface CreateConversationRequest {
+    projectId: string
+    workspaceId: string
+    title: string
+    description: string
+    type: number
+    visibility: number
+}
+
+export interface CreateConversationResponse {
+    conversationId: string
+    title: string
+}

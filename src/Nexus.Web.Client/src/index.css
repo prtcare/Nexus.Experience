@@ -864,6 +864,15 @@ body {
     color: #ff7b7b;
 }
 
+.nexus-project-conversations {
+    margin-top: 32px;
+}
+
+    .nexus-project-conversations h2 {
+        margin: 0 0 16px;
+        font-size: 18px;
+    }
+
 .nexus-chat-header-error {
     margin: 4px 0 0;
     color: #ff7b7b;

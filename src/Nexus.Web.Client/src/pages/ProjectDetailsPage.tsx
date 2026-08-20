@@ -10,6 +10,8 @@ import {
 } from 'react-router-dom'
 
 import { formatApiError } from '../api/ApiError'
+import { CreateConversationForm } from '../features/chat/CreateConversationForm'
+import { ConversationList } from '../features/chat/ConversationList'
 import { useProject } from '../features/projects/useProject'
 import { useUpdateProject } from '../features/projects/useUpdateProject'
 
@@ -167,6 +169,19 @@ export function ProjectDetailsPage() {
                     </p>
                 )}
             </form>
+
+            <section className="nexus-project-conversations">
+                <h2>Conversations</h2>
+
+                <CreateConversationForm
+                    projectId={project.projectId}
+                    workspaceId={project.workspaceId}
+                />
+
+                <ConversationList
+                    projectId={project.projectId}
+                />
+            </section>
         </div>
     )
 }
