@@ -13,12 +13,9 @@ if (!apiBaseUrl) {
     )
 }
 
-const environment =
-    import.meta.env.VITE_NEXUS_ENVIRONMENT ?? 'development'
-
 export const nexusEnvironment: NexusEnvironment = {
     apiBaseUrl,
-    environment,
-    isDevelopment: environment === 'development',
-    isProduction: environment === 'production',
+    environment: import.meta.env.MODE,
+    isDevelopment: import.meta.env.DEV,
+    isProduction: import.meta.env.PROD,
 }

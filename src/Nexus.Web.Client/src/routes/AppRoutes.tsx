@@ -7,7 +7,7 @@ import {
 import { AppLayout } from '../layouts/AppLayout'
 import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
-import { IntelligencePage } from '../pages/IntelligencePage'
+import { InsightsPage } from '../pages/InsightsPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { ProjectDetailsPage } from '../pages/ProjectDetailsPage'
 import { SettingsPage } from '../pages/SettingsPage'
@@ -54,8 +54,8 @@ export function AppRoutes() {
                 />
 
                 <Route
-                    path="/intelligence"
-                    element={<IntelligencePage />}
+                    path="/insights"
+                    element={<InsightsPage />}
                 />
 
                 <Route

@@ -1,26 +1,26 @@
 import { Card } from '../components/Card'
 import { MetricCard } from '../components/MetricCard'
-import { usePlatformHealth } from '../features/platform/usePlatformHealth'
+import { useSystemHealth } from '../features/system/useSystemHealth'
 import { useWorkspaces } from '../features/workspaces/useWorkspaces'
 import { useNavigate } from 'react-router-dom'
 export function DashboardPage() {
     const {
-        data: platformHealth,
-        isPending: isPlatformPending,
-        isError: isPlatformError,
-    } = usePlatformHealth()
+        data: systemHealth,
+        isPending: isSystemPending,
+        isError: isSystemError,
+    } = useSystemHealth()
 
-    const platformStatus = isPlatformPending
+    const systemStatus = isSystemPending
         ? 'Checking'
-        : isPlatformError
+        : isSystemError
             ? 'Unavailable'
-            : platformHealth?.status ?? 'Unknown'
+            : systemHealth?.status ?? 'Unknown'
 
-    const platformDescription = isPlatformPending
+    const systemDescription = isSystemPending
         ? 'Checking Nexus API'
-        : isPlatformError
+        : isSystemError
             ? 'Unable to reach Nexus API'
-            : `${platformHealth?.service ?? 'Nexus API'} is operational`
+            : `${systemHealth?.service ?? 'Nexus API'} is operational`
 
     const {
         data: workspaceData,
@@ -42,8 +42,8 @@ export function DashboardPage() {
                     <h1>Dashboard</h1>
 
                     <p>
-                        Monitor Nexus products, intelligence,
-                        and platform activity.
+                        Monitor Nexus products, insights,
+                        and system activity.
                     </p>
                 </div>
 
@@ -66,9 +66,9 @@ export function DashboardPage() {
                 />
 
                 <MetricCard
-                    label="Intelligence"
+                    label="Insights"
                     value="—"
-                    description="Active intelligence sessions"
+                    description="Active insight sessions"
                 />
 
                 <MetricCard
@@ -82,9 +82,9 @@ export function DashboardPage() {
                 />
 
                 <MetricCard
-                    label="Platform"
-                    value={platformStatus}
-                    description={platformDescription}
+                    label="System"
+                    value={systemStatus}
+                    description={systemDescription}
                 />
             </section>
 
@@ -100,7 +100,7 @@ export function DashboardPage() {
                     </div>
                 </Card>
 
-                <Card title="Platform status">
+                <Card title="System status">
                     <div className="nexus-status-list">
                         <div className="nexus-status-row">
                             <div>
@@ -110,16 +110,16 @@ export function DashboardPage() {
 
                             <span
                                 className={
-                                    isPlatformPending
+                                    isSystemPending
                                         ? 'nexus-status nexus-status-pending'
-                                        : isPlatformError
+                                        : isSystemError
                                             ? 'nexus-status nexus-status-error'
                                             : 'nexus-status nexus-status-ok'
                                 }
                             >
-                                {isPlatformPending
+                                {isSystemPending
                                     ? 'Checking'
-                                    : isPlatformError
+                                    : isSystemError
                                         ? 'Unavailable'
                                         : 'Operational'}
                             </span>
@@ -138,7 +138,7 @@ export function DashboardPage() {
 
                         <div className="nexus-status-row">
                             <div>
-                                <strong>Intelligence</strong>
+                                <strong>Insights</strong>
                                 <span>AI services</span>
                             </div>
 

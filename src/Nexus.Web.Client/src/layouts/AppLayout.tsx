@@ -11,7 +11,7 @@ export function AppLayout() {
 
                     <div>
                         <strong>Nexus</strong>
-                        <span>AI Platform</span>
+                        <span>Chat</span>
                     </div>
                 </div>
 
@@ -22,8 +22,8 @@ export function AppLayout() {
                     <NavLink to="/workspaces">
                         Workspaces
                     </NavLink>
-                    <NavLink to="/intelligence">
-                        Intelligence
+                    <NavLink to="/insights">
+                        Insights
                     </NavLink>
 
                     <NavLink to="/settings">
