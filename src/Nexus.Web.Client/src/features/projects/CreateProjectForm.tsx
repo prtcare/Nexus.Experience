@@ -3,6 +3,7 @@ import {
     type FormEvent,
 } from 'react'
 
+import { formatApiError } from '../../api/ApiError'
 import { useSelectedWorkspace } from '../workspaces/WorkspaceContext'
 import { useCreateProject } from './useCreateProject'
 
@@ -88,7 +89,10 @@ export function CreateProjectForm() {
 
             {createProjectMutation.isError && (
                 <p className="nexus-form-error">
-                    Unable to create project.
+                    Unable to create project —{' '}
+                    {formatApiError(
+                        createProjectMutation.error,
+                    )}
                 </p>
             )}
 

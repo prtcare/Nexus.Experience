@@ -9,6 +9,7 @@ import {
     useParams,
 } from 'react-router-dom'
 
+import { formatApiError } from '../api/ApiError'
 import { useProject } from '../features/projects/useProject'
 import { useUpdateProject } from '../features/projects/useUpdateProject'
 
@@ -23,6 +24,7 @@ export function ProjectDetailsPage() {
         data: project,
         isPending,
         isError,
+        error,
     } = useProject(projectId)
 
     const updateProjectMutation =
@@ -51,13 +53,18 @@ export function ProjectDetailsPage() {
             return
         }
 
-        await updateProjectMutation.mutateAsync({
-            projectId,
-            workspaceId: project.workspaceId,
-            request: {
-                name: trimmedName,
-            },
-        })
+        try {
+            await updateProjectMutation.mutateAsync({
+                projectId,
+                workspaceId: project.workspaceId,
+                request: {
+                    name: trimmedName,
+                },
+            })
+        }
+        catch {
+            // Error is displayed below.
+        }
     }
 
     if (isPending) {
@@ -68,10 +75,19 @@ export function ProjectDetailsPage() {
         )
     }
 
-    if (isError || !project) {
+    if (isError) {
         return (
             <div className="nexus-empty-state">
-                Unable to load project.
+                Unable to load project —{' '}
+                {formatApiError(error)}
+            </div>
+        )
+    }
+
+    if (!project) {
+        return (
+            <div className="nexus-empty-state">
+                This project could not be found.
             </div>
         )
     }
@@ -144,7 +160,10 @@ export function ProjectDetailsPage() {
 
                 {updateProjectMutation.isError && (
                     <p className="nexus-form-error">
-                        Unable to update project.
+                        Unable to update project —{' '}
+                        {formatApiError(
+                            updateProjectMutation.error,
+                        )}
                     </p>
                 )}
             </form>

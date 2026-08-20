@@ -1,13 +1,17 @@
+import { useNavigate } from 'react-router-dom'
+
+import { formatApiError } from '../api/ApiError'
 import { Card } from '../components/Card'
 import { MetricCard } from '../components/MetricCard'
 import { useSystemHealth } from '../features/system/useSystemHealth'
 import { useWorkspaces } from '../features/workspaces/useWorkspaces'
-import { useNavigate } from 'react-router-dom'
+
 export function DashboardPage() {
     const {
         data: systemHealth,
         isPending: isSystemPending,
         isError: isSystemError,
+        error: systemError,
     } = useSystemHealth()
 
     const systemStatus = isSystemPending
@@ -19,7 +23,7 @@ export function DashboardPage() {
     const systemDescription = isSystemPending
         ? 'Checking Nexus API'
         : isSystemError
-            ? 'Unable to reach Nexus API'
+            ? `Unable to reach Nexus API — ${formatApiError(systemError)}`
             : `${systemHealth?.service ?? 'Nexus API'} is operational`
 
     const {
@@ -115,6 +119,13 @@ export function DashboardPage() {
                                         : isSystemError
                                             ? 'nexus-status nexus-status-error'
                                             : 'nexus-status nexus-status-ok'
+                                }
+                                title={
+                                    isSystemError
+                                        ? formatApiError(
+                                              systemError,
+                                          )
+                                        : undefined
                                 }
                             >
                                 {isSystemPending

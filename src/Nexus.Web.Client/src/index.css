@@ -859,3 +859,13 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.nexus-route-error strong {
+    color: #ff7b7b;
+}
+
+.nexus-chat-header-error {
+    margin: 4px 0 0;
+    color: #ff7b7b;
+    font-size: 13px;
+}

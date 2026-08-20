@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 
+import { formatApiError } from '../api/ApiError'
 import { ChatPanel } from '../features/chat/ChatPanel'
 import { ConversationList } from '../features/chat/ConversationList'
 import { useConversation } from '../features/chat/useConversation'
@@ -13,6 +14,8 @@ export function ChatPage() {
     const {
         data: conversation,
         isPending,
+        isError,
+        error,
     } = useConversation(conversationId)
 
     if (!projectId || !conversationId) {
@@ -45,9 +48,17 @@ export function ChatPage() {
                     <h1>
                         {isPending
                             ? 'Loading...'
-                            : (conversation?.title ??
-                                  'Conversation')}
+                            : isError
+                                ? 'Unable to load conversation'
+                                : (conversation?.title ??
+                                      'Conversation')}
                     </h1>
+
+                    {isError && (
+                        <p className="nexus-chat-header-error">
+                            {formatApiError(error)}
+                        </p>
+                    )}
                 </header>
 
                 <ChatPanel conversationId={conversationId} />

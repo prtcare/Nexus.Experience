@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type KeyboardEvent } from 'react'
 
+import { formatApiError } from '../../api/ApiError'
 import {
     useChatTelemetry,
     type ChatTurnRecord,
@@ -142,7 +143,8 @@ export function ChatPanel({ conversationId }: ChatPanelProps) {
     if (messagesQuery.isError) {
         return (
             <div className="nexus-chat-panel nexus-empty-state">
-                Unable to load this conversation.
+                Unable to load this conversation —{' '}
+                {formatApiError(messagesQuery.error)}
             </div>
         )
     }

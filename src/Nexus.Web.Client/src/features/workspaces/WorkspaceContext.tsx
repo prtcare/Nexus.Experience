@@ -19,6 +19,7 @@ type WorkspaceContextValue = {
     selectWorkspace: (workspaceId: string) => void
     isPending: boolean
     isError: boolean
+    error: unknown
 }
 
 const WorkspaceContext =
@@ -33,6 +34,7 @@ export function WorkspaceProvider({
         data,
         isPending,
         isError,
+        error,
     } = useWorkspaces()
 
     const workspaces = data?.workspaces ?? []
@@ -78,6 +80,7 @@ export function WorkspaceProvider({
             selectWorkspace,
             isPending,
             isError,
+            error,
         }),
         [
             workspaces,
@@ -85,6 +88,7 @@ export function WorkspaceProvider({
             selectedWorkspaceId,
             isPending,
             isError,
+            error,
         ],
     )
 

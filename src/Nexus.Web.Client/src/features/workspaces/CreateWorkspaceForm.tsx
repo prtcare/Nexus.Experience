@@ -3,6 +3,7 @@ import {
     type FormEvent,
 } from 'react'
 
+import { formatApiError } from '../../api/ApiError'
 import { useCreateWorkspace } from './useCreateWorkspace'
 
 type CreateWorkspaceFormProps = {
@@ -129,7 +130,10 @@ export function CreateWorkspaceForm({
 
             {createWorkspaceMutation.isError && (
                 <p className="nexus-form-error">
-                    Unable to create workspace.
+                    Unable to create workspace —{' '}
+                    {formatApiError(
+                        createWorkspaceMutation.error,
+                    )}
                 </p>
             )}
 

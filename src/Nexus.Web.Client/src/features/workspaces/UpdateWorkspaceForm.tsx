@@ -4,6 +4,7 @@ import {
     type FormEvent,
 } from 'react'
 
+import { formatApiError } from '../../api/ApiError'
 import { useSelectedWorkspace } from './WorkspaceContext'
 import { useUpdateWorkspace } from './useUpdateWorkspace'
 
@@ -152,7 +153,10 @@ export function UpdateWorkspaceForm() {
 
             {updateWorkspaceMutation.isError && (
                 <p className="nexus-form-error">
-                    Unable to update workspace.
+                    Unable to update workspace —{' '}
+                    {formatApiError(
+                        updateWorkspaceMutation.error,
+                    )}
                 </p>
             )}
 

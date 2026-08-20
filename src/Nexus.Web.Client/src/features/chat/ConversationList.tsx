@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
+import { formatApiError } from '../../api/ApiError'
 import { useConversations } from './useConversations'
 
 interface ConversationListProps {
@@ -13,6 +14,7 @@ export function ConversationList({
         data: conversations,
         isPending,
         isError,
+        error,
     } = useConversations(projectId)
 
     if (isPending) {
@@ -26,7 +28,8 @@ export function ConversationList({
     if (isError) {
         return (
             <div className="nexus-empty-state">
-                Unable to load conversations.
+                Unable to load conversations —{' '}
+                {formatApiError(error)}
             </div>
         )
     }

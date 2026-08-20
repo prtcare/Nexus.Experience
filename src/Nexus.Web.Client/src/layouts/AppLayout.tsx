@@ -1,6 +1,10 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
+
+import { RouteErrorBoundary } from '../components/RouteErrorBoundary'
 
 export function AppLayout() {
+    const location = useLocation()
+
     return (
         <div className="nexus-app">
             <aside className="nexus-sidebar">
@@ -44,7 +48,9 @@ export function AppLayout() {
                 </header>
 
                 <main className="nexus-main">
-                    <Outlet />
+                    <RouteErrorBoundary key={location.pathname}>
+                        <Outlet />
+                    </RouteErrorBoundary>
                 </main>
             </div>
         </div>

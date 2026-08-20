@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
+import { formatApiError } from '../../api/ApiError'
 import { useSelectedWorkspace } from '../workspaces/WorkspaceContext'
 import { useProjects } from './useProjects'
 
@@ -16,6 +17,7 @@ export function WorkspaceProjects() {
         data: projects,
         isPending: projectsPending,
         isError,
+        error,
     } = useProjects(selectedWorkspaceId)
 
     if (workspacesPending) {
@@ -45,7 +47,8 @@ export function WorkspaceProjects() {
     if (isError) {
         return (
             <div className="nexus-empty-state">
-                Unable to load projects.
+                Unable to load projects —{' '}
+                {formatApiError(error)}
             </div>
         )
     }

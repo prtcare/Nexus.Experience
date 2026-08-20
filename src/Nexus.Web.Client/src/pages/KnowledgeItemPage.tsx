@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
+import { formatApiError } from '../api/ApiError'
 import { citationTargetsApi } from '../features/chat/citationTargets'
 
 export function KnowledgeItemPage() {
@@ -8,7 +9,7 @@ export function KnowledgeItemPage() {
         knowledgeId: string
     }>()
 
-    const { data, isPending, isError } = useQuery({
+    const { data, isPending, isError, error } = useQuery({
         queryKey: ['knowledge-detail', knowledgeId],
         queryFn: () =>
             citationTargetsApi.getKnowledge(knowledgeId!),
@@ -23,10 +24,19 @@ export function KnowledgeItemPage() {
         )
     }
 
-    if (isError || !data) {
+    if (isError) {
         return (
             <div className="nexus-empty-state">
-                Unable to load this knowledge item.
+                Unable to load this knowledge item —{' '}
+                {formatApiError(error)}
+            </div>
+        )
+    }
+
+    if (!data) {
+        return (
+            <div className="nexus-empty-state">
+                This knowledge item could not be found.
             </div>
         )
     }

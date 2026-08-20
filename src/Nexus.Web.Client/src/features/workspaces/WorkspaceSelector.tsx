@@ -1,3 +1,4 @@
+import { formatApiError } from '../../api/ApiError'
 import { useSelectedWorkspace } from './WorkspaceContext'
 
 export function WorkspaceSelector() {
@@ -7,6 +8,7 @@ export function WorkspaceSelector() {
         selectWorkspace,
         isPending,
         isError,
+        error,
     } = useSelectedWorkspace()
 
     if (isPending) {
@@ -19,7 +21,10 @@ export function WorkspaceSelector() {
 
     if (isError) {
         return (
-            <select disabled>
+            <select
+                disabled
+                title={formatApiError(error)}
+            >
                 <option>Unable to load workspaces</option>
             </select>
         )

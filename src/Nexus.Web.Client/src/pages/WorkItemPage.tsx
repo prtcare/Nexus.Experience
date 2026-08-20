@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
+import { formatApiError } from '../api/ApiError'
 import { citationTargetsApi } from '../features/chat/citationTargets'
 
 // GetWorkItemResponse sends Type/Status as the raw int cast from the
@@ -30,7 +31,7 @@ export function WorkItemPage() {
         workItemId: string
     }>()
 
-    const { data, isPending, isError } = useQuery({
+    const { data, isPending, isError, error } = useQuery({
         queryKey: ['workitem-detail', workItemId],
         queryFn: () =>
             citationTargetsApi.getWorkItem(workItemId!),
@@ -45,10 +46,19 @@ export function WorkItemPage() {
         )
     }
 
-    if (isError || !data) {
+    if (isError) {
         return (
             <div className="nexus-empty-state">
-                Unable to load this work item.
+                Unable to load this work item —{' '}
+                {formatApiError(error)}
+            </div>
+        )
+    }
+
+    if (!data) {
+        return (
+            <div className="nexus-empty-state">
+                This work item could not be found.
             </div>
         )
     }
