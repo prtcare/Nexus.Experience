@@ -3,7 +3,7 @@ import {
     useQueryClient,
 } from '@tanstack/react-query'
 
-import { createProject } from './projectsApi'
+import { projectsApi } from './projectsApi'
 import type { CreateProjectRequest } from './Project'
 
 export function useCreateProject() {
@@ -12,7 +12,7 @@ export function useCreateProject() {
     return useMutation({
         mutationFn: (
             request: CreateProjectRequest,
-        ) => createProject(request),
+        ) => projectsApi.create(request),
 
         onSuccess: async (_, request) => {
             await queryClient.invalidateQueries({

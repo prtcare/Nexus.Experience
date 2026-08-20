@@ -9,7 +9,6 @@ import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
 import { IntelligencePage } from '../pages/IntelligencePage'
 import { NotFoundPage } from '../pages/NotFoundPage'
-import { ProductsPage } from '../pages/ProductsPage'
 import { ProjectDetailsPage } from '../pages/ProjectDetailsPage'
 import { SettingsPage } from '../pages/SettingsPage'
 import { WorkspaceSettingsPage } from '../pages/WorkspaceSettingsPage'
@@ -52,11 +51,6 @@ export function AppRoutes() {
                 <Route
                     path="/projects/:projectId"
                     element={<ProjectDetailsPage />}
-                />
-
-                <Route
-                    path="/products"
-                    element={<ProductsPage />}
                 />
 
                 <Route

@@ -3,7 +3,7 @@ import {
     useQueryClient,
 } from '@tanstack/react-query'
 
-import { updateProject } from './projectsApi'
+import { projectsApi } from './projectsApi'
 import type { UpdateProjectRequest } from './Project'
 
 type UpdateProjectVariables = {
@@ -20,7 +20,7 @@ export function useUpdateProject() {
             projectId,
             request,
         }: UpdateProjectVariables) =>
-            updateProject(projectId, request),
+            projectsApi.update(projectId, request),
 
         onSuccess: async (_, variables) => {
             await Promise.all([

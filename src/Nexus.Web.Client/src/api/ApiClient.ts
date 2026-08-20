@@ -133,5 +133,5 @@ class ApiClient {
 }
 
 export const nexusApi = new ApiClient(
-    nexusEnvironment.apiBaseUrl,
+    `${nexusEnvironment.apiBaseUrl}/api/v1`,
 )

@@ -22,10 +22,6 @@ export function AppLayout() {
                     <NavLink to="/workspaces">
                         Workspaces
                     </NavLink>
-                    <NavLink to="/products">
-                        Products
-                    </NavLink>
-
                     <NavLink to="/intelligence">
                         Intelligence
                     </NavLink>
