@@ -7,6 +7,7 @@ export interface ApiRequestOptions extends RequestInit {
 
 interface ApiErrorResponse {
     message?: string
+    error?: string
     code?: string
     details?: unknown
 }
@@ -123,7 +124,7 @@ class ApiClient {
         }
 
         throw new ApiError(
-            error.message ??
+            error.message ?? error.error ??
             `Nexus API request failed with HTTP ${response.status}.`,
             response.status,
             error.code,

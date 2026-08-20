@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 
 import { AppLayout } from '../layouts/AppLayout'
+import { ChatPage } from '../pages/ChatPage'
 import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
 import { InsightsPage } from '../pages/InsightsPage'
@@ -51,6 +52,11 @@ export function AppRoutes() {
                 <Route
                     path="/projects/:projectId"
                     element={<ProjectDetailsPage />}
+                />
+
+                <Route
+                    path="/projects/:projectId/conversations/:conversationId"
+                    element={<ChatPage />}
                 />
 
                 <Route
