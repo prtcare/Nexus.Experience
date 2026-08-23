@@ -34,6 +34,7 @@ public sealed class CreateWorkspaceHandler
 
         return new CreateWorkspaceResult(
             workspace.Id,
-            workspace.Name);
+            workspace.Name,
+            workspace.Reference);
     }
 }

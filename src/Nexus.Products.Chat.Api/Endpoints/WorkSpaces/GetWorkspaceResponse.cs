@@ -6,4 +6,5 @@ public sealed record GetWorkspaceResponse(
     string Owner,
     string Description,
     int Status,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    string Reference);

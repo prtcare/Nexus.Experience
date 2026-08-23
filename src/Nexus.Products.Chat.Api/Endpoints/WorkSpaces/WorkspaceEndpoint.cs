@@ -50,7 +50,8 @@ public static class WorkspaceEndpoint
                 return Results.Ok(
                     new CreateWorkspaceResponse(
                         result.WorkspaceId.Value,
-                        result.Name));
+                        result.Name,
+                        result.Reference));
             });
 
         app.MapGet(
@@ -77,7 +78,8 @@ public static class WorkspaceEndpoint
                         result.Owner,
                         result.Description,
                         (int)result.Status,
-                        result.CreatedAt));
+                        result.CreatedAt,
+                        result.Reference));
             });
 
         app.MapGet(
@@ -98,7 +100,8 @@ public static class WorkspaceEndpoint
                             workspace.Owner,
                             workspace.Description,
                             (int)workspace.Status,
-                            workspace.CreatedAt))
+                            workspace.CreatedAt,
+                            workspace.Reference))
                     .ToList();
 
                 return Results.Ok(

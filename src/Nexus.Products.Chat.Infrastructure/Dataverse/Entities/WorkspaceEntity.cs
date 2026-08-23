@@ -9,4 +9,6 @@ public sealed class WorkspaceEntity : DataverseEntity
     public string Description { get; set; } = string.Empty;
 
     public int Status { get; set; }
+
+    public string Reference { get; set; } = string.Empty;
 }

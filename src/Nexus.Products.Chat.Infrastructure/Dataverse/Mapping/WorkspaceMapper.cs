@@ -20,25 +20,21 @@ public sealed class WorkspaceMapper
             Owner = workspace.Owner,
             Description = workspace.Description,
             Status = ToDataverseStatus(workspace.Status),
-            CreatedAt = workspace.CreatedAt
+            CreatedAt = workspace.CreatedAt,
+            Reference = workspace.Reference
         };
     }
 
     public Workspace ToDomain(WorkspaceEntity entity)
     {
-        var workspace = new Workspace(
+        return Workspace.Restore(
             new WorkspaceId(entity.Id),
             entity.Name,
             entity.Owner,
             entity.Description,
-            entity.CreatedAt);
-
-        if (entity.Status == DataverseArchived)
-        {
-            workspace.Archive();
-        }
-
-        return workspace;
+            ToDomainStatus(entity.Status),
+            entity.CreatedAt,
+            entity.Reference);
     }
 
     private static int ToDataverseStatus(WorkspaceStatus status)
@@ -52,5 +48,12 @@ public sealed class WorkspaceMapper
                 status,
                 "Unknown WorkspaceStatus value.")
         };
+    }
+
+    private static WorkspaceStatus ToDomainStatus(int status)
+    {
+        return status == DataverseArchived
+            ? WorkspaceStatus.Archived
+            : WorkspaceStatus.Active;
     }
 }

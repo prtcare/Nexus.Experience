@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nexus.Products.Chat.Infrastructure.Sql.Conventions;
 using DomainWorkspace = Nexus.Products.Chat.Domain.Workspace.Workspace;
@@ -9,7 +10,7 @@ public sealed class WorkspaceConfiguration : IEntityTypeConfiguration<DomainWork
 {
     public void Configure(EntityTypeBuilder<DomainWorkspace> builder)
     {
-        builder.ToTable("Workspace");
+        builder.ToTable("Workspace", "org");
 
         builder.HasKey(workspace => workspace.Id);
 
@@ -33,5 +34,23 @@ public sealed class WorkspaceConfiguration : IEntityTypeConfiguration<DomainWork
 
         builder.Property(workspace => workspace.CreatedAt)
             .IsRequired();
+
+        builder.Property<int>("Seq")
+            .ValueGeneratedOnAdd()
+            .UseIdentityColumn();
+
+        var reference = builder.Property(w => w.Reference)
+            .HasColumnName("Ref")
+            .HasComputedColumnSql(
+                "('WKS-' + RIGHT('00000000' + CAST([Seq] AS varchar(8)), 8))",
+                stored: true)
+            .ValueGeneratedOnAddOrUpdate();
+
+        reference.Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+        reference.Metadata.SetBeforeSaveBehavior(PropertySaveBehavior.Ignore);
+
+        builder.HasIndex(w => w.Reference)
+            .IsUnique()
+            .HasDatabaseName("UQ_Workspace_Ref");
     }
 }

@@ -31,6 +31,7 @@ public sealed class GetWorkspaceHandler
             workspace.Owner,
             workspace.Description,
             workspace.Status,
-            workspace.CreatedAt);
+            workspace.CreatedAt,
+            workspace.Reference);
     }
 }

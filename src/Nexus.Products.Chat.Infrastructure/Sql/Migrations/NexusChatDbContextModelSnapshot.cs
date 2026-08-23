@@ -44,12 +44,29 @@ namespace Nexus.Products.Chat.Infrastructure.Sql.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Ref")
+                        .HasComputedColumnSql("('WKS-' + RIGHT('00000000' + CAST([Seq] AS varchar(8)), 8))", true);
+
+                    b.Property<int>("Seq")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Seq"));
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Workspace", (string)null);
+                    b.HasIndex("Reference")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_Workspace_Ref");
+
+                    b.ToTable("Workspace", "org");
                 });
 #pragma warning restore 612, 618
         }

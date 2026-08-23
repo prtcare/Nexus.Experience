@@ -468,7 +468,13 @@ public sealed class DataverseContext : IDataverseContext, IDisposable
                 Status = entity.GetAttributeValue<OptionSetValue>(
                     "du_workspacestatus")?.Value ?? 0,
                 CreatedAt = entity.GetAttributeValue<DateTime>(
-                    "createdon")
+                    "createdon"),
+                // du_workspacename is the table's primary-name column - the
+                // same slot that will hold the human-readable reference once
+                // Dataverse configures it as an autonumber, so it stands in
+                // for Reference until then.
+                Reference = entity.GetAttributeValue<string>(
+                    "du_workspacename") ?? string.Empty
             };
         }
 

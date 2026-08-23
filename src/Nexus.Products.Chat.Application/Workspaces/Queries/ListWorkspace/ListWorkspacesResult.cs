@@ -12,4 +12,5 @@ public sealed record WorkspaceSummary(
     string Owner,
     string Description,
     WorkspaceStatus Status,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    string Reference);

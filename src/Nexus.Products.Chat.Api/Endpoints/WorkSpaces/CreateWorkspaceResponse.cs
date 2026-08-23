@@ -2,4 +2,5 @@
 
 public sealed record CreateWorkspaceResponse(
     Guid WorkspaceId,
-    string Name);
+    string Name,
+    string Reference);

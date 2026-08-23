@@ -27,7 +27,8 @@ public sealed class ListWorkspacesHandler
                     workspace.Owner,
                     workspace.Description,
                     workspace.Status,
-                    workspace.CreatedAt))
+                    workspace.CreatedAt,
+                    workspace.Reference))
             .ToList();
 
         return new ListWorkspacesResult(results);

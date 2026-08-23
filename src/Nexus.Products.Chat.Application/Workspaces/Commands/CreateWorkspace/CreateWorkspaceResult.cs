@@ -4,4 +4,5 @@ namespace Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 
 public sealed record CreateWorkspaceResult(
     WorkspaceId WorkspaceId,
-    string Name);
+    string Name,
+    string Reference);
