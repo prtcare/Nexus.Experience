@@ -1,4 +1,4 @@
-# Nexus.Web — the Chat product
+# Nexus.Experience — the Chat product
 
 The first product built on Nexus: a chatbot with persistent workspaces, projects,
 conversations, knowledge, decisions and work items. .NET API at `/api/v1` plus a React
@@ -29,7 +29,7 @@ file in the repo.
 ## Local development
 
 ```powershell
-dotnet build Nexus.Web.slnx
+dotnet build Nexus.Experience.slnx
 dotnet test  Nexus.Experience.slnx
 dotnet run --project src\Nexus.Products.Chat.Api\Nexus.Products.Chat.Api.csproj
 

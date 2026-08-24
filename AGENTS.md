@@ -1,6 +1,6 @@
-# AGENTS.md — Nexus.Web (Chat product)
+# AGENTS.md — Nexus.Experience (Chat product)
 
-**Repository**: C:\Personal\Nexus.Web · github.com/prtcare/Nexus-web · solution Nexus.Web.slnx
+**Repository**: C:\Personal\Nexus.Experience · github.com/prtcare/Nexus.Experience · solution Nexus.Experience.slnx
 **Is**: The Chat product — .NET API at `/api/v1` plus a React client. Owns all product data and experience. The reference implementation every future product follows. See README.md for the full is/is-not.
 **This repo has no `docs\` folder of its own.** All cross-cutting documentation lives in the sibling repository, `..\NexusAI\docs\`.
 
