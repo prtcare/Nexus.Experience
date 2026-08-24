@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/client/">
-    <Project Path="src\Nexus.Web.Client\Nexus.Web.Client.esproj">
+    <Project Path="src\Nexus.Experience.Client\Nexus.Experience.Client.esproj">
       <Build />
       <Deploy />
     </Project>

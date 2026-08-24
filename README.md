@@ -30,10 +30,10 @@ file in the repo.
 
 ```powershell
 dotnet build Nexus.Web.slnx
-dotnet test  Nexus.Web.slnx
+dotnet test  Nexus.Experience.slnx
 dotnet run --project src\Nexus.Products.Chat.Api\Nexus.Products.Chat.Api.csproj
 
-cd src\Nexus.Web.Client
+cd src\Nexus.Experience.Client
 npm install
 npm run dev
 ```
