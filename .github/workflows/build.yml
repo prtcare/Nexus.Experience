@@ -16,8 +16,14 @@ jobs:
     # (nuget.config -> github-prtcare feed), so the restore step needs the
     # private-feed credentials. They come from repo secrets only - never inline.
     env:
-      GITHUB_PACKAGES_USERNAME: ${{ secrets.GITHUB_PACKAGES_USERNAME }}
-      GITHUB_PACKAGES_TOKEN: ${{ secrets.GITHUB_PACKAGES_TOKEN }}
+      # nuget.config reads these two env vars (as %GITHUB_PACKAGES_USERNAME% /
+      # %GITHUB_PACKAGES_TOKEN%). They're sourced from the canonical
+      # GITHUB_PACKAGES_* secret names (as used on Nexus.Intelligence), with the
+      # shorter PACKAGES_* variants as a fallback since both have been in use on
+      # this repo. A missing secret evaluates to an empty string, so either set
+      # resolves; neither set -> empty creds -> restore 401s.
+      GITHUB_PACKAGES_USERNAME: ${{ secrets.GITHUB_PACKAGES_USERNAME || secrets.PACKAGES_USERNAME }}
+      GITHUB_PACKAGES_TOKEN: ${{ secrets.GITHUB_PACKAGES_TOKEN || secrets.PACKAGES_TOKEN }}
 
     steps:
       - name: Checkout
