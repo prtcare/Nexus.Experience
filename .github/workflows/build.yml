@@ -1,0 +1,99 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # ---------------- .NET half ----------------
+  build:
+    runs-on: ubuntu-latest
+
+    # This repo consumes Nexus.Intelligence.Contracts from GitHub Packages
+    # (nuget.config -> github-prtcare feed), so the restore step needs the
+    # private-feed credentials. They come from repo secrets only - never inline.
+    env:
+      GITHUB_PACKAGES_USERNAME: ${{ secrets.GITHUB_PACKAGES_USERNAME }}
+      GITHUB_PACKAGES_TOKEN: ${{ secrets.GITHUB_PACKAGES_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # SDK version is read from global.json (10.0.302, matching Nexus.Platform)
+      # rather than hardcoded here, so the pipeline stays in sync with the
+      # repo's pinned SDK.
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      # The solution also contains the client's .esproj, so the JavaScript SDK
+      # wants a Node runtime present even though the esproj sets
+      # ShouldRunBuildScript=false (the npm build is owned by the `frontend`
+      # job below). Pin the same Node the client targets.
+      - name: Setup Node (for client esproj)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # nuget.config pins the feed list (<clear/> then nuget.org + github-prtcare)
+      # and reads %GITHUB_PACKAGES_USERNAME% / %GITHUB_PACKAGES_TOKEN% from the
+      # job env above. This is the one step that differs from Nexus.Platform,
+      # which has no private feed and restores with no credentials.
+      - name: Restore
+        run: dotnet restore Nexus.Experience.slnx
+
+      - name: Build
+        run: dotnet build Nexus.Experience.slnx -c Release --no-restore
+
+      - name: Test
+        run: dotnet test Nexus.Experience.slnx -c Release --no-build --logger trx --results-directory ./artifacts/test-results
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: ${{ github.workspace }}/artifacts/test-results
+          if-no-files-found: warn
+
+  # ---------------- Frontend half ----------------
+  frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src/Nexus.Experience.Client
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Node 24 is pinned here because the client has no .nvmrc and no engines
+      # field. 24 matches the dev machines and satisfies Vite 8's requirement of
+      # ^20.19.0 || >=22.12.0.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: src/Nexus.Experience.Client/package-lock.json
+
+      # npm ci (not npm install) for a reproducible, lockfile-exact install.
+      - name: Install dependencies
+        run: npm ci
+
+      # Typecheck, build and lint are separate steps so a failure in any one of
+      # them shows up as its own red step rather than a generic "build failed".
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
