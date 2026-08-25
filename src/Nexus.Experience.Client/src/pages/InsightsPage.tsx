@@ -32,7 +32,7 @@ export function InsightsPage() {
                 <div className="nexus-card-content">
                     <p>
                         Not available from this product's API.
-                        Nexus.Int exposes{' '}
+                        Nexus.Intelligence exposes{' '}
                         <code>
                             GET /intelligence/v1/turns/{'{id}'}
                             /explanation

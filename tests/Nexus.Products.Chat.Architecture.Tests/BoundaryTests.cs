@@ -54,7 +54,7 @@ public sealed class BoundaryTests
     [Fact]
     public void Products_MustOnlyReference_IntelligenceContracts()
     {
-        // Core, Context, Agents and Memory are internals of the Nexus.Int host - the
+        // Core, Context, Agents and Memory are internals of the Nexus.Intelligence host - the
         // product may only take a dependency on Nexus.Intelligence.Contracts.
         var forbidden = new[]
         {

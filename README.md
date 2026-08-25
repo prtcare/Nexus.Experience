@@ -14,8 +14,8 @@ Snapshot — the domain, the database, the API and the UI are all owned here. Fu
 will own *different* entities; that is the point of the split.
 
 **Is not:** it does not decide anything. Ranking, agent choice, model choice and prompt
-assembly happen in `Nexus.Int`, reached over HTTP. It does not hold a model-provider
-credential — that belongs to `Nexus.Int` alone. And the React client knows only about
+assembly happen in `Nexus.Intelligence`, reached over HTTP. It does not hold a model-provider
+credential — that belongs to `Nexus.Intelligence` alone. And the React client knows only about
 `/api/v1`; it has no idea Intelligence or Platform exist, which is why there is no page
 named after either.
 
@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-`Nexus.Int` must be running for any chat turn to succeed.
+`Nexus.Intelligence` must be running for any chat turn to succeed.
 
 ### Persistence
 
@@ -62,7 +62,7 @@ raw `fetch` and direct `import.meta.env` reads outside it are a defect, not a sh
 
 ## Documentation
 
-Cross-cutting architecture, conventions and decisions: **`..\NexusAI\docs\`** —
+Cross-cutting architecture, conventions and decisions: **`..\Nexus.Platform\docs\`** —
 start at `DOCUMENTATION_INDEX.md`. Relevant to this repository specifically:
 `API_STANDARDS.md`, `TYPESCRIPT_REACT_STANDARDS.md`, `DATA_OWNERSHIP.md`. This
 repo has no `docs\` folder of its own.
