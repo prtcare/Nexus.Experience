@@ -15,7 +15,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <!--
+      M-08-1.3: the result artifact's schema (Nexus.Delivery.Contracts
+      PipelineRunResult) comes from Nexus.Platform's published package. The CI
+      emit step is PowerShell and hand-serializes this same schema (as it does
+      on Nexus.Platform); the reference pins the contract in this repo and its
+      restore exercises the github-prtcare feed for this package too. Floating
+      0.1.0-* matches how this repo consumes Nexus.Intelligence.Contracts.
+    -->
+    <PackageReference Include="Nexus.Delivery.Contracts" Version="0.1.0-*" />
   </ItemGroup>
 
 </Project>
