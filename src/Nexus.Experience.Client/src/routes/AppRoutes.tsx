@@ -8,6 +8,7 @@ import { AppLayout } from '../layouts/AppLayout'
 import { ChatPage } from '../pages/ChatPage'
 import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
+import { FeatureDetailPage } from '../pages/FeatureDetailPage'
 import { InsightsPage } from '../pages/InsightsPage'
 import { KnowledgeItemPage } from '../pages/KnowledgeItemPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
@@ -69,6 +70,11 @@ export function AppRoutes() {
                 <Route
                     path="/knowledge/:knowledgeId"
                     element={<KnowledgeItemPage />}
+                />
+
+                <Route
+                    path="/developer/features/:featureId"
+                    element={<FeatureDetailPage />}
                 />
 
                 <Route

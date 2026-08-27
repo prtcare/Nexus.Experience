@@ -12,7 +12,7 @@ interface ApiErrorResponse {
     details?: unknown
 }
 
-class ApiClient {
+export class ApiClient {
     private readonly baseUrl: string
 
     constructor(baseUrl: string) {

@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { formatApiError } from '../../api/ApiError'
+import { ConvertConversationForm } from '../developer/ConvertConversationForm'
 import { useConversations } from './useConversations'
 
 interface ConversationListProps {
@@ -16,6 +18,9 @@ export function ConversationList({
         isError,
         error,
     } = useConversations(projectId)
+
+    const [convertConversationId, setConvertConversationId] =
+        useState<string | null>(null)
 
     if (isPending) {
         return (
@@ -52,24 +57,63 @@ export function ConversationList({
                 const conversationId =
                     conversation.conversationId.value
 
-                return (
-                    <NavLink
-                        key={conversationId}
-                        to={`/projects/${projectId}/conversations/${conversationId}`}
-                        className={({ isActive }) =>
-                            `nexus-chat-conversation-row${isActive ? ' active' : ''}`
-                        }
-                    >
-                        <strong>
-                            {conversation.title}
-                        </strong>
+                const isConverting =
+                    convertConversationId === conversationId
 
-                        <span>
-                            {new Date(
-                                conversation.createdAt,
-                            ).toLocaleString()}
-                        </span>
-                    </NavLink>
+                return (
+                    <div
+                        key={conversationId}
+                        className="nexus-chat-conversation-row-wrap"
+                    >
+                        <div className="nexus-chat-conversation-row-inner">
+                            <NavLink
+                                to={`/projects/${projectId}/conversations/${conversationId}`}
+                                className={({ isActive }) =>
+                                    `nexus-chat-conversation-row${isActive ? ' active' : ''}`
+                                }
+                            >
+                                <strong>
+                                    {conversation.title}
+                                </strong>
+
+                                <span>
+                                    {new Date(
+                                        conversation.createdAt,
+                                    ).toLocaleString()}
+                                </span>
+                            </NavLink>
+
+                            <button
+                                type="button"
+                                className="nexus-secondary-button"
+                                onClick={() =>
+                                    setConvertConversationId(
+                                        isConverting
+                                            ? null
+                                            : conversationId,
+                                    )
+                                }
+                            >
+                                {isConverting
+                                    ? 'Close'
+                                    : 'Convert to Feature'}
+                            </button>
+                        </div>
+
+                        {isConverting && (
+                            <ConvertConversationForm
+                                conversationId={conversationId}
+                                conversationTitle={
+                                    conversation.title
+                                }
+                                onCancel={() =>
+                                    setConvertConversationId(
+                                        null,
+                                    )
+                                }
+                            />
+                        )}
+                    </div>
                 )
             })}
         </nav>
