@@ -7,7 +7,7 @@ namespace Nexus.Products.Chat.Architecture.Tests;
 public sealed class BoundaryTests
 {
     private static readonly Assembly DomainAssembly =
-        typeof(Nexus.Products.Chat.Domain.Workspace.Workspace).Assembly;
+        typeof(Nexus.Products.Chat.Domain.Conversation.Conversation).Assembly;
 
     private static readonly Assembly ApplicationAssembly =
         typeof(Nexus.Products.Chat.Application.DependencyInjection.ServiceCollectionExtensions).Assembly;

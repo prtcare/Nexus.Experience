@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.ProductCore.Scope.Common.Identifiers;
 
 namespace Nexus.Products.Chat.Infrastructure.Sql.Conventions;
 

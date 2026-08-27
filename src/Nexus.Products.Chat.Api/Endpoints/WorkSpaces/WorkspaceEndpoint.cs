@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -6,7 +6,7 @@ using Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Queries.GetWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Queries.ListWorkspaces;
-using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.ProductCore.Scope.Common.Identifiers;
 
 namespace Nexus.Products.Chat.Api.Endpoints.Workspaces;
 

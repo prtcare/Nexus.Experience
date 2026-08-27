@@ -1,7 +1,7 @@
 using Nexus.Intelligence.Contracts;
 using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
-using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Project;
 using AdrModel = Nexus.Products.Chat.Domain.Adr.Adr;
 using KnowledgeModel = Nexus.Products.Chat.Domain.Knowledge.Knowledge;
 using KnowledgeStatus = Nexus.Products.Chat.Domain.Knowledge.KnowledgeStatus;

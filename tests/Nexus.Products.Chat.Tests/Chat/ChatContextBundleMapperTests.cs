@@ -1,12 +1,19 @@
 using Nexus.Intelligence.Contracts;
 using Nexus.Products.Chat.Application.Chat.Context;
 using Nexus.Products.Chat.Domain.Adr;
-using Nexus.Products.Chat.Domain.Common.Identifiers;
 using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
 using Nexus.Products.Chat.Domain.Knowledge;
-using Nexus.Products.Chat.Domain.Project;
 using Nexus.Products.Chat.Domain.WorkItem;
+using Nexus.ProductCore.Scope.Project;
+// CHG-20260827-003: Project/Workspace are now the shared Layer 06 scope trunk
+// (Nexus.ProductCore.Scope), keyed by their own identifiers - Conversation/Knowledge/WorkItem
+// still hold Chat's own opaque foreign-key structs (AGENTS.md boundary rule), so this fixture
+// converts explicitly at each boundary rather than changing those domain types.
+using ChatWorkspaceId = Nexus.Products.Chat.Domain.Common.Identifiers.WorkspaceId;
+using ChatProjectId = Nexus.Products.Chat.Domain.Project.ProjectId;
+using ScopeWorkspaceId = Nexus.ProductCore.Scope.Common.Identifiers.WorkspaceId;
+using ScopeProjectId = Nexus.ProductCore.Scope.Common.Identifiers.ProjectId;
 using Xunit;
 
 namespace Nexus.Products.Chat.Tests.Chat;
@@ -17,14 +24,14 @@ public sealed class ChatContextBundleMapperTests
 
     private readonly ChatContextBundleMapper _mapper = new();
 
-    private static Project CreateProject(WorkspaceId? workspaceId = null, string name = "Project X")
-        => new(ProjectId.New(), workspaceId ?? WorkspaceId.New(), name, FixedNow);
+    private static Project CreateProject(ScopeWorkspaceId? workspaceId = null, string name = "Project X")
+        => new(ScopeProjectId.New(), workspaceId ?? ScopeWorkspaceId.New(), name, FixedNow);
 
     private static Conversation CreateConversation(Project project, string description = "")
         => new(
             ConversationId.New(),
-            project.Id,
-            project.WorkspaceId,
+            new ChatProjectId(project.Id.Value),
+            new ChatWorkspaceId(project.WorkspaceId.Value),
             "Conversation Title",
             description,
             ConversationType.Standalone,
@@ -34,11 +41,11 @@ public sealed class ChatContextBundleMapperTests
     private static ConversationMessage CreateMessage(ConversationId conversationId)
         => new(ConversationMessageId.New(), conversationId, ConversationMessageRole.User, "Hello there", FixedNow);
 
-    private static Knowledge CreateKnowledge(WorkspaceId workspaceId, KnowledgeStatus status = KnowledgeStatus.Active)
+    private static Knowledge CreateKnowledge(ScopeWorkspaceId workspaceId, KnowledgeStatus status = KnowledgeStatus.Active)
     {
         var knowledge = new Knowledge(
             new KnowledgeId(Guid.NewGuid()),
-            workspaceId,
+            new ChatWorkspaceId(workspaceId.Value),
             "Knowledge Title",
             "Knowledge Content",
             KnowledgeType.Documentation,
@@ -55,9 +62,9 @@ public sealed class ChatContextBundleMapperTests
     private static Adr CreateAdr(KnowledgeId knowledgeId)
         => new(AdrId.New(), knowledgeId, "Adr Title", "Adr Decision", AdrStatus.Accepted, FixedNow);
 
-    private static WorkItem CreateWorkItem(ProjectId projectId, string? description = null)
+    private static WorkItem CreateWorkItem(ScopeProjectId projectId, string? description = null)
     {
-        var workItem = new WorkItem(WorkItemId.New(), projectId, "Work Item Title", WorkItemType.Task, FixedNow);
+        var workItem = new WorkItem(WorkItemId.New(), new ChatProjectId(projectId.Value), "Work Item Title", WorkItemType.Task, FixedNow);
 
         if (description is not null)
         {

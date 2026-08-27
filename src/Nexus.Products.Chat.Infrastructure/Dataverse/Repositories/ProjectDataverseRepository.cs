@@ -1,5 +1,5 @@
-﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
-using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Common.Identifiers;
+using Nexus.ProductCore.Scope.Project;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;

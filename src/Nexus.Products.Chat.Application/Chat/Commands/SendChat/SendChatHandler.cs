@@ -9,7 +9,10 @@ using Nexus.Products.Chat.Domain.Adr;
 using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
 using Nexus.Products.Chat.Domain.Knowledge;
-using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Project;
+using ChatProjectId = Nexus.Products.Chat.Domain.Project.ProjectId;
+using ScopeProjectId = Nexus.ProductCore.Scope.Common.Identifiers.ProjectId;
+using ChatWorkspaceId = Nexus.Products.Chat.Domain.Common.Identifiers.WorkspaceId;
 using Nexus.Products.Chat.Domain.WorkItem;
 
 namespace Nexus.Products.Chat.Application.Chat.Commands.SendChat;
@@ -75,9 +78,13 @@ public sealed class SendChatHandler
             return SendChatResult.Failure("Conversation not found.");
         }
 
+        // conversation.ProjectId is Chat's own opaque foreign-key struct (AGENTS.md
+        // boundary rule); IProjectRepository now resolves the shared Layer 06 Project
+        // (CHG-20260827-003), keyed by Nexus.ProductCore.Scope's ProjectId - convert at
+        // this one boundary rather than changing what Conversation stores.
         var project =
             await _projectRepository.GetAsync(
-                conversation.ProjectId,
+                new ScopeProjectId(conversation.ProjectId.Value),
                 cancellationToken);
 
         if (project is null)
@@ -118,9 +125,11 @@ public sealed class SendChatHandler
                 knowledge.Select(k => k.Id).ToArray(),
                 cancellationToken);
 
+        // IWorkItemRepository still keys on Chat's own opaque ProjectId (WorkItem was not
+        // part of the CHG-20260827-003 narrow slice) - convert back at this boundary.
         var openWorkItems =
             (await _workItemRepository.ListByProjectAsync(
-                project.Id,
+                new ChatProjectId(project.Id.Value),
                 cancellationToken))
             .Where(workItem => OpenWorkItemStatuses.Contains(workItem.Status))
             .ToArray();
@@ -245,7 +254,7 @@ public sealed class SendChatHandler
 
             var candidate = new Nexus.Products.Chat.Domain.Knowledge.Knowledge(
                 new KnowledgeId(Guid.NewGuid()),
-                project.WorkspaceId,
+                new ChatWorkspaceId(project.WorkspaceId.Value),
                 hint.Title,
                 hint.Body,
                 KnowledgeType.ExtractedKnowledge,

@@ -1,4 +1,4 @@
-﻿using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Project;
 
 namespace Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Nexus.Products.Chat.Domain.Common.Identifiers;
-using Nexus.Products.Chat.Domain.Workspace;
-using DomainWorkspace = Nexus.Products.Chat.Domain.Workspace.Workspace;
+using Nexus.ProductCore.Scope.Common.Identifiers;
+using Nexus.ProductCore.Scope.Workspace;
+using DomainWorkspace = Nexus.ProductCore.Scope.Workspace.Workspace;
 
 namespace Nexus.Products.Chat.Infrastructure.Sql.Repositories;
 

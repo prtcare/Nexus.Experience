@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 using Nexus.Products.Chat.Application.Projects.Queries.GetProject;
 using Nexus.Products.Chat.Application.Projects.Queries.ListProjects;
-using Nexus.Products.Chat.Domain.Common.Identifiers;
-using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Common.Identifiers;
 namespace Nexus.Products.Chat.Api.Endpoints.Projects;
 using Nexus.Products.Chat.Application.Projects.Commands.UpdateProject;
 

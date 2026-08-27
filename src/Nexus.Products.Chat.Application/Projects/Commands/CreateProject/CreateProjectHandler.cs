@@ -1,4 +1,5 @@
-﻿using Nexus.Products.Chat.Domain.Project;
+using Nexus.ProductCore.Scope.Common.Identifiers;
+using Nexus.ProductCore.Scope.Project;
 
 namespace Nexus.Products.Chat.Application.Projects.Commands.CreateProject;
 

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nexus.Products.Chat.Infrastructure.Sql.Conventions;
-using DomainWorkspace = Nexus.Products.Chat.Domain.Workspace.Workspace;
+using DomainWorkspace = Nexus.ProductCore.Scope.Workspace.Workspace;
 
 namespace Nexus.Products.Chat.Infrastructure.Sql.Configurations;
 

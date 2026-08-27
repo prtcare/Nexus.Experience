@@ -1,5 +1,5 @@
-﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
-using Nexus.Products.Chat.Domain.Workspace;
+using Nexus.ProductCore.Scope.Common.Identifiers;
+using Nexus.ProductCore.Scope.Workspace;
 
 namespace Nexus.Products.Chat.Application.Workspaces.Queries.GetWorkspace;
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -29,6 +29,8 @@
       0.1.0-* matches how this repo consumes Nexus.Intelligence.Contracts.
     -->
     <PackageReference Include="Nexus.Delivery.Contracts" Version="0.1.0-*" />
+    <!-- CHG-20260827-003: Workspace/Project endpoints construct the relocated Nexus.ProductCore.Scope identifiers directly. -->
+    <PackageReference Include="Nexus.ProductCore.Scope" Version="0.1.0-*" />
   </ItemGroup>
 
 </Project>

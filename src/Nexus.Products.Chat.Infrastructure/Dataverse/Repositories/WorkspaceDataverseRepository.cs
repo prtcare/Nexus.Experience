@@ -1,4 +1,4 @@
-﻿using Nexus.Products.Chat.Domain.Common.Identifiers;
+using Nexus.ProductCore.Scope.Common.Identifiers;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
 using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
@@ -7,22 +7,22 @@ namespace Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 
 public sealed class WorkspaceDataverseRepository
     : DataverseRepositoryBase<
-        Nexus.Products.Chat.Domain.Workspace.Workspace,
+        Nexus.ProductCore.Scope.Workspace.Workspace,
         WorkspaceEntity,
         WorkspaceId>,
-      Nexus.Products.Chat.Domain.Workspace.IWorkspaceRepository
+      Nexus.ProductCore.Scope.Workspace.IWorkspaceRepository
 {
     public WorkspaceDataverseRepository(
         IDataverseClient client,
         IRepositoryMapper<
-            Nexus.Products.Chat.Domain.Workspace.Workspace,
+            Nexus.ProductCore.Scope.Workspace.Workspace,
             WorkspaceEntity> mapper)
         : base(client, mapper)
     {
     }
 
     public override Task AddAsync(
-        Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
+        Nexus.ProductCore.Scope.Workspace.Workspace workspace,
         CancellationToken cancellationToken = default)
     {
         return CreateAsync(
@@ -30,7 +30,7 @@ public sealed class WorkspaceDataverseRepository
             cancellationToken);
     }
 
-    public override Task<Nexus.Products.Chat.Domain.Workspace.Workspace?> GetAsync(
+    public override Task<Nexus.ProductCore.Scope.Workspace.Workspace?> GetAsync(
         WorkspaceId id,
         CancellationToken cancellationToken = default)
     {
@@ -40,7 +40,7 @@ public sealed class WorkspaceDataverseRepository
     }
 
     public override Task UpdateAsync(
-        Nexus.Products.Chat.Domain.Workspace.Workspace workspace,
+        Nexus.ProductCore.Scope.Workspace.Workspace workspace,
         CancellationToken cancellationToken = default)
     {
         return UpdateEntityAsync(
@@ -48,7 +48,7 @@ public sealed class WorkspaceDataverseRepository
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<Nexus.Products.Chat.Domain.Workspace.Workspace>> ListAsync(
+    public Task<IReadOnlyList<Nexus.ProductCore.Scope.Workspace.Workspace>> ListAsync(
         CancellationToken cancellationToken = default)
     {
         return RetrieveMultipleDomainAsync(

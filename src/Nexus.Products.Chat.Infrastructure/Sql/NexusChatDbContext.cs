@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using DomainWorkspace = Nexus.Products.Chat.Domain.Workspace.Workspace;
+using DomainWorkspace = Nexus.ProductCore.Scope.Workspace.Workspace;
 
 namespace Nexus.Products.Chat.Infrastructure.Sql;
 
