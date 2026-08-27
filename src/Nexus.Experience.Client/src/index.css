@@ -547,6 +547,20 @@ body {
             flex: 1;
         }
 
+.nexus-convert-picker {
+    padding: 8px 10px;
+    color: #ffffff;
+    background: #0b1220;
+    border: 1px solid #293548;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+    .nexus-convert-picker:focus {
+        border-color: #6c72ff;
+    }
+
 .nexus-chat-conversation-row {
     display: flex;
     flex-direction: column;

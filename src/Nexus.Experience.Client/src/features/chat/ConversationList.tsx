@@ -3,7 +3,51 @@ import { NavLink } from 'react-router-dom'
 
 import { formatApiError } from '../../api/ApiError'
 import { ConvertConversationForm } from '../developer/ConvertConversationForm'
+import { ConvertToIssueForm } from '../developer/ConvertToIssueForm'
+import { ConvertToMilestoneForm } from '../developer/ConvertToMilestoneForm'
+import { ConvertToSubtaskForm } from '../developer/ConvertToSubtaskForm'
+import { ConvertToTaskForm } from '../developer/ConvertToTaskForm'
 import { useConversations } from './useConversations'
+
+import type { ConvertTargetType } from '../developer/Feature'
+
+const CONVERT_TARGET_TYPES: ConvertTargetType[] = [
+    'Feature',
+    'Task',
+    'Subtask',
+    'Milestone',
+    'Issue',
+]
+
+interface ConvertSelection {
+    conversationId: string
+    targetType: ConvertTargetType
+}
+
+interface ConvertFormProps {
+    conversationId: string
+    conversationTitle: string
+    onCancel: () => void
+}
+
+function renderConvertForm(
+    targetType: ConvertTargetType,
+    props: ConvertFormProps,
+) {
+    switch (targetType) {
+        case 'Task':
+            return <ConvertToTaskForm {...props} />
+        case 'Subtask':
+            return <ConvertToSubtaskForm {...props} />
+        case 'Milestone':
+            return <ConvertToMilestoneForm {...props} />
+        case 'Issue':
+            return <ConvertToIssueForm {...props} />
+        case 'Feature':
+        default:
+            return <ConvertConversationForm {...props} />
+    }
+}
 
 interface ConversationListProps {
     projectId: string
@@ -19,8 +63,8 @@ export function ConversationList({
         error,
     } = useConversations(projectId)
 
-    const [convertConversationId, setConvertConversationId] =
-        useState<string | null>(null)
+    const [convertSelection, setConvertSelection] =
+        useState<ConvertSelection | null>(null)
 
     if (isPending) {
         return (
@@ -57,8 +101,14 @@ export function ConversationList({
                 const conversationId =
                     conversation.conversationId.value
 
+                const selection = convertSelection
                 const isConverting =
-                    convertConversationId === conversationId
+                    selection !== null &&
+                    selection.conversationId ===
+                        conversationId
+                const selectedType = isConverting
+                    ? selection.targetType
+                    : ''
 
                 return (
                     <div
@@ -83,35 +133,73 @@ export function ConversationList({
                                 </span>
                             </NavLink>
 
-                            <button
-                                type="button"
-                                className="nexus-secondary-button"
-                                onClick={() =>
-                                    setConvertConversationId(
-                                        isConverting
-                                            ? null
-                                            : conversationId,
-                                    )
-                                }
+                            <select
+                                className="nexus-convert-picker"
+                                aria-label="Convert conversation to"
+                                value={selectedType}
+                                onChange={(event) => {
+                                    const targetType =
+                                        event.target
+                                            .value as
+                                        ConvertTargetType | ''
+
+                                    if (targetType === '') {
+                                        setConvertSelection(
+                                            null,
+                                        )
+                                    }
+                                    else {
+                                        setConvertSelection({
+                                            conversationId,
+                                            targetType,
+                                        })
+                                    }
+                                }}
                             >
-                                {isConverting
-                                    ? 'Close'
-                                    : 'Convert to Feature'}
-                            </button>
+                                <option value="">
+                                    Convert to…
+                                </option>
+
+                                {CONVERT_TARGET_TYPES.map(
+                                    (targetType) => (
+                                        <option
+                                            key={targetType}
+                                            value={targetType}
+                                        >
+                                            {targetType}
+                                        </option>
+                                    ),
+                                )}
+                            </select>
+
+                            {isConverting && (
+                                <button
+                                    type="button"
+                                    className="nexus-secondary-button"
+                                    onClick={() =>
+                                        setConvertSelection(
+                                            null,
+                                        )
+                                    }
+                                >
+                                    Close
+                                </button>
+                            )}
                         </div>
 
                         {isConverting && (
-                            <ConvertConversationForm
-                                conversationId={conversationId}
-                                conversationTitle={
-                                    conversation.title
-                                }
-                                onCancel={() =>
-                                    setConvertConversationId(
-                                        null,
-                                    )
-                                }
-                            />
+                            renderConvertForm(
+                                selection.targetType,
+                                {
+                                    conversationId,
+                                    conversationTitle:
+                                        conversation.title,
+                                    onCancel: () =>
+                                        setConvertSelection(
+                                            null,
+                                        ),
+                                },
+                            )
                         )}
                     </div>
                 )

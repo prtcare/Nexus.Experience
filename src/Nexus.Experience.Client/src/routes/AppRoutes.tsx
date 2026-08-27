@@ -10,10 +10,14 @@ import { CreateWorkspacePage } from '../pages/CreateWorkspacePage'
 import { DashboardPage } from '../pages/DashboardPage'
 import { FeatureDetailPage } from '../pages/FeatureDetailPage'
 import { InsightsPage } from '../pages/InsightsPage'
+import { IssueDetailPage } from '../pages/IssueDetailPage'
 import { KnowledgeItemPage } from '../pages/KnowledgeItemPage'
+import { MilestoneDetailPage } from '../pages/MilestoneDetailPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { ProjectDetailsPage } from '../pages/ProjectDetailsPage'
 import { SettingsPage } from '../pages/SettingsPage'
+import { SubtaskDetailPage } from '../pages/SubtaskDetailPage'
+import { TaskDetailPage } from '../pages/TaskDetailPage'
 import { WorkItemPage } from '../pages/WorkItemPage'
 import { WorkspaceSettingsPage } from '../pages/WorkspaceSettingsPage'
 import { WorkspacesPage } from '../pages/WorkspacesPage'
@@ -75,6 +79,26 @@ export function AppRoutes() {
                 <Route
                     path="/developer/features/:featureId"
                     element={<FeatureDetailPage />}
+                />
+
+                <Route
+                    path="/developer/tasks/:taskId"
+                    element={<TaskDetailPage />}
+                />
+
+                <Route
+                    path="/developer/subtasks/:subtaskId"
+                    element={<SubtaskDetailPage />}
+                />
+
+                <Route
+                    path="/developer/milestones/:milestoneId"
+                    element={<MilestoneDetailPage />}
+                />
+
+                <Route
+                    path="/developer/issues/:issueId"
+                    element={<IssueDetailPage />}
                 />
 
                 <Route
