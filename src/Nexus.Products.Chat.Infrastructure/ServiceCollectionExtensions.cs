@@ -164,6 +164,18 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IWorkspaceRepository,
                 SqlWorkspaceRepository>();
+
+            services.AddScoped<
+                IProjectRepository,
+                SqlProjectRepository>();
+
+            services.AddScoped<
+                IConversationRepository,
+                SqlConversationRepository>();
+
+            services.AddScoped<
+                IConversationMessageRepository,
+                SqlConversationMessageRepository>();
         }
         else
         {
@@ -174,19 +186,33 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IWorkspaceRepository,
                 WorkspaceDataverseRepository>();
+
+            services.AddSingleton<
+                IRepositoryMapper<Project, ProjectEntity>,
+                ProjectMapper>();
+
+            services.AddScoped<
+                IProjectRepository,
+                ProjectDataverseRepository>();
+
+            services.AddSingleton<
+                IRepositoryMapper<Conversation, ConversationEntity>,
+                ConversationMapper>();
+
+            services.AddScoped<
+                IConversationRepository,
+                ConversationDataverseRepository>();
+
+            services.AddSingleton<
+                IRepositoryMapper<
+                    ConversationMessage,
+                    ConversationMessageEntity>,
+                ConversationMessageMapper>();
+
+            services.AddScoped<
+                IConversationMessageRepository,
+                ConversationMessageDataverseRepository>();
         }
-
-        // ============================================================
-        // ///PROJECT PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Project, ProjectEntity>,
-            ProjectMapper>();
-
-        services.AddScoped<
-            IProjectRepository,
-            ProjectDataverseRepository>();
 
         // ============================================================
         // ///WORK ITEM PERSISTENCE
@@ -199,32 +225,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<
             IWorkItemRepository,
             WorkItemDataverseRepository>();
-
-        // ============================================================
-        // ///CONVERSATION PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Conversation, ConversationEntity>,
-            ConversationMapper>();
-
-        services.AddScoped<
-            IConversationRepository,
-            ConversationDataverseRepository>();
-
-        // ============================================================
-        // ///CONVERSATION MESSAGE PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<
-                ConversationMessage,
-                ConversationMessageEntity>,
-            ConversationMessageMapper>();
-
-        services.AddScoped<
-            IConversationMessageRepository,
-            ConversationMessageDataverseRepository>();
 
         // ============================================================
         // ///KNOWLEDGE PERSISTENCE
