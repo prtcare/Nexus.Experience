@@ -10,7 +10,7 @@ public sealed class WorkspaceConfiguration : IEntityTypeConfiguration<DomainWork
 {
     public void Configure(EntityTypeBuilder<DomainWorkspace> builder)
     {
-        builder.ToTable("Workspace", "org");
+        builder.ToTable("Workspace", "product_core");
 
         builder.HasKey(workspace => workspace.Id);
 

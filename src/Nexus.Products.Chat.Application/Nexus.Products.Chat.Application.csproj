@@ -19,9 +19,9 @@
     <!--
       CHG-20260827-003 (M-06-1.1/M-06-1.2 Slice 2): Workspace and Project are no longer
       Chat-product domain types - they are the shared Layer 06 scope trunk, relocated to
-      Nexus.Platform under CHG-20260827-001. Restored from the local NuGet feed
-      (C:\Personal\LocalNuGet) since GitHub Packages is unreachable from this device - see
-      nuget.config's "local" source. Nexus.ProductCore.Contracts comes in transitively.
+      Nexus.Platform under CHG-20260827-001. Restored from the GitHub Packages feed
+      (nuget.config's "github-prtcare" source). Nexus.ProductCore.Contracts comes in
+      transitively.
     -->
     <PackageReference Include="Nexus.ProductCore.Scope" Version="0.1.0-*" />
   </ItemGroup>
