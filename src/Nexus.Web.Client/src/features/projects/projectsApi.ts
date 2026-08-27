@@ -1,49 +1,27 @@
+import { nexusApi } from '../../api/ApiClient'
+
 import type {
     CreateProjectRequest,
     CreateProjectResponse,
     Project,
 } from './Project'
 
-const apiUrl = import.meta.env.VITE_NEXUS_API_URL
-
-export async function getProjects(
+export function getProjects(
     workspaceId: string,
 ): Promise<Project[]> {
-    const response = await fetch(
-        `${apiUrl}/api/workspaces/${workspaceId}/projects`,
+    return nexusApi.get<Project[]>(
+        `/api/v1/workspaces/${workspaceId}/projects`,
     )
-
-    if (!response.ok) {
-        throw new Error(
-            `Failed to load projects: ${response.status}`,
-        )
-    }
-
-    return response.json() as Promise<Project[]>
 }
 
-export async function createProject(
+export function createProject(
     request: CreateProjectRequest,
 ): Promise<CreateProjectResponse> {
-    const response = await fetch(
-        `${apiUrl}/api/projects`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(request),
-        },
+    return nexusApi.post<
+        CreateProjectResponse,
+        CreateProjectRequest
+    >(
+        '/api/v1/projects',
+        request,
     )
-
-    if (!response.ok) {
-        const message = await response.text()
-
-        throw new Error(
-            message ||
-            `Failed to create project: ${response.status}`,
-        )
-    }
-
-    return response.json() as Promise<CreateProjectResponse>
 }

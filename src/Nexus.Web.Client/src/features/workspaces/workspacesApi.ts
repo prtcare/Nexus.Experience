@@ -12,7 +12,7 @@ import type {
 export const workspacesApi = {
     list(): Promise<ListWorkspacesResponse> {
         return nexusApi.get<ListWorkspacesResponse>(
-            '/api/workspaces',
+            '/api/v1/workspaces',
         )
     },
 
@@ -20,7 +20,7 @@ export const workspacesApi = {
         workspaceId: string,
     ): Promise<Workspace> {
         return nexusApi.get<Workspace>(
-            `/api/workspaces/${workspaceId}`,
+            `/api/v1/workspaces/${workspaceId}`,
         )
     },
 
@@ -31,7 +31,7 @@ export const workspacesApi = {
             CreateWorkspaceResponse,
             CreateWorkspaceRequest
         >(
-            '/api/workspaces',
+            '/api/v1/workspaces',
             request,
         )
     },
@@ -44,7 +44,7 @@ export const workspacesApi = {
             UpdateWorkspaceResponse,
             UpdateWorkspaceRequest
         >(
-            `/api/workspaces/${workspaceId}`,
+            `/api/v1/workspaces/${workspaceId}`,
             request,
         )
     },
