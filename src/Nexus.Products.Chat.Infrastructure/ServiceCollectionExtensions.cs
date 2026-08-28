@@ -176,6 +176,22 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IConversationMessageRepository,
                 SqlConversationMessageRepository>();
+
+            services.AddScoped<
+                IKnowledgeRepository,
+                SqlKnowledgeRepository>();
+
+            services.AddScoped<
+                IAdrRepository,
+                SqlAdrRepository>();
+
+            services.AddScoped<
+                IWorkItemRepository,
+                SqlWorkItemRepository>();
+
+            services.AddScoped<
+                IArtifactRepository,
+                SqlArtifactRepository>();
         }
         else
         {
@@ -212,31 +228,55 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IConversationMessageRepository,
                 ConversationMessageDataverseRepository>();
+
+            // ============================================================
+            // ///WORK ITEM PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<WorkItem, WorkItemEntity>,
+                WorkItemMapper>();
+
+            services.AddScoped<
+                IWorkItemRepository,
+                WorkItemDataverseRepository>();
+
+            // ============================================================
+            // ///KNOWLEDGE PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Knowledge, KnowledgeEntity>,
+                KnowledgeMapper>();
+
+            services.AddScoped<
+                IKnowledgeRepository,
+                KnowledgeDataverseRepository>();
+
+            // ============================================================
+            // ///ARTIFACT PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Artifact, ArtifactEntity>,
+                ArtifactMapper>();
+
+            services.AddScoped<
+                IArtifactRepository,
+                ArtifactDataverseRepository>();
+
+            // ============================================================
+            // ///ADR PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Adr, AdrEntity>,
+                AdrMapper>();
+
+            services.AddScoped<
+                IAdrRepository,
+                AdrDataverseRepository>();
         }
-
-        // ============================================================
-        // ///WORK ITEM PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<WorkItem, WorkItemEntity>,
-            WorkItemMapper>();
-
-        services.AddScoped<
-            IWorkItemRepository,
-            WorkItemDataverseRepository>();
-
-        // ============================================================
-        // ///KNOWLEDGE PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Knowledge, KnowledgeEntity>,
-            KnowledgeMapper>();
-
-        services.AddScoped<
-            IKnowledgeRepository,
-            KnowledgeDataverseRepository>();
 
         // ============================================================
         // ///BRANCH PERSISTENCE
@@ -249,30 +289,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<
             IBranchRepository,
             BranchDataverseRepository>();
-
-        // ============================================================
-        // ///ARTIFACT PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Artifact, ArtifactEntity>,
-            ArtifactMapper>();
-
-        services.AddScoped<
-            IArtifactRepository,
-            ArtifactDataverseRepository>();
-
-        // ============================================================
-        // ///ADR PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Adr, AdrEntity>,
-            AdrMapper>();
-
-        services.AddScoped<
-            IAdrRepository,
-            AdrDataverseRepository>();
 
         // ============================================================
         // ///SESSION PERSISTENCE

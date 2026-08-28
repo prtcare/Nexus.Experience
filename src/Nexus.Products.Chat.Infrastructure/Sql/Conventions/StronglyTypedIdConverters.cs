@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.ProductCore.Scope.Common.Identifiers;
+using Nexus.Products.Chat.Domain.Adr;
+using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.Knowledge;
+using Nexus.Products.Chat.Domain.WorkItem;
 using ChatProjectId = Nexus.Products.Chat.Domain.Project.ProjectId;
 using ChatWorkspaceId = Nexus.Products.Chat.Domain.Common.Identifiers.WorkspaceId;
 using ChatConversationId = Nexus.Products.Chat.Domain.Conversation.ConversationId;
@@ -31,6 +35,21 @@ public static class StronglyTypedIdConverters
 
     public static ValueConverter<ChatConversationMessageId, Guid> ConversationMessageId { get; } =
         Create<ChatConversationMessageId>(id => id.Value, value => new ChatConversationMessageId(value));
+
+    // Stage 2b aggregates - Knowledge, Adr, WorkItem, Artifact are all Chat's own domain
+    // types with Chat-local id structs (no Nexus.ProductCore.Scope counterpart), so their
+    // converters are plain like the Conversation pair above.
+    public static ValueConverter<KnowledgeId, Guid> KnowledgeId { get; } =
+        Create<KnowledgeId>(id => id.Value, value => new KnowledgeId(value));
+
+    public static ValueConverter<AdrId, Guid> AdrId { get; } =
+        Create<AdrId>(id => id.Value, value => new AdrId(value));
+
+    public static ValueConverter<WorkItemId, Guid> WorkItemId { get; } =
+        Create<WorkItemId>(id => id.Value, value => new WorkItemId(value));
+
+    public static ValueConverter<ArtifactId, Guid> ArtifactId { get; } =
+        Create<ArtifactId>(id => id.Value, value => new ArtifactId(value));
 
     private static ValueConverter<TId, Guid> Create<TId>(
         Func<TId, Guid> toGuid,
