@@ -35,6 +35,9 @@ using Nexus.Products.Chat.Application.Snapshot.Commands;
 using Nexus.Products.Chat.Application.Snapshot.Commands.UpdateSnapshot;
 using Nexus.Products.Chat.Application.Snapshot.Queries.GetSnapshot;
 using Nexus.Products.Chat.Application.Snapshot.Queries.ListSnapshots;
+using Nexus.Products.Chat.Application.Subprojects.Commands.CreateSubproject;
+using Nexus.Products.Chat.Application.Subprojects.Queries.GetSubproject;
+using Nexus.Products.Chat.Application.Subprojects.Queries.ListSubprojects;
 using Nexus.Products.Chat.Application.WorkItem;
 using Nexus.Products.Chat.Application.Workspaces.Commands.CreateWorkspace;
 using Nexus.Products.Chat.Application.Workspaces.Commands.UpdateWorkspace;
@@ -47,6 +50,7 @@ using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
 using Nexus.Products.Chat.Domain.Knowledge;
 using Nexus.ProductCore.Scope.Project;
+using Nexus.ProductCore.Scope.Subproject;
 using Nexus.Products.Chat.Domain.Session;
 using Nexus.Products.Chat.Domain.Snapshot;
 using Nexus.Products.Chat.Domain.WorkItem;
@@ -87,6 +91,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<
             IProjectRepository,
             SqlProjectRepository>();
+
+        services.AddScoped<
+            ISubprojectRepository,
+            SqlSubprojectRepository>();
 
         services.AddScoped<
             IConversationRepository,
@@ -141,6 +149,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<GetProjectHandler>();
         services.AddScoped<ListProjectsHandler>();
         services.AddScoped<UpdateProjectHandler>();
+
+        // ============================================================
+        // ///SUBPROJECT APPLICATION
+        // ============================================================
+
+        services.AddScoped<CreateSubprojectHandler>();
+        services.AddScoped<GetSubprojectHandler>();
+        services.AddScoped<ListSubprojectsHandler>();
 
         // ============================================================
         // ///WORK ITEM APPLICATION

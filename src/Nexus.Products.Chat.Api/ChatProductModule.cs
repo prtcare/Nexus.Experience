@@ -6,6 +6,7 @@ using Nexus.Products.Chat.Api.Endpoints.Knowledge;
 using Nexus.Products.Chat.Api.Endpoints.Projects;
 using Nexus.Products.Chat.Api.Endpoints.Sessions;
 using Nexus.Products.Chat.Api.Endpoints.Snapshots;
+using Nexus.Products.Chat.Api.Endpoints.Subprojects;
 using Nexus.Products.Chat.Api.Endpoints.WorkItems;
 using Nexus.Products.Chat.Api.Endpoints.Workspaces;
 using Nexus.Products.Chat.Application.DependencyInjection;
@@ -31,6 +32,7 @@ public static class ChatProductModule
         app.MapConversationEndpoints();
         app.MapConversationMessageEndpoints();
         app.MapProjectEndpoints();
+        app.MapSubprojectEndpoints();
         app.MapWorkItemEndpoints();
         app.MapKnowledgeEndpoints();
         app.MapWorkspaceEndpoints();
