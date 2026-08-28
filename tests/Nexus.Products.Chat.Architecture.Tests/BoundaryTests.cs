@@ -87,38 +87,42 @@ public sealed class BoundaryTests
     }
 
     [Fact]
-    public void Domain_MustNotReference_Dataverse()
+    public void Domain_MustNotReference_Persistence()
     {
         var result = Types.InAssembly(DomainAssembly)
             .Should()
             .NotHaveDependencyOnAny(
                 "Microsoft.PowerPlatform.Dataverse",
+                "Microsoft.EntityFrameworkCore",
                 "Nexus.Products.Chat.Infrastructure")
             .GetResult();
 
         Assert.True(
             result.IsSuccessful,
             "NEXUS_ARCHITECTURE_V2.md section 2.3: Nexus.Products.Chat.Domain must not " +
-            "depend on Microsoft.PowerPlatform.Dataverse or any Infrastructure type - the " +
-            "domain must not know how it is stored. Offending types: " +
+            "depend on any persistence technology (Microsoft.PowerPlatform.Dataverse, " +
+            "Microsoft.EntityFrameworkCore) or any Infrastructure type - the domain must " +
+            "not know how it is stored. Offending types: " +
             string.Join(", ", result.FailingTypeNames ?? []));
     }
 
     [Fact]
-    public void Application_MustNotReference_Dataverse()
+    public void Application_MustNotReference_Persistence()
     {
         var result = Types.InAssembly(ApplicationAssembly)
             .Should()
             .NotHaveDependencyOnAny(
                 "Microsoft.PowerPlatform.Dataverse",
+                "Microsoft.EntityFrameworkCore",
                 "Nexus.Products.Chat.Infrastructure")
             .GetResult();
 
         Assert.True(
             result.IsSuccessful,
             "NEXUS_ARCHITECTURE_V2.md section 2.3: Nexus.Products.Chat.Application must " +
-            "not depend on Microsoft.PowerPlatform.Dataverse or any Infrastructure type - " +
-            "it depends on repository interfaces only. Offending types: " +
+            "not depend on any persistence technology (Microsoft.PowerPlatform.Dataverse, " +
+            "Microsoft.EntityFrameworkCore) or any Infrastructure type - it depends on " +
+            "repository interfaces only. Offending types: " +
             string.Join(", ", result.FailingTypeNames ?? []));
     }
 }

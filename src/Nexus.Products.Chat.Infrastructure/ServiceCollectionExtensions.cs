@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.PowerPlatform.Dataverse.Client;
 using Nexus.Intelligence.Contracts;
 using Nexus.Products.Chat.Application.Adr.Commands;
 using Nexus.Products.Chat.Application.Artifact.Commands;
@@ -53,13 +51,6 @@ using Nexus.Products.Chat.Domain.Session;
 using Nexus.Products.Chat.Domain.Snapshot;
 using Nexus.Products.Chat.Domain.WorkItem;
 using Nexus.ProductCore.Scope.Workspace;
-using Nexus.Products.Chat.Infrastructure.Dataverse;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Clients;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Common;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Configuration;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Entities;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Mapping;
-using Nexus.Products.Chat.Infrastructure.Dataverse.Repositories;
 using Nexus.Products.Chat.Infrastructure.Intelligence;
 using Nexus.Products.Chat.Infrastructure.Services;
 using Nexus.Products.Chat.Infrastructure.Sql;
@@ -74,257 +65,64 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration)
     {
         // ============================================================
-        // ///CONFIGURATION
+        // ///PERSISTENCE
         // ============================================================
 
-        services.Configure<DataverseOptions>(
-            configuration.GetSection(
-                DataverseOptions.SectionName));
-
-        // ============================================================
-        // ///DATAVERSE CLIENT
-        // ============================================================
-
-        services.AddSingleton<ServiceClient>(
-            serviceProvider =>
-            {
-                var options =
-                    serviceProvider
-                        .GetRequiredService<IOptions<DataverseOptions>>()
-                        .Value;
-
-                if (string.IsNullOrWhiteSpace(options.Url))
-                {
-                    throw new InvalidOperationException(
-                        "Dataverse:Url is not configured.");
-                }
-
-                if (string.IsNullOrWhiteSpace(options.ClientId))
-                {
-                    throw new InvalidOperationException(
-                        "Dataverse:ClientId is not configured.");
-                }
-
-                if (string.IsNullOrWhiteSpace(options.ClientSecret))
-                {
-                    throw new InvalidOperationException(
-                        "Dataverse:ClientSecret is not configured.");
-                }
-
-                var connectionString =
-                    $"AuthType=ClientSecret;" +
-                    $"Url={options.Url};" +
-                    $"ClientId={options.ClientId};" +
-                    $"ClientSecret={options.ClientSecret};";
-
-                var client = new ServiceClient(
-                    connectionString);
-
-                if (!client.IsReady)
-                {
-                    throw new InvalidOperationException(
-                        "Unable to connect to Dataverse. " +
-                        "Verify the Dataverse URL, TenantId, ClientId, and ClientSecret.");
-                }
-
-                return client;
-            });
-
-        services.AddSingleton<
-            IDataverseContext,
-            DataverseContext>();
-
-        services.AddSingleton<
-            IDataverseClient,
-            DataverseClient>();
-
-        // ============================================================
-        // ///WORKSPACE PERSISTENCE
-        // ============================================================
-
-        var usesSqlPersistence = string.Equals(
-            configuration["Nexus:Persistence"],
-            "Sql",
-            StringComparison.OrdinalIgnoreCase);
-
-        if (usesSqlPersistence)
+        services.AddDbContext<NexusChatDbContext>(options =>
         {
-            services.AddDbContext<NexusChatDbContext>(options =>
-            {
-                var connectionString =
-                    configuration.GetConnectionString("NexusChat")
-                    ?? throw new InvalidOperationException(
-                        "ConnectionStrings:NexusChat is not configured.");
+            var connectionString =
+                configuration.GetConnectionString("NexusChat")
+                ?? throw new InvalidOperationException(
+                    "ConnectionStrings:NexusChat is not configured.");
 
-                options.UseSqlServer(
-                    connectionString,
-                    sqlOptions => sqlOptions.EnableRetryOnFailure());
-            });
+            options.UseSqlServer(
+                connectionString,
+                sqlOptions => sqlOptions.EnableRetryOnFailure());
+        });
 
-            services.AddScoped<
-                IWorkspaceRepository,
-                SqlWorkspaceRepository>();
+        services.AddScoped<
+            IWorkspaceRepository,
+            SqlWorkspaceRepository>();
 
-            services.AddScoped<
-                IProjectRepository,
-                SqlProjectRepository>();
+        services.AddScoped<
+            IProjectRepository,
+            SqlProjectRepository>();
 
-            services.AddScoped<
-                IConversationRepository,
-                SqlConversationRepository>();
+        services.AddScoped<
+            IConversationRepository,
+            SqlConversationRepository>();
 
-            services.AddScoped<
-                IConversationMessageRepository,
-                SqlConversationMessageRepository>();
+        services.AddScoped<
+            IConversationMessageRepository,
+            SqlConversationMessageRepository>();
 
-            services.AddScoped<
-                IKnowledgeRepository,
-                SqlKnowledgeRepository>();
+        services.AddScoped<
+            IKnowledgeRepository,
+            SqlKnowledgeRepository>();
 
-            services.AddScoped<
-                IAdrRepository,
-                SqlAdrRepository>();
+        services.AddScoped<
+            IAdrRepository,
+            SqlAdrRepository>();
 
-            services.AddScoped<
-                IWorkItemRepository,
-                SqlWorkItemRepository>();
+        services.AddScoped<
+            IWorkItemRepository,
+            SqlWorkItemRepository>();
 
-            services.AddScoped<
-                IArtifactRepository,
-                SqlArtifactRepository>();
+        services.AddScoped<
+            IArtifactRepository,
+            SqlArtifactRepository>();
 
-            services.AddScoped<
-                IBranchRepository,
-                SqlBranchRepository>();
+        services.AddScoped<
+            IBranchRepository,
+            SqlBranchRepository>();
 
-            services.AddScoped<
-                ISnapshotRepository,
-                SqlSnapshotRepository>();
+        services.AddScoped<
+            ISnapshotRepository,
+            SqlSnapshotRepository>();
 
-            services.AddScoped<
-                ISessionRepository,
-                SqlSessionRepository>();
-        }
-        else
-        {
-            services.AddSingleton<
-                IRepositoryMapper<Workspace, WorkspaceEntity>,
-                WorkspaceMapper>();
-
-            services.AddScoped<
-                IWorkspaceRepository,
-                WorkspaceDataverseRepository>();
-
-            services.AddSingleton<
-                IRepositoryMapper<Project, ProjectEntity>,
-                ProjectMapper>();
-
-            services.AddScoped<
-                IProjectRepository,
-                ProjectDataverseRepository>();
-
-            services.AddSingleton<
-                IRepositoryMapper<Conversation, ConversationEntity>,
-                ConversationMapper>();
-
-            services.AddScoped<
-                IConversationRepository,
-                ConversationDataverseRepository>();
-
-            services.AddSingleton<
-                IRepositoryMapper<
-                    ConversationMessage,
-                    ConversationMessageEntity>,
-                ConversationMessageMapper>();
-
-            services.AddScoped<
-                IConversationMessageRepository,
-                ConversationMessageDataverseRepository>();
-
-            // ============================================================
-            // ///WORK ITEM PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<WorkItem, WorkItemEntity>,
-                WorkItemMapper>();
-
-            services.AddScoped<
-                IWorkItemRepository,
-                WorkItemDataverseRepository>();
-
-            // ============================================================
-            // ///KNOWLEDGE PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Knowledge, KnowledgeEntity>,
-                KnowledgeMapper>();
-
-            services.AddScoped<
-                IKnowledgeRepository,
-                KnowledgeDataverseRepository>();
-
-            // ============================================================
-            // ///ARTIFACT PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Artifact, ArtifactEntity>,
-                ArtifactMapper>();
-
-            services.AddScoped<
-                IArtifactRepository,
-                ArtifactDataverseRepository>();
-
-            // ============================================================
-            // ///ADR PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Adr, AdrEntity>,
-                AdrMapper>();
-
-            services.AddScoped<
-                IAdrRepository,
-                AdrDataverseRepository>();
-
-            // ============================================================
-            // ///BRANCH PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Branch, BranchEntity>,
-                BranchMapper>();
-
-            services.AddScoped<
-                IBranchRepository,
-                BranchDataverseRepository>();
-
-            // ============================================================
-            // ///SESSION PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Session, SessionEntity>,
-                SessionMapper>();
-
-            services.AddScoped<
-                ISessionRepository,
-                SessionDataverseRepository>();
-
-            // ============================================================
-            // ///SNAPSHOT PERSISTENCE
-            // ============================================================
-
-            services.AddSingleton<
-                IRepositoryMapper<Snapshot, SnapshotEntity>,
-                SnapshotMapper>();
-
-            services.AddScoped<
-                ISnapshotRepository,
-                SnapshotDataverseRepository>();
-        }
+        services.AddScoped<
+            ISessionRepository,
+            SqlSessionRepository>();
 
         // ============================================================
         // ///WORKSPACE APPLICATION
