@@ -2,9 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Nexus.ProductCore.Scope.Project;
 using Nexus.Products.Chat.Domain.Adr;
 using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.Branch;
 using Nexus.Products.Chat.Domain.Conversation;
 using Nexus.Products.Chat.Domain.ConversationMessage;
 using Nexus.Products.Chat.Domain.Knowledge;
+using Nexus.Products.Chat.Domain.Session;
+using Nexus.Products.Chat.Domain.Snapshot;
 using Nexus.Products.Chat.Domain.WorkItem;
 using DomainWorkspace = Nexus.ProductCore.Scope.Workspace.Workspace;
 
@@ -32,6 +35,12 @@ public sealed class NexusChatDbContext : DbContext
     public DbSet<WorkItem> WorkItems => Set<WorkItem>();
 
     public DbSet<Artifact> Artifacts => Set<Artifact>();
+
+    public DbSet<Branch> Branches => Set<Branch>();
+
+    public DbSet<Snapshot> Snapshots => Set<Snapshot>();
+
+    public DbSet<Session> Sessions => Set<Session>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

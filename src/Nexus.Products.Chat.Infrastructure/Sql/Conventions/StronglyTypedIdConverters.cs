@@ -2,7 +2,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.ProductCore.Scope.Common.Identifiers;
 using Nexus.Products.Chat.Domain.Adr;
 using Nexus.Products.Chat.Domain.Artifact;
+using Nexus.Products.Chat.Domain.Branch;
 using Nexus.Products.Chat.Domain.Knowledge;
+using Nexus.Products.Chat.Domain.Session;
+using Nexus.Products.Chat.Domain.Snapshot;
 using Nexus.Products.Chat.Domain.WorkItem;
 using ChatProjectId = Nexus.Products.Chat.Domain.Project.ProjectId;
 using ChatWorkspaceId = Nexus.Products.Chat.Domain.Common.Identifiers.WorkspaceId;
@@ -50,6 +53,18 @@ public static class StronglyTypedIdConverters
 
     public static ValueConverter<ArtifactId, Guid> ArtifactId { get; } =
         Create<ArtifactId>(id => id.Value, value => new ArtifactId(value));
+
+    // Stage 2c aggregates - Branch, Snapshot, Session are all Chat's own domain types with
+    // Chat-local id structs (no Nexus.ProductCore.Scope counterpart), so their converters
+    // are plain like the Conversation pair above.
+    public static ValueConverter<BranchId, Guid> BranchId { get; } =
+        Create<BranchId>(id => id.Value, value => new BranchId(value));
+
+    public static ValueConverter<SnapshotId, Guid> SnapshotId { get; } =
+        Create<SnapshotId>(id => id.Value, value => new SnapshotId(value));
+
+    public static ValueConverter<SessionId, Guid> SessionId { get; } =
+        Create<SessionId>(id => id.Value, value => new SessionId(value));
 
     private static ValueConverter<TId, Guid> Create<TId>(
         Func<TId, Guid> toGuid,

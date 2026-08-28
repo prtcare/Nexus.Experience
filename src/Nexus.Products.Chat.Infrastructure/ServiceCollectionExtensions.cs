@@ -192,6 +192,18 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IArtifactRepository,
                 SqlArtifactRepository>();
+
+            services.AddScoped<
+                IBranchRepository,
+                SqlBranchRepository>();
+
+            services.AddScoped<
+                ISnapshotRepository,
+                SqlSnapshotRepository>();
+
+            services.AddScoped<
+                ISessionRepository,
+                SqlSessionRepository>();
         }
         else
         {
@@ -276,43 +288,43 @@ public static class ServiceCollectionExtensions
             services.AddScoped<
                 IAdrRepository,
                 AdrDataverseRepository>();
+
+            // ============================================================
+            // ///BRANCH PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Branch, BranchEntity>,
+                BranchMapper>();
+
+            services.AddScoped<
+                IBranchRepository,
+                BranchDataverseRepository>();
+
+            // ============================================================
+            // ///SESSION PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Session, SessionEntity>,
+                SessionMapper>();
+
+            services.AddScoped<
+                ISessionRepository,
+                SessionDataverseRepository>();
+
+            // ============================================================
+            // ///SNAPSHOT PERSISTENCE
+            // ============================================================
+
+            services.AddSingleton<
+                IRepositoryMapper<Snapshot, SnapshotEntity>,
+                SnapshotMapper>();
+
+            services.AddScoped<
+                ISnapshotRepository,
+                SnapshotDataverseRepository>();
         }
-
-        // ============================================================
-        // ///BRANCH PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Branch, BranchEntity>,
-            BranchMapper>();
-
-        services.AddScoped<
-            IBranchRepository,
-            BranchDataverseRepository>();
-
-        // ============================================================
-        // ///SESSION PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Session, SessionEntity>,
-            SessionMapper>();
-
-        services.AddScoped<
-            ISessionRepository,
-            SessionDataverseRepository>();
-
-        // ============================================================
-        // ///SNAPSHOT PERSISTENCE
-        // ============================================================
-
-        services.AddSingleton<
-            IRepositoryMapper<Snapshot, SnapshotEntity>,
-            SnapshotMapper>();
-
-        services.AddScoped<
-            ISnapshotRepository,
-            SnapshotDataverseRepository>();
 
         // ============================================================
         // ///WORKSPACE APPLICATION
