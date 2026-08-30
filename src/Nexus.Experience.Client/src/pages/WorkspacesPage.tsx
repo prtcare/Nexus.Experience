@@ -21,7 +21,6 @@ export function WorkspacesPage() {
                     </p>
                 </div>
 
-                <WorkspaceSelector />
                 <div className="nexus-page-actions">
                     <WorkspaceSelector />
 
