@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Nexus.ProductCore.Scope.Project;
+using Nexus.ProductCore.Scope.Subproject;
 using Nexus.Products.Chat.Domain.Adr;
 using Nexus.Products.Chat.Domain.Artifact;
 using Nexus.Products.Chat.Domain.Branch;
@@ -23,6 +24,8 @@ public sealed class NexusChatDbContext : DbContext
     public DbSet<DomainWorkspace> Workspaces => Set<DomainWorkspace>();
 
     public DbSet<Project> Projects => Set<Project>();
+
+    public DbSet<Subproject> Subprojects => Set<Subproject>();
 
     public DbSet<Conversation> Conversations => Set<Conversation>();
 

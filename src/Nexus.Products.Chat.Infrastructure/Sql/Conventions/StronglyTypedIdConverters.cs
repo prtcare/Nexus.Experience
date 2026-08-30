@@ -16,12 +16,15 @@ namespace Nexus.Products.Chat.Infrastructure.Sql.Conventions;
 
 public static class StronglyTypedIdConverters
 {
-    // Nexus.ProductCore.Scope's shared identifiers (Workspace, Project).
+    // Nexus.ProductCore.Scope's shared identifiers (Workspace, Project, Subproject).
     public static ValueConverter<WorkspaceId, Guid> WorkspaceId { get; } =
         Create<WorkspaceId>(id => id.Value, value => new WorkspaceId(value));
 
     public static ValueConverter<ProjectId, Guid> ProjectId { get; } =
         Create<ProjectId>(id => id.Value, value => new ProjectId(value));
+
+    public static ValueConverter<SubprojectId, Guid> SubprojectId { get; } =
+        Create<SubprojectId>(id => id.Value, value => new SubprojectId(value));
 
     // Chat's own opaque id structs. Conversation and ConversationMessage stay in this repo's
     // Domain and key on Chat-local ProjectId/WorkspaceId (AGENTS.md boundary rule - see
